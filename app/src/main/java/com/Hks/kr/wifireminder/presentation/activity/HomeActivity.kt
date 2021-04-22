@@ -1,7 +1,7 @@
 package com.Hks.kr.wifireminder.presentation.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.Hks.kr.wifireminder.R
 
 class HomeActivity : AppCompatActivity() {
