@@ -3,6 +3,7 @@ package com.hks.kr.wifireminder.database
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import com.google.common.truth.Truth
 import com.hks.kr.wifireminder.api.local.database.AppDatabase
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 import kotlinx.coroutines.runBlocking
@@ -40,18 +41,18 @@ class AppDatabaseTest {
         }
 
         // insert Test
-        assert(db.taskDao.fetchTaskSortByImportance().size == 3)
+        Truth.assertThat(db.taskDao.fetchTaskSortByImportance().size).isEqualTo(3)
 
         // 3 2 1
-        assert(db.taskDao.fetchTaskSortByImportance()[0].taskName == "3")
-        assert(db.taskDao.fetchTaskSortByImportance()[1].taskName == "2")
-        assert(db.taskDao.fetchTaskSortByImportance()[2].taskName == "1")
+        Truth.assertThat(db.taskDao.fetchTaskSortByImportance()[0].taskName).isEqualTo("3")
+        Truth.assertThat(db.taskDao.fetchTaskSortByImportance()[1].taskName).isEqualTo("2")
+        Truth.assertThat(db.taskDao.fetchTaskSortByImportance()[2].taskName).isEqualTo("1")
 
         // 3 2
         db.taskDao.deleteTask("1")
 
         // size = 2
-        assert(db.taskDao.fetchTaskSortByImportance().size == 2)
+        Truth.assertThat(db.taskDao.fetchTaskSortByImportance().size).isEqualTo(2)
     }
 
 }

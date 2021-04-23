@@ -17,6 +17,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.Hks.kr.wifireminder", appContext.packageName)
+        assertEquals("com.hks.kr.wifireminder", appContext.packageName)
     }
 }
