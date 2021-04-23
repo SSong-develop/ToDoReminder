@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="task"
+            type="com.hks.kr.wifireminder.domain.entity.TaskEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/task_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            style="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="TODO NAME"/>
+
+        <TextView
+            android:id="@+id/task_period"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            app:layout_constraintStart_toStartOf="@id/task_name"
+            app:layout_constraintEnd_toEndOf="@id/task_name"
+            app:layout_constraintTop_toBottomOf="@id/task_name"
+            tools:text="TODO PERIOD"/>
+
+        <TextView
+            android:id="@+id/task_importance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            style="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintStart_toStartOf="@id/task_name"
+            app:layout_constraintEnd_toEndOf="@id/task_name"
+            app:layout_constraintTop_toBottomOf="@id/task_period"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="TODO IMPORTANCE"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
