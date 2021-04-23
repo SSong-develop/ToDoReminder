@@ -9,4 +9,6 @@ interface TaskRepository {
     suspend fun deleteTask(taskName : String)
 
     suspend fun fetchAllTaskSortByImportance() : List<TaskDTO>
+
+    suspend fun deleteAllTask()
 }

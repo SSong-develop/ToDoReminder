@@ -7,7 +7,9 @@ import com.hks.kr.wifireminder.domain.entity.TaskEntity
 
 @Entity(tableName = "user_task_table")
 data class TaskDTO(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "taskId")
+    val id : Int = 0,
     @ColumnInfo(name = "taskName")
     val taskName : String,
     @ColumnInfo(name = "taskPeriod")

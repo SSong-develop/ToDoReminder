@@ -17,4 +17,8 @@ class TaskRepositoryImpl(
     }
 
     override suspend fun fetchAllTaskSortByImportance(): List<TaskDTO> = taskDao.fetchTaskSortByImportance()
+
+    override suspend fun deleteAllTask() {
+        taskDao.deleteAllTask()
+    }
 }
