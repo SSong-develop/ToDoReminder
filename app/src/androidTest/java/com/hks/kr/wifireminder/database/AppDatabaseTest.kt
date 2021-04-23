@@ -32,15 +32,26 @@ class AppDatabaseTest {
             TaskDTO("3",1,3)
         )
 
+        // 1
+        // 1 2
+        // 1 2 3
         testList.forEach {
             db.taskDao.insertTask(it)
         }
 
+        // insert Test
         assert(db.taskDao.fetchTaskSortByImportance().size == 3)
 
-        assert(db.taskDao.fetchTaskSortByImportance()[0].taskName == "1")
+        // 3 2 1
+        assert(db.taskDao.fetchTaskSortByImportance()[0].taskName == "3")
         assert(db.taskDao.fetchTaskSortByImportance()[1].taskName == "2")
-        assert(db.taskDao.fetchTaskSortByImportance()[2].taskName == "3")
+        assert(db.taskDao.fetchTaskSortByImportance()[2].taskName == "1")
+
+        // 3 2
+        db.taskDao.deleteTask("1")
+
+        // size = 2
+        assert(db.taskDao.fetchTaskSortByImportance().size == 2)
     }
 
 }
