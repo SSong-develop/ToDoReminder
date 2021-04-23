@@ -4,27 +4,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel
+import com.hks.kr.wifireminder.utils.BindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val viewModel : HomeViewModel by activityViewModels()
+    private var binding: FragmentHomeBinding by BindingDelegate()
+
+    private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val binding: FragmentHomeBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.fragment_home, container, false)
+    ): View = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        .also { fragmentHomeBinding -> binding = fragmentHomeBinding }.root
 
-        return binding.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.bindingViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
     }
 }

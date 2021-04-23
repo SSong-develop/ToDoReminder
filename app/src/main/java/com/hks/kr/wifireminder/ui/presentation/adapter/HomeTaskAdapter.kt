@@ -2,6 +2,7 @@ package com.hks.kr.wifireminder.ui.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -21,6 +22,8 @@ val diffItemCallback = object : DiffUtil.ItemCallback<TaskEntity>() {
 }
 
 class HomeTaskAdapter : ListAdapter<TaskEntity, HomeTaskAdapter.TaskViewHolder>(diffItemCallback) {
+    private val items = mutableListOf<TaskEntity>()
+
     class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item : TaskEntity){
@@ -41,6 +44,13 @@ class HomeTaskAdapter : ListAdapter<TaskEntity, HomeTaskAdapter.TaskViewHolder>(
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(items[position])
+    }
+}
+
+@BindingAdapter("task_adapter_items")
+fun RecyclerView.setItems(items : List<TaskEntity>){
+    (adapter as? HomeTaskAdapter)?.run {
+        submitList(items)
     }
 }
