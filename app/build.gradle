@@ -81,6 +81,10 @@ dependencies {
 
     // workManager
     implementation "androidx.work:work-runtime-ktx:$version_workmanager"
+
+    // dagger
+    implementation "com.google.dagger:dagger:$version_dagger"
+    kapt "com.google.dagger:dagger-compiler:$version_dagger"
 }
 
 ktlint {
