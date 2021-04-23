@@ -21,6 +21,7 @@ data class TaskDTO(
 fun List<TaskDTO>.asDomainTaskEntity() : List<TaskEntity> {
     return map {
         TaskEntity(
+            taskId = it.id,
             taskName = it.taskName,
             taskPeriod = it.taskPeriod,
             taskImportance = it.taskImportance

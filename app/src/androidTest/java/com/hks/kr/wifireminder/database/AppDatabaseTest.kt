@@ -28,9 +28,9 @@ class AppDatabaseTest {
     @Test
     fun insert() = runBlocking {
         val testList = listOf(
-            TaskDTO("1",1,1),
-            TaskDTO("2",1,2),
-            TaskDTO("3",1,3)
+            TaskDTO(1,"1",1,1),
+            TaskDTO(2,"2",1,2),
+            TaskDTO(3,"3",1,3)
         )
 
         // 1
