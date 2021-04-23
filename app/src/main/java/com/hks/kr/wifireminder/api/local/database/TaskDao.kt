@@ -10,8 +10,8 @@ interface TaskDao {
     suspend fun insertTask(taskDTO : TaskDTO)
 
     @Query("SELECT * FROM user_task_table ORDER BY taskImportance")
-    fun fetchTaskSortByImportance() : LiveData<List<TaskDTO>>
+    suspend fun fetchTaskSortByImportance() : List<TaskDTO>
 
     @Query("DELETE FROM user_task_table WHERE taskName = :taskName")
-    fun deleteTask(taskName : String)
+    suspend fun deleteTask(taskName : String)
 }
