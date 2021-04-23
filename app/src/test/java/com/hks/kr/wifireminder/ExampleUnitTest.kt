@@ -1,6 +1,6 @@
 package com.hks.kr.wifireminder
 
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**

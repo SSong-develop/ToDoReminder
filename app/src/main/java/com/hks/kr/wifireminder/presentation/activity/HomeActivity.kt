@@ -9,6 +9,6 @@ import com.hks.kr.wifireminder.databinding.ActivityHomeBinding
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding : ActivityHomeBinding = DataBindingUtil.setContentView(this,R.layout.activity_home)
+        val binding: ActivityHomeBinding = DataBindingUtil.setContentView(this, R.layout.activity_home)
     }
 }

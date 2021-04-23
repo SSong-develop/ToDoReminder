@@ -13,9 +13,12 @@
         tools:context=".presentation.activity.HomeActivity">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/activity_home_fragment_container"
+            android:id="@+id/nav_host_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
