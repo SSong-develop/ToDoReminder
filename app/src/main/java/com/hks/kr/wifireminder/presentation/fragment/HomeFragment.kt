@@ -1,4 +1,4 @@
-package com.Hks.kr.wifireminder.presentation.fragment
+package com.hks.kr.wifireminder.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.Hks.kr.wifireminder.R
-import com.Hks.kr.wifireminder.databinding.FragmentHomeBinding
+import com.hks.kr.wifireminder.R
+import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 

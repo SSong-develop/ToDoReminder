@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'org.jlleitschuh.gradle.ktlint'
     id 'kotlin-kapt'
+    id 'org.jlleitschuh.gradle.ktlint'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -10,7 +11,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.Hks.kr.wifireminder"
+        applicationId "com.hks.kr.wifireminder"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -33,6 +34,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures {
+        viewBinding = true
         dataBinding = true
     }
 }
@@ -68,8 +70,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
     // room
-    implementation "androidx.room:room-runtime:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
+    implementation "androidx.room:room-runtime:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
 
     // navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
@@ -78,11 +81,8 @@ dependencies {
 
     // workManager
     implementation "androidx.work:work-runtime-ktx:$version_workmanager"
-
-    // dagger
-    implementation "com.google.dagger:dagger:$version_dagger"
-    kapt "com.google.dagger:dagger-compiler:$version_dagger"
 }
+
 ktlint {
     android.set(true)
     coloredOutput.set(true)

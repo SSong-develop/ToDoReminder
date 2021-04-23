@@ -1,4 +1,4 @@
-package com.Hks.kr.wifireminder
+package com.hks.kr.wifireminder
 
 import org.junit.Assert.*
 import org.junit.Test

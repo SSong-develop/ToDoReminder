@@ -2,10 +2,4 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/navigation">
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.Hks.kr.wifireminder.presentation.fragment.HomeFragment"
-        android:label="HomeFragment" />
-</navigation>
+    android:id="@+id/navigation"/>
