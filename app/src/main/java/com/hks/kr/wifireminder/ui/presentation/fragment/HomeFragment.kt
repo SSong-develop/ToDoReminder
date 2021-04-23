@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.presentation.fragment
+package com.hks.kr.wifireminder.ui.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

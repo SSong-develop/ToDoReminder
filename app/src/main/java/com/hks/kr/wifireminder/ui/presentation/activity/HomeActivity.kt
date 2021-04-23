@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.presentation.activity
+package com.hks.kr.wifireminder.ui.presentation.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
