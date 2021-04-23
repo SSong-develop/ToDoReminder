@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel
-import com.hks.kr.wifireminder.utils.BindingDelegate
+import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private var binding: FragmentHomeBinding by BindingDelegate()
+    private var binding: FragmentHomeBinding by FragmentBindingDelegate()
 
     private val viewModel: HomeViewModel by activityViewModels()
 

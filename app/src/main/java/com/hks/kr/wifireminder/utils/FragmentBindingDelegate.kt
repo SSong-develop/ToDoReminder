@@ -8,7 +8,7 @@ import java.lang.IllegalArgumentException
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class BindingDelegate<T : Any> : ReadWriteProperty<Fragment,T>,LifecycleObserver{
+class FragmentBindingDelegate<T : Any> : ReadWriteProperty<Fragment,T>,LifecycleObserver{
     private var _binding : T? = null
 
     override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T) {
