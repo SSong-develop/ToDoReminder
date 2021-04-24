@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="bindingViewModel"
             type="com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel" />

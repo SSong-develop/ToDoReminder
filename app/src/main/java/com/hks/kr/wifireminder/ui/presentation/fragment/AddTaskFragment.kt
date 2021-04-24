@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddTaskFragment : Fragment() {
 
     private var binding: FragmentAddTaskBinding by FragmentBindingDelegate()
+
     private val viewModel: HomeViewModel by activityViewModels()
 
     override fun onCreateView(

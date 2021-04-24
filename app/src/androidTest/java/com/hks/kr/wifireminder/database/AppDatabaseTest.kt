@@ -12,25 +12,26 @@ import org.junit.Before
 import org.junit.Test
 
 class AppDatabaseTest {
-    private lateinit var db : AppDatabase
+    private lateinit var db: AppDatabase
 
     @Before
-    fun createDB(){
+    fun createDB() {
         val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.databaseBuilder(context,AppDatabase::class.java,"userTest").allowMainThreadQueries().build()
+        db = Room.databaseBuilder(context, AppDatabase::class.java, "userTest")
+            .allowMainThreadQueries().build()
     }
 
     @After
-    fun closeDB(){
+    fun closeDB() {
         db.close()
     }
 
     @Test
     fun insert() = runBlocking {
         val testList = listOf(
-            TaskDTO(1,"1",1,1),
-            TaskDTO(2,"2",1,2),
-            TaskDTO(3,"3",1,3)
+            TaskDTO(1, "1", 1, 1),
+            TaskDTO(2, "2", 1, 2),
+            TaskDTO(3, "3", 1, 3)
         )
 
         // 1

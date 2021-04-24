@@ -4,12 +4,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import java.lang.IllegalArgumentException
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-class FragmentBindingDelegate<T : Any> : ReadWriteProperty<Fragment,T>,LifecycleObserver{
-    private var _binding : T? = null
+class FragmentBindingDelegate<T : Any> : ReadWriteProperty<Fragment, T>, LifecycleObserver {
+    private var _binding: T? = null
 
     override fun setValue(thisRef: Fragment, property: KProperty<*>, value: T) {
         thisRef.viewLifecycleOwner.lifecycle.removeObserver(this)
@@ -17,10 +16,11 @@ class FragmentBindingDelegate<T : Any> : ReadWriteProperty<Fragment,T>,Lifecycle
         thisRef.viewLifecycleOwner.lifecycle.addObserver(this)
     }
 
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): T = _binding ?: throw IllegalArgumentException("you can't getValue outside of lifecycle")
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): T =
+        _binding ?: throw IllegalArgumentException("you can't getValue outside of lifecycle")
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy(){
+    fun onDestroy() {
         _binding = null
     }
 }

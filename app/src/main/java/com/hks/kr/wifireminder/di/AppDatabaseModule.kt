@@ -15,12 +15,12 @@ import javax.inject.Singleton
 class AppDatabaseModule {
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context : Context) =
-        Room.databaseBuilder(context, AppDatabase::class.java , "UserTaskDatabase")
+    fun provideAppDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, AppDatabase::class.java, "UserTaskDatabase")
             .fallbackToDestructiveMigration()
             .build()
 
     @Provides
     @Singleton
-    fun provideTaskDao(db : AppDatabase) = db.taskDao
+    fun provideTaskDao(db: AppDatabase) = db.taskDao
 }

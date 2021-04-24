@@ -9,16 +9,16 @@ import com.hks.kr.wifireminder.domain.entity.TaskEntity
 data class TaskDTO(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "taskId")
-    val id : Int = 0,
+    val id: Int = 0,
     @ColumnInfo(name = "taskName")
-    val taskName : String,
+    val taskName: String,
     @ColumnInfo(name = "taskPeriod")
-    val taskPeriod : Int,
+    val taskPeriod: Int,
     @ColumnInfo(name = "taskImportance")
-    val taskImportance : Int
+    val taskImportance: Int
 )
 
-fun List<TaskDTO>.asDomainTaskEntity() : List<TaskEntity> {
+fun List<TaskDTO>.asDomainTaskEntity(): List<TaskEntity> {
     return map {
         TaskEntity(
             taskId = it.id,

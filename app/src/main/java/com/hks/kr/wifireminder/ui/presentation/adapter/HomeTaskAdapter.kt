@@ -26,7 +26,7 @@ class HomeTaskAdapter : ListAdapter<TaskEntity, HomeTaskAdapter.TaskViewHolder>(
 
     class TaskViewHolder(private val binding: ItemTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : TaskEntity){
+        fun bind(item: TaskEntity) {
             binding.task = item
             binding.root.apply {
                 setOnClickListener {
@@ -38,8 +38,8 @@ class HomeTaskAdapter : ListAdapter<TaskEntity, HomeTaskAdapter.TaskViewHolder>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding : ItemTaskBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.item_task,parent,false)
+        val binding: ItemTaskBinding =
+            DataBindingUtil.inflate(layoutInflater, R.layout.item_task, parent, false)
         return TaskViewHolder(binding)
     }
 
@@ -49,7 +49,7 @@ class HomeTaskAdapter : ListAdapter<TaskEntity, HomeTaskAdapter.TaskViewHolder>(
 }
 
 @BindingAdapter("task_adapter_items")
-fun RecyclerView.setItems(items : List<TaskEntity>){
+fun RecyclerView.setItems(items: List<TaskEntity>) {
     (adapter as? HomeTaskAdapter)?.run {
         submitList(items)
     }

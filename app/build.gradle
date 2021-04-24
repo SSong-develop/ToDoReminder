@@ -16,7 +16,7 @@ tasks.withType(Test) {
     jacoco.includeNoLocationClasses = true
 }
 
-task coverageReport(type: JacocoReport, dependsOn: ['testDebugUnitTest','createDebugCoverageReport']){
+task coverageReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
     group = "Reporting"
     description = "Generate Jacoco coverage reports"
 
@@ -25,8 +25,8 @@ task coverageReport(type: JacocoReport, dependsOn: ['testDebugUnitTest','createD
         html.enabled = true
     }
 
-    def fileFilter = ['**/R.class','**/R$*.class','**/BuildConfig.*','**/Manifest*.*','**/*Test*.*','android/**/*.*']
-    def debugTree = fileTree(dir : "$project.buildDir/intermediates/classes/debug",excludes: fileFilter)
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
+    def debugTree = fileTree(dir: "$project.buildDir/intermediates/classes/debug", excludes: fileFilter)
     def mainSrc = "$project.projectDir/src/main/java"
 
     sourceDirectories.from = files([mainSrc])
