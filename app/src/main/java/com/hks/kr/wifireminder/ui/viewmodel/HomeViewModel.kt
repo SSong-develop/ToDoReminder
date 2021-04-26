@@ -2,6 +2,8 @@ package com.hks.kr.wifireminder.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import androidx.work.Constraints
+import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
@@ -18,7 +20,13 @@ class HomeViewModel @Inject constructor(
     private val wifiWorker = WorkManager.getInstance(app)
 
     internal fun showWifiSSid() {
-        wifiWorker.enqueue(OneTimeWorkRequest.from(WifiWorker::class.java))
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+        val oneTimeJobWithNetwork = OneTimeWorkRequest.Builder(WifiWorker::class.java)
+            .setConstraints(constraints).build()
+
+        wifiWorker.enqueue(oneTimeJobWithNetwork)
     }
 
 }

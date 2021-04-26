@@ -2,7 +2,16 @@ package com.hks.kr.wifireminder.utils
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkRequest
+import android.net.wifi.WifiInfo
+import android.net.wifi.WifiManager
+import androidx.work.Constraints
+import androidx.work.NetworkType
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.application.MainApplication.Companion.versionCheckUtils
 
@@ -26,5 +35,3 @@ fun makeNotification(message: String, context: Context) {
     }
     notificationManager.sendNotification(message, context)
 }
-
-fun getWifiSSId(context: Context): String = "need To Fix it :("
