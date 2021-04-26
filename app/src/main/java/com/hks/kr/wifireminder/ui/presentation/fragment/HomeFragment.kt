@@ -29,5 +29,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.bindingViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.showWifiSSid()
     }
 }

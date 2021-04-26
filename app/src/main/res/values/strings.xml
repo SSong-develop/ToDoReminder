@@ -8,4 +8,5 @@
 
     <string name="task_notification_title">해야할 일!!</string>
     <string name="task_notification_text">해야할 일들이 있습니다</string>
+    <string name="task_notification_description">해야할 일들을 알려줍니다</string>
 </resources>

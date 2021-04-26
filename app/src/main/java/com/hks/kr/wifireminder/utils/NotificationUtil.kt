@@ -29,10 +29,11 @@ fun NotificationManager.sendNotification(
         .setContentTitle(applicationContext.getString(R.string.task_notification_title))
         .setContentText(messageBody) // 여기 text에 해야할 일들의 목록들이 쫘르르륵 나와야 함
         .setContentIntent(contentPendingIntent)
+        .setSmallIcon(R.drawable.ic_launcher_foreground)
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 
-    notify(sampleKeystore.provideNotificationID(),builder.build())
+    notify(sampleKeystore.provideNotificationID(), builder.build())
 }
 
 fun NotificationManager.cancelNotifications() {
