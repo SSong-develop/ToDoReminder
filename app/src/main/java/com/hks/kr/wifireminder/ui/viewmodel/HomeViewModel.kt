@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
 
     private val wifiWorker = WorkManager.getInstance(app)
 
-    internal fun showWifiSSid() {
+    internal fun testShowWifiConnect() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
