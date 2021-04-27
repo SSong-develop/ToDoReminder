@@ -18,7 +18,10 @@ class HomeViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
-    internal fun testShowWifiConnect() {
+    init {
+        insertTestData()
+    }
+    private fun testShowWifiConnect() {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .setRequiresBatteryNotLow(true)
@@ -32,14 +35,15 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    fun insertTestData() = viewModelScope.launch {
+    private fun insertTestData() = viewModelScope.launch {
         runCatching {
-            taskRepository.insertTask(TaskDTO(0, "test1", 3, 1))
-            taskRepository.insertTask(TaskDTO(1, "test2", 5, 6))
-            taskRepository.insertTask(TaskDTO(2, "test3", 8, 3))
-            taskRepository.insertTask(TaskDTO(3, "test4", 11, 2))
+            taskRepository.insertTask(TaskDTO(1, "[TEST] 밥먹기", 5, 6))
+            taskRepository.insertTask(TaskDTO(2, "[TEST] 산책하기", 8, 3))
+            taskRepository.insertTask(TaskDTO(3, "[TEST] 운동하기", 12, 10))
+            taskRepository.insertTask(TaskDTO(4, "[TEST] 개발하기", 15, 99))
+            taskRepository.insertTask(TaskDTO(5, "[TEST] 롤하기", 19, 1))
         }.onSuccess {
-
+            testShowWifiConnect()
         }.onFailure {
 
         }

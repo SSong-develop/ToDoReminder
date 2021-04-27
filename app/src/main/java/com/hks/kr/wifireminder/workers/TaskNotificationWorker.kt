@@ -30,7 +30,7 @@ class TaskNotificationWork @AssistedInject constructor(
 
             val stringBuilder = StringBuilder()
             taskDao.fetchTaskSortByImportance().forEach {
-                stringBuilder.append("${it}\n")
+                stringBuilder.append(" - ${it.taskName}\n")
             }
             notificationManager.sendTaskNotification(stringBuilder.toString(), applicationContext)
             Result.success()

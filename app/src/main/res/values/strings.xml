@@ -4,7 +4,7 @@
     <string name="task_notification_channel_id" translatable="false">todo_task_channel</string>
     <string name="task_notification_channel_name" translatable="true">해야할 일</string>
 
-    <string name="task_notification_title">일해라 일!!!</string>
+    <string name="task_notification_title">나의 해야만 하는 일들</string>
     <string name="task_notification_text">해야할 일들이 있습니다</string>
     <string name="task_notification_description">해야할 일들을 알려줍니다</string>
 
