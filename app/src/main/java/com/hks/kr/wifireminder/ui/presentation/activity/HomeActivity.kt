@@ -28,8 +28,8 @@ class HomeActivity : AppCompatActivity() {
         val binding: ActivityHomeBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        notificationManager.createWifiNotificationChannel(applicationContext)
-        notificationManager.createTaskNotificationChannel(applicationContext)
+        notificationManager.createWifiNotificationChannel(this)
+        notificationManager.createTaskNotificationChannel(this)
 
         val intent = Intent(this, WifiConnectService::class.java)
         startService(intent)
