@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hks.kr.wifireminder">
 
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -20,7 +21,13 @@
         <service
             android:name=".notification.WifiConnectService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <provider
+            tools:node="remove"
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"/>
 
         <activity android:name=".ui.presentation.activity.HomeActivity">
             <intent-filter>

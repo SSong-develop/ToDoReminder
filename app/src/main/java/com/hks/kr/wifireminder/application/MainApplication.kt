@@ -1,15 +1,24 @@
 package com.hks.kr.wifireminder.application
 
 import android.app.Application
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import androidx.work.WorkManager
 import com.hks.kr.wifireminder.utils.Keystore
 import com.hks.kr.wifireminder.utils.VersionCheckUtils
 import dagger.hilt.android.HiltAndroidApp
+import javax.inject.Inject
 
 @HiltAndroidApp
-class MainApplication : Application() {
+class MainApplication : Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
+
     override fun onCreate() {
         super.onCreate()
         initializedSingleton()
+        WorkManager.initialize(this,Configuration.Builder().setWorkerFactory(workerFactory).build())
     }
 
     private fun initializedSingleton() {
@@ -21,4 +30,10 @@ class MainApplication : Application() {
         lateinit var sampleKeystore: Keystore
         lateinit var versionCheckUtils: VersionCheckUtils
     }
+
+    override fun getWorkManagerConfiguration(): Configuration =
+        Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
+
 }

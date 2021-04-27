@@ -30,9 +30,10 @@ fun NotificationManager.sendTaskNotification(
         applicationContext.getString(R.string.task_notification_channel_id)
     )
         .setContentTitle(applicationContext.getString(R.string.task_notification_title))
-        .setContentText(messageBody)
+        .setContentText(applicationContext.getString(R.string.task_notification_text))
         .setContentIntent(contentPendingIntent)
         .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setStyle(NotificationCompat.BigTextStyle().bigText(messageBody))
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 

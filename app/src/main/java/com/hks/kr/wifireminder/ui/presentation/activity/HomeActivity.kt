@@ -31,6 +31,9 @@ class HomeActivity : AppCompatActivity() {
         notificationManager.createWifiNotificationChannel(applicationContext)
         notificationManager.createTaskNotificationChannel(applicationContext)
 
+        // testData
+        viewModel.insertTestData()
+
         val intent = Intent(this, WifiConnectService::class.java)
         startService(intent)
     }
