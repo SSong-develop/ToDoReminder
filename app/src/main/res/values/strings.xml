@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">WIFIReminder</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="task_notification_channel_id" translatable="false">todo_task_channel</string>
     <string name="task_notification_channel_name" translatable="true">해야할 일</string>
 
     <string name="task_notification_title">일해라 일!!!</string>
     <string name="task_notification_text">해야할 일들이 있습니다</string>
     <string name="task_notification_description">해야할 일들을 알려줍니다</string>
+
+    <string name="wifi_checker_onLost_text">와이파이가 끊어집니다. 외출잘하고 오세요</string>
+
+    <string name="wifi_notification_channel_id" translatable="false">wifi_notice_channel</string>
+    <string name="wifi_notification_channel_name" translatable="true">와이파이 연결</string>
+
+    <string name="wifi_notification_title">집에 안전하게 잘 도착하셨나요?</string>
+    <string name="wifi_notification_text">저장해놨던 해야할 일들이 있습니다</string>
+    <string name="wifi_notification_channel_description">와이파이 연결을 확인합니다</string>
 </resources>

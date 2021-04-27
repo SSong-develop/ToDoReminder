@@ -2,15 +2,17 @@ package com.hks.kr.wifireminder.utils
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.NotificationManager.IMPORTANCE_DEFAULT
+import android.app.NotificationManager.IMPORTANCE_HIGH
 import android.app.PendingIntent
 import android.content.Context
 import androidx.core.app.NotificationCompat
 import com.hks.kr.wifireminder.R
-import com.hks.kr.wifireminder.application.MainApplication
 import com.hks.kr.wifireminder.application.MainApplication.Companion.sampleKeystore
+import com.hks.kr.wifireminder.application.MainApplication.Companion.versionCheckUtils
 import com.hks.kr.wifireminder.ui.presentation.activity.HomeActivity
 
-fun NotificationManager.sendNotification(
+fun NotificationManager.sendTaskNotification(
     messageBody: String,
     applicationContext: Context
 ) {
@@ -18,7 +20,7 @@ fun NotificationManager.sendNotification(
 
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
-        sampleKeystore.provideNotificationID(),
+        sampleKeystore.provideTaskNotificationID(),
         contentIntent,
         PendingIntent.FLAG_UPDATE_CURRENT
     )
@@ -28,34 +30,72 @@ fun NotificationManager.sendNotification(
         applicationContext.getString(R.string.task_notification_channel_id)
     )
         .setContentTitle(applicationContext.getString(R.string.task_notification_title))
-        .setContentText(messageBody) // 여기 text에 해야할 일들의 목록들이 쫘르르륵 나와야 함
+        .setContentText(messageBody)
         .setContentIntent(contentPendingIntent)
         .setSmallIcon(R.drawable.ic_launcher_foreground)
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
 
-    notify(sampleKeystore.provideNotificationID(), builder.build())
+    notify(sampleKeystore.provideTaskNotificationID(), builder.build())
 }
 
-// test 함수
-fun makeNotification(message: String, context: Context) {
-    val notificationManager =
-        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+fun NotificationManager.sendWifiNotification(
+    messageBody: String,
+    applicationContext: Context
+) {
+    val contentIntent = applicationContext.getIntent<HomeActivity>()
 
-    if (MainApplication.versionCheckUtils.isVersionUpToOreo()) {
-        val name = context.getString(R.string.task_notification_channel_name)
-        val description = context.getString(R.string.task_notification_description)
-        val importance = NotificationManager.IMPORTANCE_HIGH
+    val contentPendingIntent = PendingIntent.getActivity(
+        applicationContext,
+        sampleKeystore.provideWifiNotificationID(),
+        contentIntent,
+        PendingIntent.FLAG_UPDATE_CURRENT
+    )
+
+    val builder = NotificationCompat.Builder(
+        applicationContext,
+        applicationContext.getString(R.string.wifi_notification_channel_id)
+    )
+        .setContentTitle(applicationContext.getString(R.string.wifi_notification_title))
+        .setContentText(messageBody)
+        .setContentIntent(contentPendingIntent)
+        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setAutoCancel(true)
+        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+    notify(sampleKeystore.provideWifiNotificationID(), builder.build())
+
+}
+
+fun NotificationManager.createTaskNotificationChannel(context: Context) {
+    if (versionCheckUtils.isVersionUpToOreo()) {
+        val channelName = context.getString(R.string.task_notification_channel_name)
+        val channelDescription = context.getString(R.string.task_notification_description)
+        val channelImportance = IMPORTANCE_HIGH
         val channel = NotificationChannel(
             context.getString(R.string.task_notification_channel_id),
-            name,
-            importance
+            channelName,
+            channelImportance
         )
-        channel.description = description
-
-        notificationManager.createNotificationChannel(channel)
+        channel.description = channelDescription
+        createNotificationChannel(channel)
     }
-    notificationManager.sendNotification(message, context)
+}
+
+fun NotificationManager.createWifiNotificationChannel(context: Context) {
+    if (versionCheckUtils.isVersionUpToOreo()) {
+        val wifiChannelName = context.getString(R.string.wifi_notification_channel_name)
+        val wifiChannelDescription =
+            context.getString(R.string.wifi_notification_channel_description)
+        val wifiChannelImportance = IMPORTANCE_DEFAULT
+        val wifiChannel = NotificationChannel(
+            context.getString(R.string.wifi_notification_channel_id),
+            wifiChannelName,
+            wifiChannelImportance
+        )
+        wifiChannel.description = wifiChannelDescription
+        createNotificationChannel(wifiChannel)
+    }
 }
 
 fun NotificationManager.cancelNotifications() {

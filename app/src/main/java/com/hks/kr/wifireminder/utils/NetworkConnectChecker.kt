@@ -1,22 +1,33 @@
 package com.hks.kr.wifireminder.utils
 
+import android.app.NotificationManager
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import androidx.core.content.ContextCompat
+import com.hks.kr.wifireminder.R
 
 class NetworkConnectChecker(
     private val context: Context
 ) : ConnectivityManager.NetworkCallback() {
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
-        makeNotification("송훈기 일해라!!", context)
+        val notificationManager =
+            ContextCompat.getSystemService(
+                context,
+                NotificationManager::class.java
+            ) as NotificationManager
+        notificationManager.sendWifiNotification(
+            context.getString(R.string.wifi_notification_text),
+            context
+        )
     }
 
     override fun onLost(network: Network) {
         super.onLost(network)
-        context.shortToast("wifi turns off")
+        context.shortToast(context.getString(R.string.wifi_checker_onLost_text))
     }
 
     fun registerNetworkCallback() {
