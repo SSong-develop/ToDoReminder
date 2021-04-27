@@ -21,13 +21,11 @@ class TaskNotificationWork @AssistedInject constructor(
     @Inject
     lateinit var taskDao: TaskDao
 
+    @Inject
+    lateinit var notificationManager : NotificationManager
+
     override suspend fun doWork(): Result {
         return try {
-            val notificationManager = ContextCompat.getSystemService(
-                applicationContext,
-                NotificationManager::class.java
-            ) as NotificationManager
-
             val stringBuilder = StringBuilder()
             taskDao.fetchTaskSortByImportance().forEach {
                 stringBuilder.append(" - ${it.taskName}\n")
