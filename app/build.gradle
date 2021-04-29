@@ -121,6 +121,9 @@ dependencies {
     // hilt workmanager
     implementation 'androidx.hilt:hilt-work:1.0.0-beta01'
     kapt 'androidx.hilt:hilt-compiler:1.0.0-beta01'
+
+    // MaterialDesign
+    implementation "com.google.android.material:material:$version_material_design"
 }
 
 dependencies {

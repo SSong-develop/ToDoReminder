@@ -18,7 +18,10 @@ class MainApplication : Application(), Configuration.Provider {
     override fun onCreate() {
         super.onCreate()
         initializedSingleton()
-        WorkManager.initialize(this,Configuration.Builder().setWorkerFactory(workerFactory).build())
+        WorkManager.initialize(
+            this,
+            Configuration.Builder().setWorkerFactory(workerFactory).build()
+        )
     }
 
     private fun initializedSingleton() {

@@ -2,7 +2,6 @@ package com.hks.kr.wifireminder.workers
 
 import android.app.NotificationManager
 import android.content.Context
-import androidx.core.content.ContextCompat
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -22,7 +21,7 @@ class TaskNotificationWork @AssistedInject constructor(
     lateinit var taskDao: TaskDao
 
     @Inject
-    lateinit var notificationManager : NotificationManager
+    lateinit var notificationManager: NotificationManager
 
     override suspend fun doWork(): Result {
         return try {

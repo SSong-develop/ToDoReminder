@@ -27,7 +27,7 @@
             tools:node="remove"
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"
-            android:exported="false"/>
+            android:exported="false" />
 
         <activity android:name=".ui.presentation.activity.HomeActivity">
             <intent-filter>

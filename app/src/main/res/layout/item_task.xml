@@ -8,11 +8,16 @@
         <variable
             name="task"
             type="com.hks.kr.wifireminder.domain.entity.TaskEntity" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> on_click.invoke()}">
 
         <TextView
             android:id="@+id/task_name"
@@ -22,6 +27,8 @@
             android:textSize="24sp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:maxLines="5"
+            android:text="@{task.taskName}"
             style="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:text="@{Integer.toString(task.taskPeriod)}"
             style="@style/TextAppearance.AppCompat.Subhead"
             app:layout_constraintStart_toStartOf="@id/task_name"
             app:layout_constraintEnd_toEndOf="@id/task_name"
@@ -45,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
+            android:text="@{Integer.toString(task.taskImportance)}"
             style="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="@id/task_name"
             app:layout_constraintEnd_toEndOf="@id/task_name"
