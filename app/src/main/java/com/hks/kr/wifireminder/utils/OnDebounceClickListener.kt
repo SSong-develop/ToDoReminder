@@ -5,23 +5,23 @@ import androidx.databinding.BindingAdapter
 
 typealias OnClickListener = (View) -> Unit
 
-class OnDebounceClickListener(private val listener : OnClickListener) : View.OnClickListener {
+class OnDebounceClickListener(private val listener: OnClickListener) : View.OnClickListener {
     override fun onClick(v: View?) {
         val now = System.currentTimeMillis()
-        if(now < lastTime + INTERVAL) return
+        if (now < lastTime + INTERVAL) return
         lastTime = now
         v?.run(listener)
     }
 
     companion object {
-        private const val INTERVAL : Long = 500L
-        private var lastTime : Long = 0
+        private const val INTERVAL: Long = 500L
+        private var lastTime: Long = 0
     }
 }
 
 @BindingAdapter("android:debounceClick")
-infix fun View.setOnDebounceClickListener(listener : View.OnClickListener?){
-    if(listener == null)
+infix fun View.setOnDebounceClickListener(listener: View.OnClickListener?) {
+    if (listener == null)
         this.setOnClickListener(null)
     else {
         this.setOnClickListener(OnDebounceClickListener {

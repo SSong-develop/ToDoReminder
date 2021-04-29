@@ -20,6 +20,7 @@
         android:background="@color/white"
         app:cardCornerRadius="8dp"
         android:elevation="4dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
