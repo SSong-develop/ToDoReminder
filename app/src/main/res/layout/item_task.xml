@@ -14,53 +14,59 @@
             type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> on_click.invoke()}">
-
-        <TextView
-            android:id="@+id/task_name"
-            android:layout_width="wrap_content"
+        android:background="@color/white"
+        app:cardCornerRadius="8dp"
+        android:elevation="4dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:maxLines="5"
-            android:text="@{task.taskName}"
-            style="@style/TextAppearance.AppCompat.Title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="TODO NAME" />
+            android:onClick="@{() -> on_click.invoke()}">
 
-        <TextView
-            android:id="@+id/task_period"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@{Integer.toString(task.taskPeriod)}"
-            style="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_constraintStart_toStartOf="@id/task_name"
-            app:layout_constraintEnd_toEndOf="@id/task_name"
-            app:layout_constraintTop_toBottomOf="@id/task_name"
-            tools:text="TODO PERIOD" />
+            <TextView
+                android:id="@+id/task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:text="@{task.taskName}"
+                style="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="TODO NAME" />
 
-        <TextView
-            android:id="@+id/task_importance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="16dp"
-            android:text="@{Integer.toString(task.taskImportance)}"
-            style="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintStart_toStartOf="@id/task_name"
-            app:layout_constraintEnd_toEndOf="@id/task_name"
-            app:layout_constraintTop_toBottomOf="@id/task_period"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="TODO IMPORTANCE" />
+            <TextView
+                android:id="@+id/task_period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@{Integer.toString(task.taskPeriod)}"
+                style="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintStart_toStartOf="@id/task_name"
+                app:layout_constraintEnd_toEndOf="@id/task_name"
+                app:layout_constraintTop_toBottomOf="@id/task_name"
+                tools:text="TODO PERIOD" />
+
+            <TextView
+                android:id="@+id/task_importance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:text="@{Integer.toString(task.taskImportance)}"
+                style="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintStart_toStartOf="@id/task_name"
+                app:layout_constraintEnd_toEndOf="@id/task_name"
+                app:layout_constraintTop_toBottomOf="@id/task_period"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="TODO IMPORTANCE" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>
