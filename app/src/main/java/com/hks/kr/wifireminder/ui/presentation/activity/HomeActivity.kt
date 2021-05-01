@@ -35,7 +35,7 @@ class HomeActivity : AppCompatActivity() {
     private fun observeIsAlreadyDoneCode(){
         viewModel.isAlreadyDoneCode.observe(this) {
             if(!it){
-                viewModel.runCodeOnlyOnce{
+                viewModel.runSingleInvoke{
                     notificationManager.createWifiNotificationChannel(this)
                     notificationManager.createTaskNotificationChannel(this)
                     startService<WifiConnectService>()

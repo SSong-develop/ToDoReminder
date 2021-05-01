@@ -18,12 +18,12 @@ class PrefsStoreImpl @Inject constructor(@ApplicationContext context: Context) :
         name = STORE_NAME
     )
 
-    override suspend fun isAlreadyWorked(): Boolean = runCatching {
+    override suspend fun isAlreadySingleInvoked(): Boolean = runCatching {
         val pref = dataStore.data.first()
         pref[IS_ALREADY_DONE_IT_BEFORE] == true
     }.getOrDefault(false)
 
-    override suspend fun isAlreadyWorkedWithFlow(): Flow<Boolean> =
+    override suspend fun isAlreadySingleInvokedWithFlow(): Flow<Boolean> =
         dataStore.data.catch { exception ->
             if (exception is IOException) emit(emptyPreferences())
             else throw exception
@@ -31,7 +31,7 @@ class PrefsStoreImpl @Inject constructor(@ApplicationContext context: Context) :
             prefs[IS_ALREADY_DONE_IT_BEFORE] == true
         }
 
-    override suspend fun runOnlyOnce() {
+    override suspend fun onSingleInvoke() {
         runCatching {
             dataStore.edit { pref ->
                 pref[IS_ALREADY_DONE_IT_BEFORE] = true

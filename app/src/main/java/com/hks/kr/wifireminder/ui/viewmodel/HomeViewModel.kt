@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         insertTestData()
-        getResultOfTheCodeOnlyOnce()
+        getResultOfSingleInvoked()
     }
 
     private fun testShowWifiConnect() {
@@ -50,17 +50,17 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    private fun getResultOfTheCodeOnlyOnce() {
+    private fun getResultOfSingleInvoked() {
         viewModelScope.launch {
-            prefsStore.isAlreadyWorkedWithFlow().collect {
+            prefsStore.isAlreadySingleInvokedWithFlow().collect {
                 _isAlreadyDoneCode.value = it
             }
         }
     }
 
-    fun runCodeOnlyOnce(block: () -> Unit) {
+    fun runSingleInvoke(block: () -> Unit) {
         viewModelScope.launch {
-            prefsStore.runOnlyOnce()
+            prefsStore.onSingleInvoke()
         }
         block()
     }
