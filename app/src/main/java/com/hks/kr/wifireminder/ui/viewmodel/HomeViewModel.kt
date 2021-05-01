@@ -13,6 +13,7 @@ import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import com.hks.kr.wifireminder.workers.TaskNotificationWork
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -49,13 +50,15 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    private fun getResultOfTheCodeOnlyOnce(){
+    private fun getResultOfTheCodeOnlyOnce() {
         viewModelScope.launch {
-            _isAlreadyDoneCode.value = prefsStore.isAlreadyWorked()
+            prefsStore.isAlreadyWorkedWithFlow().collect {
+                _isAlreadyDoneCode.value = it
+            }
         }
     }
 
-    fun runCodeOnlyOnce(block : () -> Unit){
+    fun runCodeOnlyOnce(block: () -> Unit) {
         viewModelScope.launch {
             prefsStore.runOnlyOnce()
         }

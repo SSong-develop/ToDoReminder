@@ -7,7 +7,9 @@ import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.work.impl.model.Preference
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class PrefsStoreImpl @Inject constructor(@ApplicationContext context : Context) : PrefsStore {
@@ -19,6 +21,10 @@ class PrefsStoreImpl @Inject constructor(@ApplicationContext context : Context) 
         val pref = dataStore.data.first()
         pref[IS_ALREADY_DONE_IT_BEFORE] == true
     }.getOrDefault(false)
+
+    override suspend fun isAlreadyWorkedWithFlow(): Flow<Boolean> = dataStore.data.map { prefs ->
+        prefs[IS_ALREADY_DONE_IT_BEFORE] == true
+    }
 
     override suspend fun runOnlyOnce(){
         runCatching {
