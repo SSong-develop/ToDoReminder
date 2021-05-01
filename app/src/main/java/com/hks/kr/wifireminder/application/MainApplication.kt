@@ -5,6 +5,7 @@ import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import com.hks.kr.wifireminder.utils.Keystore
+import com.hks.kr.wifireminder.utils.PixelRatio
 import com.hks.kr.wifireminder.utils.VersionCheckUtils
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
@@ -27,11 +28,13 @@ class MainApplication : Application(), Configuration.Provider {
     private fun initializedSingleton() {
         sampleKeystore = Keystore
         versionCheckUtils = VersionCheckUtils
+        pixelRatio = PixelRatio(this)
     }
 
     companion object {
         lateinit var sampleKeystore: Keystore
         lateinit var versionCheckUtils: VersionCheckUtils
+        lateinit var pixelRatio : PixelRatio
     }
 
     override fun getWorkManagerConfiguration(): Configuration =

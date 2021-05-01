@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.ui.presentation.adapter.HomeTaskAdapter
@@ -40,7 +41,7 @@ class HomeFragment : Fragment() {
         list.adapter = HomeTaskAdapter(onItemClicked = { position, task ->
             onItemClicked(position, task)
         })
-        list.layoutManager = GridLayoutManager(requireContext(), 2)
+        list.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun onItemClicked(position: Int, task: TaskEntity) {
