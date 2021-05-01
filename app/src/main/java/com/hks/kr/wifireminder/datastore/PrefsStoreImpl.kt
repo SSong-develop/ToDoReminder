@@ -1,11 +1,12 @@
-package com.hks.kr.wifireminder.authentication
+package com.hks.kr.wifireminder.datastore
 
 import android.content.Context
+import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import androidx.work.impl.model.Preference
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
@@ -14,12 +15,12 @@ class PrefsStoreImpl @Inject constructor(@ApplicationContext context : Context) 
         name = STORE_NAME
     )
 
-    override suspend fun isAlreadyWork(): Boolean = runCatching {
+    override suspend fun isAlreadyWorked(): Boolean = runCatching {
         val pref = dataStore.data.first()
         pref[IS_ALREADY_DONE_IT_BEFORE] == true
     }.getOrDefault(false)
 
-    override suspend fun workingOnceCode(){
+    override suspend fun runOnlyOnce(){
         runCatching {
             dataStore.edit { pref ->
                 pref[IS_ALREADY_DONE_IT_BEFORE] = true

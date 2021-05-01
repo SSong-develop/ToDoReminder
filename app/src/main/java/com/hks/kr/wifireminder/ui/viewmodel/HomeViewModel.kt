@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.work.*
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 import com.hks.kr.wifireminder.api.local.entity.asDomainTaskEntity
-import com.hks.kr.wifireminder.authentication.PrefsStore
+import com.hks.kr.wifireminder.datastore.PrefsStore
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import com.hks.kr.wifireminder.workers.TaskNotificationWork
@@ -26,14 +26,14 @@ class HomeViewModel @Inject constructor(
 
     val taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
 
-    private val _isAlreadyDoneItBefore = MutableLiveData<Boolean>()
-    val isAlreadyDoneItBefore: LiveData<Boolean>
-        get() = _isAlreadyDoneItBefore
+    private val _isAlreadyDoneCode = MutableLiveData<Boolean>()
+    val isAlreadyDoneCode: LiveData<Boolean>
+        get() = _isAlreadyDoneCode
 
 
     init {
         insertTestData()
-        doItOnce()
+        getResultOfTheCodeOnlyOnce()
     }
 
     private fun testShowWifiConnect() {
@@ -49,16 +49,17 @@ class HomeViewModel @Inject constructor(
         )
     }
 
-    private fun doItOnce(){
+    private fun getResultOfTheCodeOnlyOnce(){
         viewModelScope.launch {
-            _isAlreadyDoneItBefore.value = prefsStore.isAlreadyWork()
+            _isAlreadyDoneCode.value = prefsStore.isAlreadyWorked()
         }
     }
 
-    fun weCallThisCode(){
+    fun runCodeOnlyOnce(block : () -> Unit){
         viewModelScope.launch {
-            prefsStore.workingOnceCode()
+            prefsStore.runOnlyOnce()
         }
+        block()
     }
 
     private fun insertTestData() = viewModelScope.launch {

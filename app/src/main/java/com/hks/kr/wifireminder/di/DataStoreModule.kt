@@ -1,7 +1,7 @@
 package com.hks.kr.wifireminder.di
 
-import com.hks.kr.wifireminder.authentication.PrefsStore
-import com.hks.kr.wifireminder.authentication.PrefsStoreImpl
+import com.hks.kr.wifireminder.datastore.PrefsStore
+import com.hks.kr.wifireminder.datastore.PrefsStoreImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

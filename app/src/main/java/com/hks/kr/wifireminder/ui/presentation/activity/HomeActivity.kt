@@ -29,13 +29,17 @@ class HomeActivity : AppCompatActivity() {
         val binding: ActivityHomeBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_home)
 
-        viewModel.isAlreadyDoneItBefore.observe(this) {
-            if(!it){
-                viewModel.weCallThisCode()
-                notificationManager.createWifiNotificationChannel(this)
-                notificationManager.createTaskNotificationChannel(this)
+        observeIsAlreadyDoneCode()
+    }
 
-                startService<WifiConnectService>()
+    private fun observeIsAlreadyDoneCode(){
+        viewModel.isAlreadyDoneCode.observe(this) {
+            if(!it){
+                viewModel.runCodeOnlyOnce{
+                    notificationManager.createWifiNotificationChannel(this)
+                    notificationManager.createTaskNotificationChannel(this)
+                    startService<WifiConnectService>()
+                }
             }
         }
     }
