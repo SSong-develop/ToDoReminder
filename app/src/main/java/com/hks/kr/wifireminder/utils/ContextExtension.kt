@@ -9,3 +9,5 @@ fun Context.shortToast(message: String) {
 }
 
 inline fun <reified T : Any> Context.getIntent() = Intent(this, T::class.java)
+
+inline fun <reified T : Any> Context.startService() = startService(getIntent<T>())

@@ -124,6 +124,9 @@ dependencies {
 
     // MaterialDesign
     implementation "com.google.android.material:material:$version_material_design"
+
+    // DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0-alpha05"
 }
 
 dependencies {

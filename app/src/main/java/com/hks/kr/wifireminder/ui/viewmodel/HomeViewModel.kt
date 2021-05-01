@@ -1,12 +1,14 @@
 package com.hks.kr.wifireminder.ui.viewmodel
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.*
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 import com.hks.kr.wifireminder.api.local.entity.asDomainTaskEntity
+import com.hks.kr.wifireminder.authentication.PrefsStore
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import com.hks.kr.wifireminder.workers.TaskNotificationWork
@@ -18,13 +20,20 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val app: Application,
-    private val taskRepository: TaskRepository
+    private val taskRepository: TaskRepository,
+    private val prefsStore: PrefsStore
 ) : ViewModel() {
 
     val taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
 
+    private val _isAlreadyDoneItBefore = MutableLiveData<Boolean>()
+    val isAlreadyDoneItBefore: LiveData<Boolean>
+        get() = _isAlreadyDoneItBefore
+
+
     init {
         insertTestData()
+        doItOnce()
     }
 
     private fun testShowWifiConnect() {
@@ -33,12 +42,23 @@ class HomeViewModel @Inject constructor(
             .setRequiresBatteryNotLow(true)
             .build()
 
-        // PeriodWorkRequest로 변경해서 3시간마다 1번씩 할일들을 보여주는 푸시알림을 보내준다.
         WorkManager.getInstance(app).enqueueUniquePeriodicWork(
             "homeViewModel",
             ExistingPeriodicWorkPolicy.REPLACE,
-            PeriodicWorkRequestBuilder<TaskNotificationWork>(15, TimeUnit.MINUTES).build()
+            PeriodicWorkRequestBuilder<TaskNotificationWork>(3, TimeUnit.HOURS).build()
         )
+    }
+
+    private fun doItOnce(){
+        viewModelScope.launch {
+            _isAlreadyDoneItBefore.value = prefsStore.isAlreadyWork()
+        }
+    }
+
+    fun weCallThisCode(){
+        viewModelScope.launch {
+            prefsStore.workingOnceCode()
+        }
     }
 
     private fun insertTestData() = viewModelScope.launch {
@@ -67,5 +87,4 @@ class HomeViewModel @Inject constructor(
 
         }
     }
-
 }
