@@ -14,15 +14,13 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
     attrs: AttributeSet? = null
 ) : ConstraintLayout(context,attrs) {
 
-    private val defaultShadowColor = Color.GRAY
+    private val defaultShadowColor = Color.BLACK
 
     private val defaultRectBackgroundColor = Color.WHITE
 
     private val shadowPaint = Paint()
     private val borderPaint = Paint()
     private val rectPaint = Paint()
-
-    private val shadowPath = Path()
 
     private val shadowTopPath = Path()
     private val shadowBottomPath = Path()
@@ -92,7 +90,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             )
             shadowStrokeWidth = it.getDimension(
                 R.styleable.ShadowConstraintLayout_shadowStrokeWidth,
-                1.dpToPixelFloat
+                4.dpToPixelFloat
             )
             cornerRadius = it.getDimension(
                 R.styleable.ShadowConstraintLayout_cornerRadius,
