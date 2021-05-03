@@ -9,6 +9,7 @@ import androidx.work.*
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 import com.hks.kr.wifireminder.api.local.entity.asDomainTaskEntity
 import com.hks.kr.wifireminder.datastore.PrefsStore
+import com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import com.hks.kr.wifireminder.workers.TaskNotificationWork
@@ -27,6 +28,8 @@ class HomeViewModel @Inject constructor(
 
     val taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
 
+    val taskCategoryList = MutableLiveData<List<TaskCategoryEntity>>(listOf())
+
     private val _isAlreadyDoneCode = MutableLiveData<Boolean>()
     val isAlreadyDoneCode: LiveData<Boolean>
         get() = _isAlreadyDoneCode
@@ -34,6 +37,12 @@ class HomeViewModel @Inject constructor(
 
     init {
         insertTestData()
+        taskCategoryList.value = listOf(
+            TaskCategoryEntity("Category1",2),
+            TaskCategoryEntity("Category2",3),
+            TaskCategoryEntity("Category3",4),
+            TaskCategoryEntity("Category4",5)
+        )
         getResultOfSingleInvoked()
     }
 

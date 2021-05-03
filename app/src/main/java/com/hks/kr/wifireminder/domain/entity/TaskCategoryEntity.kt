@@ -1,6 +1,6 @@
 package com.hks.kr.wifireminder.domain.entity
 
-data class TaskCatergoryEntity(
+data class TaskCategoryEntity(
     val taskCategoryName : String,
     val taskCatergoryCount : Int
 )

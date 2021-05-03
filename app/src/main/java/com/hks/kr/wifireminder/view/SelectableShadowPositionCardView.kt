@@ -52,7 +52,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
     private var enableBorder = false
     private var enableShadowTop = false
     private var enableShadowBottom = true
-    private var enableShadowStart = false
+    private var enableShadowStart = true
     private var enableShadowEnd = true
     private var borderHeight = 0f
     private var cornerRadius = 16f
@@ -121,7 +121,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             enableShadowBottom =
                 it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowBottom,true)
             enableShadowStart =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowStart,false)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowStart,true)
             enableShadowEnd =
                 it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowEnd,true)
         }

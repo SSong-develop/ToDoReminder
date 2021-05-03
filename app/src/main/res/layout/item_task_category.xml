@@ -1,7 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="items"
+            type="com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity" />
+
+        <variable
+            name="on_click"
+            type="kotlin.jvm.functions.Function0&lt;kotlin.Unit&gt;" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clipChildren="false"
+        android:onClick="@{() -> on_click.invoke()}">
+
+        <com.hks.kr.wifireminder.view.SelectableShadowPositionCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:blurRadius="8dp"
+            app:shadowStrokeWidth="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/task_category_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_baseline_ac_unit_24"
+                tools:src="@drawable/ic_baseline_ac_unit_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/task_category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginEnd="24dp"
+                android:text="@{items.taskCategoryName}"
+                style="@style/TextAppearance.AppCompat.Title"
+                app:layout_constraintStart_toStartOf="@id/task_category_icon"
+                app:layout_constraintTop_toBottomOf="@id/task_category_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Environment"/>
+
+            <TextView
+                android:id="@+id/task_category_work_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{Integer.toString(items.taskCatergoryCount) + `tasks`}"
+                app:layout_constraintStart_toStartOf="@id/task_category_icon"
+                app:layout_constraintTop_toBottomOf="@id/task_category_name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="3 tasks"/>
+        </com.hks.kr.wifireminder.view.SelectableShadowPositionCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

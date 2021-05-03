@@ -9,8 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
+import com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.ui.presentation.adapter.HomeTaskAdapter
+import com.hks.kr.wifireminder.ui.presentation.adapter.HomeTaskCategoryAdapter
 import com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.shortToast
@@ -34,18 +36,28 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.bindingViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        configureList()
+        configureTaskList()
+        configureCategoryList()
     }
 
-    private fun configureList() = binding.homeFragmentTodoList.let { list ->
-        list.adapter = HomeTaskAdapter(onItemClicked = { position, task ->
-            onItemClicked(position, task)
+    private fun configureCategoryList() = binding.homeFragmentTodoCategoryList.let { list ->
+        list.adapter = HomeTaskCategoryAdapter(onItemClicked = { position , category ->
+            onCategoryItemClicked(position,category)
         })
-        list.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun onItemClicked(position: Int, task: TaskEntity) {
+    private fun configureTaskList() = binding.homeFragmentTodoList.let { list ->
+        list.adapter = HomeTaskAdapter(onItemClicked = { position, task ->
+            onTaskItemClicked(position, task)
+        })
+    }
+
+    private fun onTaskItemClicked(position: Int, task: TaskEntity) {
         requireContext().shortToast("$position & $task")
+    }
+
+    private fun onCategoryItemClicked(position : Int , category : TaskCategoryEntity){
+        requireContext().shortToast("$position & $category")
     }
 
 }
