@@ -203,7 +203,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             top = 0f
             left = 0f
             right = width.toFloat()
-            bottom = width.toFloat()
+            bottom = height.toFloat()
         }
 
         rectBackgroundPath.apply {
