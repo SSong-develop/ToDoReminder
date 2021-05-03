@@ -14,19 +14,47 @@
         android:layout_height="match_parent"
         android:clipToPadding="false">
 
+        <TextView
+            android:id="@+id/home_fragment_todo_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home_fragment_category_title"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/home_fragment_category_title_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_category_list"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_category_list"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:layout_marginTop="24dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             task_category_items="@{bindingViewModel.taskCategoryList}"
-            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list"
+            app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_title"
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_title" />
+
+        <TextView
+            android:id="@+id/home_fragment_todo_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/home_fragment_todo_title"
+            android:textColor="@color/home_fragment_category_title_color"
+            app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_list"
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_list"
@@ -34,11 +62,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
+            android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_list" />
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_title"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

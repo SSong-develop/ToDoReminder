@@ -10,4 +10,6 @@
 
     <color name="home_app_bar_color">#D3D6FD</color>
     <color name="home_colapsing_tool_bar_color">#AAB7F9</color>
+
+    <color name="home_fragment_category_title_color">#3c3c3c</color>
 </resources>

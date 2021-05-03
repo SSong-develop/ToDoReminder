@@ -18,4 +18,7 @@
     <string name="wifi_notification_channel_description">와이파이 연결을 확인합니다</string>
 
     <string name="home_fragment_search_edt_hint">해야할 일</string>
+
+    <string name="home_fragment_category_title">QUICK CHECKLIST</string>
+    <string name="home_fragment_todo_title">YOUR TASKS</string>
 </resources>
