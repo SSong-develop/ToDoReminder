@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <ImageView
+            <com.hks.kr.wifireminder.view.CircleIconImageView
                 android:id="@+id/task_category_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
