@@ -11,12 +11,12 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(taskDTO: TaskDTO)
 
-    @Query("SELECT * FROM user_task_table ORDER BY taskImportance DESC")
+    @Query("SELECT * FROM task_table ORDER BY taskImportance DESC")
     suspend fun fetchTaskSortByImportance(): List<TaskDTO>
 
-    @Query("DELETE FROM user_task_table WHERE :taskName = taskName")
+    @Query("DELETE FROM task_table WHERE :taskName = taskName")
     suspend fun deleteTask(taskName: String)
 
-    @Query("DELETE FROM user_task_table")
+    @Query("DELETE FROM task_table")
     suspend fun deleteAllTask()
 }

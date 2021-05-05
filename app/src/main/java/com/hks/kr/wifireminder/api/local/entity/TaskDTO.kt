@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 
-@Entity(tableName = "user_task_table")
+@Entity(tableName = "task_table")
 data class TaskDTO(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "taskId")

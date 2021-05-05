@@ -34,7 +34,6 @@ class HomeViewModel @Inject constructor(
     val isAlreadyDoneCode: LiveData<Boolean>
         get() = _isAlreadyDoneCode
 
-
     init {
         insertTestData()
         taskCategoryList.value = listOf(
@@ -55,7 +54,7 @@ class HomeViewModel @Inject constructor(
         WorkManager.getInstance(app).enqueueUniquePeriodicWork(
             "homeViewModel",
             ExistingPeriodicWorkPolicy.REPLACE,
-            PeriodicWorkRequestBuilder<TaskNotificationWork>(3, TimeUnit.HOURS).build()
+            PeriodicWorkRequestBuilder<TaskNotificationWork>(6, TimeUnit.HOURS).build()
         )
     }
 
