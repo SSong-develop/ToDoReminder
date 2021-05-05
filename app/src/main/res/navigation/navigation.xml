@@ -7,4 +7,8 @@
         android:id="@+id/homeFragment"
         android:name="com.hks.kr.wifireminder.ui.home.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/frameFragment2"
+        android:name="com.hks.kr.wifireminder.ui.frame.FrameFragment"
+        android:label="FrameFragment" />
 </navigation>

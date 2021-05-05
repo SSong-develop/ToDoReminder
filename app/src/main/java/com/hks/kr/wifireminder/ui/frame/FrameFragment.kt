@@ -33,6 +33,7 @@ class FrameFragment : Fragment() {
         observeViewModel()
     }
 
+
     private fun configureBottomNavigation() = binding.bottomNavigation.run {
         setOnNavigationItemSelectedListener {
             viewModel.onPageSelected(

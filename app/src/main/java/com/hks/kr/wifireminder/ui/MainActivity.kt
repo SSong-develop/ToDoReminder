@@ -28,10 +28,8 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().replace(
-            R.id.nav_host_app_bar_fragment,
-            FrameFragment()
-        ).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_app_bar_fragment, FrameFragment()).commit()
         observeIsAlreadyDoneCode()
     }
 
