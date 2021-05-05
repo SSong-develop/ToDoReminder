@@ -10,13 +10,13 @@ import androidx.core.app.NotificationCompat
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.application.MainApplication.Companion.sampleKeystore
 import com.hks.kr.wifireminder.application.MainApplication.Companion.versionCheckUtils
-import com.hks.kr.wifireminder.ui.HomeActivity
+import com.hks.kr.wifireminder.ui.MainActivity
 
 fun NotificationManager.sendTaskNotification(
     messageBody: String,
     applicationContext: Context
 ) {
-    val contentIntent = applicationContext.getIntent<HomeActivity>()
+    val contentIntent = applicationContext.getIntent<MainActivity>()
 
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,
@@ -44,7 +44,7 @@ fun NotificationManager.sendWifiNotification(
     messageBody: String,
     applicationContext: Context
 ) {
-    val contentIntent = applicationContext.getIntent<HomeActivity>()
+    val contentIntent = applicationContext.getIntent<MainActivity>()
 
     val contentPendingIntent = PendingIntent.getActivity(
         applicationContext,

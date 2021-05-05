@@ -29,7 +29,7 @@
             android:authorities="${applicationId}.workmanager-init"
             android:exported="false" />
 
-        <activity android:name=".ui.HomeActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

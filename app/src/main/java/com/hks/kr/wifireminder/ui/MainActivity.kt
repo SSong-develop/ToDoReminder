@@ -6,10 +6,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.hks.kr.wifireminder.R
-import com.hks.kr.wifireminder.databinding.ActivityHomeBinding
+import com.hks.kr.wifireminder.databinding.ActivityMainBinding
 import com.hks.kr.wifireminder.notification.WifiConnectService
 import com.hks.kr.wifireminder.ui.frame.FrameFragment
-import com.hks.kr.wifireminder.ui.home.HomeViewModel
 import com.hks.kr.wifireminder.utils.createTaskNotificationChannel
 import com.hks.kr.wifireminder.utils.createWifiNotificationChannel
 import com.hks.kr.wifireminder.utils.startService
@@ -17,17 +16,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     @Inject
     lateinit var notificationManager: NotificationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityHomeBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_home)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         supportFragmentManager.beginTransaction().replace(
             R.id.nav_host_app_bar_fragment,
@@ -37,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun observeIsAlreadyDoneCode() {
-        viewModel.isAlreadyDoneCode.observe(this) {
+        viewModel.isSingleInvoked.observe(this) {
             if (!it) {
                 viewModel.runSingleInvoke {
                     notificationManager.createWifiNotificationChannel(this)

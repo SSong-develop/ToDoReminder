@@ -1,20 +1,17 @@
 package com.hks.kr.wifireminder.ui.home
 
 import android.app.Application
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.work.*
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 import com.hks.kr.wifireminder.api.local.entity.asDomainTaskEntity
-import com.hks.kr.wifireminder.datastore.PrefsStore
 import com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import com.hks.kr.wifireminder.workers.TaskNotificationWork
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -22,17 +19,12 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val app: Application,
-    private val taskRepository: TaskRepository,
-    private val prefsStore: PrefsStore
+    private val taskRepository: TaskRepository
 ) : ViewModel() {
 
     val taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
 
     val taskCategoryList = MutableLiveData<List<TaskCategoryEntity>>(listOf())
-
-    private val _isAlreadyDoneCode = MutableLiveData<Boolean>()
-    val isAlreadyDoneCode: LiveData<Boolean>
-        get() = _isAlreadyDoneCode
 
     init {
         insertTestData()
@@ -42,7 +34,6 @@ class HomeViewModel @Inject constructor(
             TaskCategoryEntity("Category3", 4),
             TaskCategoryEntity("Category4", 5)
         )
-        getResultOfSingleInvoked()
     }
 
     private fun testShowWifiConnect() {
@@ -56,21 +47,6 @@ class HomeViewModel @Inject constructor(
             ExistingPeriodicWorkPolicy.REPLACE,
             PeriodicWorkRequestBuilder<TaskNotificationWork>(6, TimeUnit.HOURS).build()
         )
-    }
-
-    private fun getResultOfSingleInvoked() {
-        viewModelScope.launch {
-            prefsStore.isAlreadySingleInvokedWithFlow().collect {
-                _isAlreadyDoneCode.value = it
-            }
-        }
-    }
-
-    fun runSingleInvoke(block: () -> Unit) {
-        viewModelScope.launch {
-            prefsStore.onSingleInvoke()
-        }
-        block()
     }
 
     private fun insertTestData() = viewModelScope.launch {
