@@ -12,7 +12,7 @@ import java.lang.Float.MIN_VALUE
 class SelectableShadowPositionCardView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
-) : ConstraintLayout(context,attrs) {
+) : ConstraintLayout(context, attrs) {
 
     private val defaultShadowColor = Color.BLACK
 
@@ -57,17 +57,17 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
     private var borderHeight = 0f
     private var cornerRadius = 16f
 
-    private val blurMaskFilter = BlurMaskFilter(blurRadius,BlurMaskFilter.Blur.NORMAL)
+    private val blurMaskFilter = BlurMaskFilter(blurRadius, BlurMaskFilter.Blur.NORMAL)
 
     init {
         setBackgroundColor(defaultRectBackgroundColor)
-        if(attrs != null){
+        if (attrs != null) {
             getStyleableAttrs(attrs)
         }
     }
 
     private fun getStyleableAttrs(attrs: AttributeSet) {
-        context.theme.obtainStyledAttributes(attrs, R.styleable.ShadowConstraintLayout,0,0).use{
+        context.theme.obtainStyledAttributes(attrs, R.styleable.ShadowConstraintLayout, 0, 0).use {
             shadowTopOffset = it.getDimension(
                 R.styleable.ShadowConstraintLayout_shadowTopOffset,
                 0.dpToPixelFloat
@@ -115,15 +115,15 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             enableShadow =
                 it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadow, true)
             enableBorder =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableBorder,false)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enableBorder, false)
             enableShadowTop =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowTop,false)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowTop, false)
             enableShadowBottom =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowBottom,true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowBottom, true)
             enableShadowStart =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowStart,true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowStart, true)
             enableShadowEnd =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowEnd,true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowEnd, true)
         }
     }
 
@@ -133,16 +133,16 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas) {
-        if(enableShadow){
+        if (enableShadow) {
             initializeShadowAttribute()
-            if(enableShadowTop) drawShadowTop(canvas)
-            if(enableShadowBottom) drawShadowBottom(canvas)
-            if(enableShadowStart) drawShadowStart(canvas)
-            if(enableShadowEnd) drawShadowEnd(canvas)
+            if (enableShadowTop) drawShadowTop(canvas)
+            if (enableShadowBottom) drawShadowBottom(canvas)
+            if (enableShadowStart) drawShadowStart(canvas)
+            if (enableShadowEnd) drawShadowEnd(canvas)
 
         }
         drawRectBackground(canvas)
-        if(enableBorder) drawBorder(canvas)
+        if (enableBorder) drawBorder(canvas)
         super.onDraw(canvas)
     }
 
@@ -214,42 +214,43 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
         canvas.drawRoundRect(rectBackgroundRectF, cornerRadius, cornerRadius, rectPaint)
     }
 
-    private fun drawShadowTop(canvas: Canvas){
+    private fun drawShadowTop(canvas: Canvas) {
         shadowTopPath.apply {
             reset()
-            moveTo((width + (shadowEndOffset)),shadowStartY + shadowTopOffset)
-            lineTo((shadowStartOffset),shadowStartY + shadowTopOffset)
+            moveTo((width + (shadowEndOffset)), shadowStartY + shadowTopOffset)
+            lineTo((shadowStartOffset), shadowStartY + shadowTopOffset)
         }
-        canvas.drawPath(shadowTopPath,shadowPaint)
+        canvas.drawPath(shadowTopPath, shadowPaint)
         canvas.save()
     }
-    private fun drawShadowStart(canvas: Canvas){
+
+    private fun drawShadowStart(canvas: Canvas) {
         shadowStartPath.apply {
             reset()
-            moveTo((shadowStartOffset),shadowStartY + shadowTopOffset)
-            lineTo((shadowStartOffset),(height + shadowBottomOffset))
+            moveTo((shadowStartOffset), shadowStartY + shadowTopOffset)
+            lineTo((shadowStartOffset), (height + shadowBottomOffset))
         }
-        canvas.drawPath(shadowStartPath,shadowPaint)
+        canvas.drawPath(shadowStartPath, shadowPaint)
         canvas.save()
     }
 
-    private fun drawShadowBottom(canvas: Canvas){
+    private fun drawShadowBottom(canvas: Canvas) {
         shadowBottomPath.apply {
             reset()
-            moveTo((shadowStartOffset),(height + shadowBottomOffset))
-            lineTo((width + shadowEndOffset),(height + shadowBottomOffset))
+            moveTo((shadowStartOffset), (height + shadowBottomOffset))
+            lineTo((width + shadowEndOffset), (height + shadowBottomOffset))
         }
-        canvas.drawPath(shadowBottomPath,shadowPaint)
+        canvas.drawPath(shadowBottomPath, shadowPaint)
         canvas.save()
     }
 
-    private fun drawShadowEnd(canvas: Canvas){
-        shadowEndPath.apply{
+    private fun drawShadowEnd(canvas: Canvas) {
+        shadowEndPath.apply {
             reset()
-            moveTo((width + shadowEndOffset),(height + shadowBottomOffset))
-            lineTo((width + shadowEndOffset),shadowStartY + shadowTopOffset)
+            moveTo((width + shadowEndOffset), (height + shadowBottomOffset))
+            lineTo((width + shadowEndOffset), shadowStartY + shadowTopOffset)
         }
-        canvas.drawPath(shadowEndPath,shadowPaint)
+        canvas.drawPath(shadowEndPath, shadowPaint)
         canvas.save()
     }
 

@@ -6,7 +6,7 @@
 
         <variable
             name="bindingViewModel"
-            type="com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel" />
+            type="com.hks.kr.wifireminder.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:textColor="@color/home_fragment_category_title_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_category_list"/>
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_category_list" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_category_list"
@@ -54,7 +54,7 @@
             android:textColor="@color/home_fragment_category_title_color"
             app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
             app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_list"
-            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list"/>
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_list"

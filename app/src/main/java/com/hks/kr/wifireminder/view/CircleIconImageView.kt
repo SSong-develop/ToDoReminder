@@ -16,7 +16,7 @@ import java.lang.Integer.min
 class CircleIconImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-) : AppCompatImageView(context,attrs){
+) : AppCompatImageView(context, attrs) {
 
     private val bitmapPaint = Paint().apply {
         isAntiAlias = true
@@ -24,7 +24,7 @@ class CircleIconImageView @JvmOverloads constructor(
     }
 
     init {
-        setPadding(4.dpToPixel,4.dpToPixel,4.dpToPixel,4.dpToPixel)
+        setPadding(4.dpToPixel, 4.dpToPixel, 4.dpToPixel, 4.dpToPixel)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -33,6 +33,6 @@ class CircleIconImageView @JvmOverloads constructor(
     }
 
     private fun drawCircle(canvas: Canvas) {
-        canvas.drawCircle(width / 2f , height / 2f ,min(width ,height) / 2f ,bitmapPaint)
+        canvas.drawCircle(width / 2f, height / 2f, min(width, height) / 2f, bitmapPaint)
     }
 }

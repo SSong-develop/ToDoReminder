@@ -56,7 +56,7 @@
                 app:layout_constraintStart_toStartOf="@id/task_category_icon"
                 app:layout_constraintTop_toBottomOf="@id/task_category_icon"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Environment"/>
+                tools:text="Environment" />
 
             <TextView
                 android:id="@+id/task_category_work_count"
@@ -68,7 +68,7 @@
                 app:layout_constraintStart_toStartOf="@id/task_category_icon"
                 app:layout_constraintTop_toBottomOf="@id/task_category_name"
                 app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="3 tasks"/>
+                tools:text="3 tasks" />
         </com.hks.kr.wifireminder.view.SelectableShadowPositionCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -34,7 +34,7 @@ class MainApplication : Application(), Configuration.Provider {
     companion object {
         lateinit var sampleKeystore: Keystore
         lateinit var versionCheckUtils: VersionCheckUtils
-        lateinit var pixelRatio : PixelRatio
+        lateinit var pixelRatio: PixelRatio
     }
 
     override fun getWorkManagerConfiguration(): Configuration =

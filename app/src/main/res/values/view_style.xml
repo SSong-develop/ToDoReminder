@@ -10,11 +10,11 @@
         <attr name="shadowStrokeWidth" format="dimension" />
         <attr name="cornerRadius" format="dimension" />
         <attr name="blurRadius" format="dimension" />
-        <attr name="borderColor" format="color"/>
-        <attr name="enableShadowTop" format="boolean"/>
-        <attr name="enableShadowBottom" format="boolean"/>
-        <attr name="enableShadowStart" format="boolean"/>
-        <attr name="enableShadowEnd" format="boolean"/>
+        <attr name="borderColor" format="color" />
+        <attr name="enableShadowTop" format="boolean" />
+        <attr name="enableShadowBottom" format="boolean" />
+        <attr name="enableShadowStart" format="boolean" />
+        <attr name="enableShadowEnd" format="boolean" />
         <attr name="enableShadow" format="boolean" />
         <attr name="enableBorder" format="boolean" />
         <attr name="borderHeight" format="dimension" />

@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.ui.presentation.fragment
+package com.hks.kr.wifireminder.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,6 @@ import androidx.fragment.app.activityViewModels
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
-import com.hks.kr.wifireminder.ui.presentation.adapter.HomeTaskAdapter
-import com.hks.kr.wifireminder.ui.presentation.adapter.HomeTaskCategoryAdapter
-import com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,8 +36,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun configureCategoryList() = binding.homeFragmentTodoCategoryList.let { list ->
-        list.adapter = HomeTaskCategoryAdapter(onItemClicked = { position , category ->
-            onCategoryItemClicked(position,category)
+        list.adapter = HomeTaskCategoryAdapter(onItemClicked = { position, category ->
+            onCategoryItemClicked(position, category)
         })
     }
 
@@ -54,7 +51,7 @@ class HomeFragment : Fragment() {
         requireContext().shortToast("$position & $task")
     }
 
-    private fun onCategoryItemClicked(position : Int , category : TaskCategoryEntity){
+    private fun onCategoryItemClicked(position: Int, category: TaskCategoryEntity) {
         requireContext().shortToast("$position & $category")
     }
 

@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.ui.presentation.adapter
+package com.hks.kr.wifireminder.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

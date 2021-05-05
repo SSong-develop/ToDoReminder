@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.ui.viewmodel
+package com.hks.kr.wifireminder.ui.home
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -37,10 +37,10 @@ class HomeViewModel @Inject constructor(
     init {
         insertTestData()
         taskCategoryList.value = listOf(
-            TaskCategoryEntity("Category1",2),
-            TaskCategoryEntity("Category2",3),
-            TaskCategoryEntity("Category3",4),
-            TaskCategoryEntity("Category4",5)
+            TaskCategoryEntity("Category1", 2),
+            TaskCategoryEntity("Category2", 3),
+            TaskCategoryEntity("Category3", 4),
+            TaskCategoryEntity("Category4", 5)
         )
         getResultOfSingleInvoked()
     }

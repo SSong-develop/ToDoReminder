@@ -6,11 +6,11 @@
 
         <variable
             name="bindingViewModel"
-            type="com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel" />
+            type="com.hks.kr.wifireminder.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.presentation.fragment.AddTaskFragment"></androidx.constraintlayout.widget.ConstraintLayout>
+        tools:context=".ui.addTask.AddTaskFragment"></androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

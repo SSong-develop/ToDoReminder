@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.ui.presentation.activity
+package com.hks.kr.wifireminder.ui
 
 import android.app.NotificationManager
 import android.os.Bundle
@@ -8,7 +8,8 @@ import androidx.databinding.DataBindingUtil
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.ActivityHomeBinding
 import com.hks.kr.wifireminder.notification.WifiConnectService
-import com.hks.kr.wifireminder.ui.viewmodel.HomeViewModel
+import com.hks.kr.wifireminder.ui.frame.FrameFragment
+import com.hks.kr.wifireminder.ui.home.HomeViewModel
 import com.hks.kr.wifireminder.utils.createTaskNotificationChannel
 import com.hks.kr.wifireminder.utils.createWifiNotificationChannel
 import com.hks.kr.wifireminder.utils.startService
@@ -28,13 +29,17 @@ class HomeActivity : AppCompatActivity() {
         val binding: ActivityHomeBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_home)
 
+        supportFragmentManager.beginTransaction().replace(
+            R.id.nav_host_app_bar_fragment,
+            FrameFragment()
+        ).commit()
         observeIsAlreadyDoneCode()
     }
 
-    private fun observeIsAlreadyDoneCode(){
+    private fun observeIsAlreadyDoneCode() {
         viewModel.isAlreadyDoneCode.observe(this) {
-            if(!it){
-                viewModel.runSingleInvoke{
+            if (!it) {
+                viewModel.runSingleInvoke {
                     notificationManager.createWifiNotificationChannel(this)
                     notificationManager.createTaskNotificationChannel(this)
                     startService<WifiConnectService>()

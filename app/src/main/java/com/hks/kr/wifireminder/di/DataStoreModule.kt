@@ -14,5 +14,5 @@ abstract class DataStoreModule {
 
     @Binds
     @Singleton
-    abstract fun bindDataStorePreference(dataStore : PrefsStoreImpl) : PrefsStore
+    abstract fun bindDataStorePreference(dataStore: PrefsStoreImpl): PrefsStore
 }

@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.application.MainApplication.Companion.sampleKeystore
 import com.hks.kr.wifireminder.application.MainApplication.Companion.versionCheckUtils
-import com.hks.kr.wifireminder.ui.presentation.activity.HomeActivity
+import com.hks.kr.wifireminder.ui.HomeActivity
 
 fun NotificationManager.sendTaskNotification(
     messageBody: String,
