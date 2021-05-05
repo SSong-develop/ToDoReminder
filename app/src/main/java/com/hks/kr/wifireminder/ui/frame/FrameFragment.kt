@@ -59,5 +59,5 @@ class FrameFragment : Fragment() {
     }
 
     private fun throwUnknownMenuSelectedException(): Nothing =
-        throw RuntimeException("How dare you...")
+        throw RuntimeException("No Menu in here body...")
 }
