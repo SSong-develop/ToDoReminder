@@ -1,9 +1,6 @@
 package com.hks.kr.wifireminder.api.local.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 
 @Dao
@@ -11,6 +8,7 @@ interface TaskDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(taskDTO: TaskDTO)
 
+    @Transaction
     @Query("SELECT * FROM task_table ORDER BY taskImportance DESC")
     suspend fun fetchTaskSortByImportance(): List<TaskDTO>
 

@@ -2,7 +2,6 @@ package com.hks.kr.wifireminder.ui.presentation.activity
 
 import android.app.NotificationManager
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
