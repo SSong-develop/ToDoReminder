@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import com.hks.kr.wifireminder.R
+import com.hks.kr.wifireminder.utils.dpToPixel
 import com.hks.kr.wifireminder.utils.dpToPixelFloat
 import java.lang.Float.MIN_VALUE
 
@@ -139,7 +140,6 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             if (enableShadowBottom) drawShadowBottom(canvas)
             if (enableShadowStart) drawShadowStart(canvas)
             if (enableShadowEnd) drawShadowEnd(canvas)
-
         }
         drawRectBackground(canvas)
         if (enableBorder) drawBorder(canvas)
@@ -155,6 +155,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             xfermode = porterDuffXferMode
             maskFilter = blurMaskFilter
         }
+
         shadowTopOffset = 6.dpToPixelFloat
         shadowBottomOffset = (-2).dpToPixelFloat
         shadowStartOffset = 2.dpToPixelFloat
