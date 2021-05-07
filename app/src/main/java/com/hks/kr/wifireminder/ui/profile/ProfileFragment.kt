@@ -13,7 +13,7 @@ class ProfileFragment : Fragment() {
 
     private var binding: FragmentProfileBinding by FragmentBindingDelegate()
 
-    private val viewModel : ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

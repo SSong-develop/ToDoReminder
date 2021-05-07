@@ -8,15 +8,15 @@
         android:id="@+id/frameFragment"
         android:name="com.hks.kr.wifireminder.ui.frame.FrameFragment"
         android:label="FrameFragment"
-        tools:layout="@layout/fragment_frame"/>
+        tools:layout="@layout/fragment_frame" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.hks.kr.wifireminder.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.hks.kr.wifireminder.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile" />
 </navigation>
