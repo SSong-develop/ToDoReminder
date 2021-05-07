@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_app_bar_fragment, FrameFragment()).commit()
+            .replace(R.id.activity_nav_host_fragment, FrameFragment()).commit()
         observeIsAlreadyDoneCode()
     }
 

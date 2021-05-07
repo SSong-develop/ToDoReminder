@@ -53,6 +53,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/montserrat_black"
                 android:includeFontPadding="false"
+                android:textSize="18sp"
                 android:text="@{items.taskCategoryName}"
                 style="@style/TextAppearance.AppCompat.Title"
                 app:layout_constraintStart_toStartOf="@id/task_category_icon"

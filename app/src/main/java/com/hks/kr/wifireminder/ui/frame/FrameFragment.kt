@@ -2,10 +2,18 @@ package com.hks.kr.wifireminder.ui.frame
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentFrameBinding
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
@@ -30,35 +38,11 @@ class FrameFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         configureBottomNavigation()
-        observeViewModel()
     }
 
-
-    private fun configureBottomNavigation() = binding.bottomNavigation.run {
-        setOnNavigationItemSelectedListener {
-            viewModel.onPageSelected(
-                when (it.itemId) {
-                    R.id.homeFragment -> 0
-                    else -> throwUnknownMenuSelectedException()
-                }
-            )
-            true
-        }
+    private fun configureBottomNavigation(){
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.bottomNavigation.setupWithNavController(navController)
     }
-
-    private fun observeViewModel() {
-        viewModel.pageIdx.observe(viewLifecycleOwner) { pageIdx ->
-            selectBottomNavigationMenu(pageIdx)
-        }
-    }
-
-    private fun selectBottomNavigationMenu(pageIdx: Int?) {
-        binding.bottomNavigation.selectedItemId = when (pageIdx) {
-            0 -> R.id.homeFragment
-            else -> throwUnknownMenuSelectedException()
-        }
-    }
-
-    private fun throwUnknownMenuSelectedException(): Nothing =
-        throw RuntimeException("No Menu in here body...")
 }

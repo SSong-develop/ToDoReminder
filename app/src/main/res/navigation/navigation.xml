@@ -2,13 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/frameFragment"
+        android:name="com.hks.kr.wifireminder.ui.frame.FrameFragment"
+        android:label="FrameFragment"
+        tools:layout="@layout/fragment_frame"/>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.hks.kr.wifireminder.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
     <fragment
-        android:id="@+id/frameFragment2"
-        android:name="com.hks.kr.wifireminder.ui.frame.FrameFragment"
-        android:label="FrameFragment" />
+        android:id="@+id/profileFragment"
+        android:name="com.hks.kr.wifireminder.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
 </navigation>

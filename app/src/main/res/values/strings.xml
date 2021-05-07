@@ -21,4 +21,6 @@
 
     <string name="home_fragment_category_title">QUICK CHECKLIST</string>
     <string name="home_fragment_todo_title">YOUR TASKS</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
