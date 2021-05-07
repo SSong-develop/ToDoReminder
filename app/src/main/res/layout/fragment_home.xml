@@ -73,5 +73,17 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_title"
             app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home_fragment_add_task_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:fabSize="mini"
+            app:borderWidth="0dp"
+            app:backgroundTint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
