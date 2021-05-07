@@ -19,4 +19,9 @@
         android:name="com.hks.kr.wifireminder.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.hks.kr.wifireminder.ui.addTask.AddTaskFragment"
+        android:label="AddTaskFragment"
+        tools:layout="@layout/fragment_add_task"/>
 </navigation>
