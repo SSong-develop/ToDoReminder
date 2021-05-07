@@ -12,5 +12,7 @@
     <color name="home_colapsing_tool_bar_color">#AAB7F9</color>
     <color name="bottom_nav_backgrond_color">#000000</color>
 
+    <color name="status_bar_color">#ffffffff</color>
+
     <color name="home_fragment_category_title_color">#3c3c3c</color>
 </resources>

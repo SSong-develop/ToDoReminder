@@ -4,6 +4,7 @@ import android.app.NotificationManager
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.ActivityMainBinding
@@ -30,7 +31,13 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.activity_nav_host_fragment, FrameFragment()).commit()
+
+        configureStatusBarColor()
         observeIsAlreadyDoneCode()
+    }
+
+    private fun configureStatusBarColor() {
+        window.statusBarColor = ContextCompat.getColor(this,R.color.black)
     }
 
     private fun observeIsAlreadyDoneCode() {
