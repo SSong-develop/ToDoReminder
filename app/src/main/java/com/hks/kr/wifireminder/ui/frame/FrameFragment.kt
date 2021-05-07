@@ -24,8 +24,6 @@ class FrameFragment : Fragment() {
 
     private var binding: FragmentFrameBinding by FragmentBindingDelegate()
 
-    private val viewModel by viewModels<FrameViewModel>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
