@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
+import com.hks.kr.wifireminder.ui.addTask.AddTaskDialogFragment
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +32,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.bindingViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.bindingFragment = this
         configureTaskList()
         configureCategoryList()
     }
@@ -53,6 +55,10 @@ class HomeFragment : Fragment() {
 
     private fun onCategoryItemClicked(position: Int, category: TaskCategoryEntity) {
         requireContext().shortToast("$position & $category")
+    }
+
+    fun navigateToAddTask() {
+        AddTaskDialogFragment().show(childFragmentManager,"TAG")
     }
 
 }

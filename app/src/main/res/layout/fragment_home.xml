@@ -7,6 +7,10 @@
         <variable
             name="bindingViewModel"
             type="com.hks.kr.wifireminder.ui.home.HomeViewModel" />
+
+        <variable
+            name="bindingFragment"
+            type="com.hks.kr.wifireminder.ui.home.HomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_add"
+            android:onClick="@{() ->bindingFragment.navigateToAddTask()}"
             app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
             app:layout_constraintBottom_toBottomOf="parent"
             app:fabSize="mini"

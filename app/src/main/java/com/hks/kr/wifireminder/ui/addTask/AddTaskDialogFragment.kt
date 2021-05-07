@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hks.kr.wifireminder.databinding.FragmentAddTaskBinding
@@ -12,7 +13,7 @@ import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AddTaskFragment : Fragment() {
+class AddTaskDialogFragment : DialogFragment() {
 
     private var binding: FragmentAddTaskBinding by FragmentBindingDelegate()
 

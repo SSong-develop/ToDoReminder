@@ -21,7 +21,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.hks.kr.wifireminder.ui.addTask.AddTaskFragment"
+        android:name="com.hks.kr.wifireminder.ui.addTask.AddTaskDialogFragment"
         android:label="AddTaskFragment"
         tools:layout="@layout/fragment_add_task"/>
 </navigation>
