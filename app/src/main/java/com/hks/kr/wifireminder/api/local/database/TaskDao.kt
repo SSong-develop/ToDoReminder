@@ -20,4 +20,10 @@ interface TaskDao {
 
     @Query("SELECT COUNT(*) FROM task_table WHERE :categoryName = taskCategory")
     suspend fun getCategoryCount(categoryName : String) : Int
+
+    @Query("SELECT * FROM task_table WHERE :categoryName = taskCategory")
+    suspend fun fetchTaskByCategory(categoryName : String) : List<TaskDTO>
+
+    @Query("SELECT COUNT(*) FROM task_table")
+    suspend fun getAllTaskCount() : Int
 }

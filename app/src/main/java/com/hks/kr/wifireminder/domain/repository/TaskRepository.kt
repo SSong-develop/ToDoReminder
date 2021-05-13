@@ -13,4 +13,8 @@ interface TaskRepository {
     suspend fun deleteAllTask()
 
     suspend fun getCategoryCount(categoryName : String) : Int
+
+    suspend fun fetchTaskByCategory(categoryName: String) : List<TaskEntity>
+
+    suspend fun getAllTaskCount() : Int
 }

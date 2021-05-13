@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onCategoryItemClicked(position: Int, category: CategoryEntity) {
-        requireContext().shortToast("$position & $category")
+        viewModel.fetchTaskByCategory(category.categoryName)
     }
 
     fun navigateToAddTask() {

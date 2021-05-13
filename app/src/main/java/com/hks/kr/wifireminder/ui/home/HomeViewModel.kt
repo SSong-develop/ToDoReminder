@@ -30,9 +30,12 @@ class HomeViewModel @Inject constructor(
 
     val taskCategoryList = MutableLiveData<List<CategoryEntity>>(listOf())
 
+    val allTaskCount = MutableLiveData<Int>()
+
     init {
         insertTestData()
         insertTestCategoryData()
+        getAllTaskCount()
     }
 
     private fun testShowWifiConnect() {
@@ -71,7 +74,7 @@ class HomeViewModel @Inject constructor(
             }
             testShowWifiConnect()
         }.onFailure {
-
+            // reTrial or just throw error
         }
     }
 
@@ -85,6 +88,38 @@ class HomeViewModel @Inject constructor(
             categoryRepository.getAllCategory().let {
                 taskCategoryList.value = it
             }
+        }.onFailure {
+            // reTrial or just throw error
+        }
+    }
+
+    fun fetchTaskByCategory(categoryName : String) = viewModelScope.launch {
+        runCatching {
+            taskRepository.fetchTaskByCategory(categoryName)
+        }.onSuccess {
+            taskEntityList.value = it
+        }.onFailure {
+            // reTrial or just throw error
+        }
+    }
+
+    fun fetchAllTask() = viewModelScope.launch {
+        runCatching {
+            taskRepository.fetchAllTaskSortByImportance()
+        }.onSuccess {
+            taskEntityList.value = it
+        }.onFailure {
+            // reTrial or just throw error
+        }
+    }
+
+    private fun getAllTaskCount() = viewModelScope.launch {
+        runCatching {
+            taskRepository.getAllTaskCount()
+        }.onSuccess {
+            allTaskCount.value = it
+        }.onFailure {
+            // reTrial or just throw error
         }
     }
 }
