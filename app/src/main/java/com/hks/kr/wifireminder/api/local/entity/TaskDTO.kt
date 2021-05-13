@@ -12,6 +12,8 @@ data class TaskDTO(
     val id: Int = 0,
     @ColumnInfo(name = "taskName")
     val taskName: String,
+    @ColumnInfo(name = "taskCategory")
+    val taskCategory: String,
     @ColumnInfo(name = "taskPeriod")
     val taskPeriod: Int,
     @ColumnInfo(name = "taskImportance")

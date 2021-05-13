@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
-import com.hks.kr.wifireminder.domain.entity.TaskCategoryEntity
+import com.hks.kr.wifireminder.domain.entity.CategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.ui.addTask.AddTaskDialogFragment
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
         requireContext().shortToast("$position & $task")
     }
 
-    private fun onCategoryItemClicked(position: Int, category: TaskCategoryEntity) {
+    private fun onCategoryItemClicked(position: Int, category: CategoryEntity) {
         requireContext().shortToast("$position & $category")
     }
 

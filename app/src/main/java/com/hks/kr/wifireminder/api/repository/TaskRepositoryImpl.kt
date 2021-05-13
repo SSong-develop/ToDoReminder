@@ -2,6 +2,8 @@ package com.hks.kr.wifireminder.api.repository
 
 import com.hks.kr.wifireminder.api.local.database.TaskDao
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
+import com.hks.kr.wifireminder.api.local.entity.asDomainTaskEntity
+import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 
 class TaskRepositoryImpl(
@@ -15,8 +17,8 @@ class TaskRepositoryImpl(
         taskDao.deleteTask(taskName)
     }
 
-    override suspend fun fetchAllTaskSortByImportance(): List<TaskDTO> =
-        taskDao.fetchTaskSortByImportance()
+    override suspend fun fetchAllTaskSortByImportance(): List<TaskEntity> =
+        taskDao.fetchTaskSortByImportance().asDomainTaskEntity()
 
     override suspend fun deleteAllTask() {
         taskDao.deleteAllTask()
