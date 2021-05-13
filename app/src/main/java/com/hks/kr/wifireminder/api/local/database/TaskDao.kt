@@ -17,4 +17,7 @@ interface TaskDao {
 
     @Query("DELETE FROM task_table")
     suspend fun deleteAllTask()
+
+    @Query("SELECT COUNT(*) FROM task_table WHERE :categoryName = taskCategory")
+    suspend fun getCategoryCount(categoryName : String) : Int
 }

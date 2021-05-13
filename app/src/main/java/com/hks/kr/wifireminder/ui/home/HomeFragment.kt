@@ -21,6 +21,10 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by activityViewModels()
 
+    private lateinit var homeTaskAdapter : HomeTaskAdapter
+
+    private lateinit var homeTaskCategoryAdapter: HomeTaskCategoryAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,20 +37,18 @@ class HomeFragment : Fragment() {
         binding.bindingViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.bindingFragment = this
+        homeTaskAdapter = HomeTaskAdapter(onItemClicked = {position , task -> onTaskItemClicked(position, task)})
+        homeTaskCategoryAdapter = HomeTaskCategoryAdapter(onItemClicked = { position, category -> onCategoryItemClicked(position,category)})
         configureTaskList()
         configureCategoryList()
     }
 
     private fun configureCategoryList() = binding.homeFragmentTodoCategoryList.let { list ->
-        list.adapter = HomeTaskCategoryAdapter(onItemClicked = { position, category ->
-            onCategoryItemClicked(position, category)
-        })
+        list.adapter = homeTaskCategoryAdapter
     }
 
     private fun configureTaskList() = binding.homeFragmentTodoList.let { list ->
-        list.adapter = HomeTaskAdapter(onItemClicked = { position, task ->
-            onTaskItemClicked(position, task)
-        })
+        list.adapter = homeTaskAdapter
     }
 
     private fun onTaskItemClicked(position: Int, task: TaskEntity) {

@@ -11,4 +11,6 @@ interface TaskRepository {
     suspend fun fetchAllTaskSortByImportance(): List<TaskEntity>
 
     suspend fun deleteAllTask()
+
+    suspend fun getCategoryCount(categoryName : String) : Int
 }

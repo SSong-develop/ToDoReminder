@@ -23,4 +23,6 @@ class TaskRepositoryImpl(
     override suspend fun deleteAllTask() {
         taskDao.deleteAllTask()
     }
+
+    override suspend fun getCategoryCount(categoryName: String): Int = taskDao.getCategoryCount(categoryName)
 }

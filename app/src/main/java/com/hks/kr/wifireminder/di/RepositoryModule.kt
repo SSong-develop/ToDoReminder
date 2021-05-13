@@ -1,7 +1,10 @@
 package com.hks.kr.wifireminder.di
 
+import com.hks.kr.wifireminder.api.local.database.CategoryDao
 import com.hks.kr.wifireminder.api.local.database.TaskDao
+import com.hks.kr.wifireminder.api.repository.CategoryRepositoryImpl
 import com.hks.kr.wifireminder.api.repository.TaskRepositoryImpl
+import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import dagger.Module
 import dagger.Provides
@@ -15,4 +18,8 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideTaskRepository(taskDao: TaskDao): TaskRepository = TaskRepositoryImpl(taskDao)
+
+    @Provides
+    @Singleton
+    fun provideCategoryRepository(categoryDao: CategoryDao) : CategoryRepository = CategoryRepositoryImpl(categoryDao)
 }
