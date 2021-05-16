@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.CategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
@@ -21,7 +23,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by activityViewModels()
 
-    private lateinit var homeTaskAdapter : HomeTaskAdapter
+    private lateinit var homeTaskAdapter: HomeTaskAdapter
 
     private lateinit var homeTaskCategoryAdapter: HomeTaskCategoryAdapter
 
@@ -37,8 +39,14 @@ class HomeFragment : Fragment() {
         binding.bindingViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.bindingFragment = this
-        homeTaskAdapter = HomeTaskAdapter(onItemClicked = {position , task -> onTaskItemClicked(position, task)})
-        homeTaskCategoryAdapter = HomeTaskCategoryAdapter(onItemClicked = { position, category -> onCategoryItemClicked(position,category)})
+        homeTaskAdapter =
+            HomeTaskAdapter(onItemClicked = { position, task -> onTaskItemClicked(position, task) })
+        homeTaskCategoryAdapter = HomeTaskCategoryAdapter(onItemClicked = { position, category ->
+            onCategoryItemClicked(
+                position,
+                category
+            )
+        })
         configureTaskList()
         configureCategoryList()
     }
@@ -60,7 +68,7 @@ class HomeFragment : Fragment() {
     }
 
     fun navigateToAddTask() {
-        AddTaskDialogFragment().show(childFragmentManager,"TAG")
+        AddTaskDialogFragment().show(childFragmentManager, "TAG")
     }
 
 }
