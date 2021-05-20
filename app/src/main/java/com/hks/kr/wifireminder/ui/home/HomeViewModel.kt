@@ -1,6 +1,7 @@
 package com.hks.kr.wifireminder.ui.home
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,6 +17,7 @@ import com.hks.kr.wifireminder.domain.repository.TaskRepository
 import com.hks.kr.wifireminder.workers.TaskNotificationWork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -30,11 +32,17 @@ class HomeViewModel @Inject constructor(
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
-    val taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
+    private val _taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
+    val taskEntityList: LiveData<List<TaskEntity>>
+        get() = _taskEntityList
 
-    val taskCategoryList = MutableLiveData<List<CategoryEntity>>(listOf())
+    private val _taskCategoryList = MutableLiveData<List<CategoryEntity>>(listOf())
+    val taskCategoryList: LiveData<List<CategoryEntity>>
+        get() = _taskCategoryList
 
-    val allTaskCount = MutableLiveData<Int>()
+    private val _allTaskCount = MutableLiveData<Int>()
+    val allTaskCount: LiveData<Int>
+        get() = _allTaskCount
 
     init {
         insertTestData()
@@ -67,7 +75,7 @@ class HomeViewModel @Inject constructor(
             taskRepository.insertTask(TaskDTO(12, "[TEST] 산책하기3", "test4", 83, 33))
         }.onSuccess {
             taskRepository.fetchAllTaskSortByImportance().let {
-                taskEntityList.postValue(it)
+                _taskEntityList.postValue(it)
             }
         }.onFailure {
             // reTrial or just throw error
@@ -106,7 +114,7 @@ class HomeViewModel @Inject constructor(
             )
         }.onSuccess {
             categoryRepository.getAllCategory().let {
-                taskCategoryList.postValue(it)
+                _taskCategoryList.postValue(it)
             }
         }.onFailure {
             // reTrial or just throw error
@@ -117,7 +125,7 @@ class HomeViewModel @Inject constructor(
         runCatching {
             taskRepository.fetchTaskByCategory(categoryName)
         }.onSuccess {
-            taskEntityList.postValue(it)
+            _taskEntityList.postValue(it)
         }.onFailure {
             // reTrial or just throw error
         }
@@ -127,7 +135,7 @@ class HomeViewModel @Inject constructor(
         runCatching {
             taskRepository.fetchAllTaskSortByImportance()
         }.onSuccess {
-            taskEntityList.postValue(it)
+            _taskEntityList.postValue(it)
         }.onFailure {
             // reTrial or just throw error
         }
@@ -137,7 +145,7 @@ class HomeViewModel @Inject constructor(
         runCatching {
             taskRepository.getAllTaskCount()
         }.onSuccess {
-            allTaskCount.postValue(it)
+            _allTaskCount.postValue(it)
         }.onFailure {
             // reTrial or just throw error
         }

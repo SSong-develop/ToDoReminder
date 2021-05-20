@@ -15,4 +15,10 @@
     <color name="status_bar_color">#ffffffff</color>
 
     <color name="home_fragment_category_title_color">#3c3c3c</color>
+
+    <color name="test_icon_color1">#C6DFD6</color>
+    <color name="test_icon_color2">#ACCCC4</color>
+    <color name="test_icon_color3">#464545</color>
+    <color name="test_icon_color4">#C4BCB8</color>
+    <color name="test_icon_color5">#E2DFD8</color>
 </resources>

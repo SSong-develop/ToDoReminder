@@ -1,5 +1,6 @@
 package com.hks.kr.wifireminder.api.local.entity
 
+import android.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -20,7 +21,7 @@ fun List<CategoryDTO>.asDomainCategoryEntity() : List<CategoryEntity>{
     return map {
         CategoryEntity(
             categoryName = it.categoryName,
-            catergoryCount = it.categoryCount
+            categoryCount = it.categoryCount,
         )
     }
 }
