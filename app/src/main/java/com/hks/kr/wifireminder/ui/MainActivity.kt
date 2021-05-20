@@ -6,7 +6,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.hks.kr.wifireminder.R
+import com.hks.kr.wifireminder.binding.AppBindingComponent
 import com.hks.kr.wifireminder.databinding.ActivityMainBinding
 import com.hks.kr.wifireminder.notification.WifiConnectService
 import com.hks.kr.wifireminder.ui.frame.FrameFragment
@@ -27,7 +29,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
+            DataBindingUtil.setContentView(
+                this,
+                R.layout.activity_main,
+                AppBindingComponent(lifecycleScope)
+            )
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.activity_nav_host_fragment, FrameFragment()).commit()

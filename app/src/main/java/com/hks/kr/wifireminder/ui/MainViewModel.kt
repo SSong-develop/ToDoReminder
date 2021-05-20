@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val app : Application,
+    private val app: Application,
     private val prefsStore: PrefsStore
 ) : ViewModel() {
     private val _isSingleInvoked = MutableLiveData<Boolean>()

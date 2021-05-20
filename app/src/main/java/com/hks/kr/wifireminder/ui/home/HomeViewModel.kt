@@ -1,28 +1,26 @@
 package com.hks.kr.wifireminder.ui.home
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.hks.kr.wifireminder.api.local.entity.CategoryDTO
 import com.hks.kr.wifireminder.api.local.entity.TaskDTO
 import com.hks.kr.wifireminder.domain.entity.CategoryEntity
 import com.hks.kr.wifireminder.domain.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.domain.repository.TaskRepository
-import com.hks.kr.wifireminder.workers.TaskNotificationWork
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
  * TODO : 처음에 앱이 켜질 때 왜 task 개수들이 1개씩 밖에 안보이는 이슈가 있는지??? 이거 알아봐야 할듯 싶습니다.
+ *
+ * TODO : Color를 계절별로 나타내고 싶은데 방법이 마땅하게 떠오르질 않아 살려줘
+ *
+ * TODO : StateFlow도 하나 정도는 써보고 싶은데 어떻게 써야할지 감이 안오네;;;
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
