@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.isSingleInvoked.observe(this) {
             if (!it) {
                 viewModel.runSingleInvoke {
+                    viewModel.initializeNotificationWorker()
                     notificationManager.createWifiNotificationChannel(this)
                     notificationManager.createTaskNotificationChannel(this)
                     startService<WifiConnectService>()

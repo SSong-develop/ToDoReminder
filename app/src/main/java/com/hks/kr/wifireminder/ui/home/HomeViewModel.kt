@@ -26,7 +26,6 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val app: Application,
     private val taskRepository: TaskRepository,
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
@@ -45,17 +44,8 @@ class HomeViewModel @Inject constructor(
 
     init {
         insertTestData()
-        initializeNotificationWorker()
         insertTestCategoryData()
         getAllTaskCount()
-    }
-
-    private fun initializeNotificationWorker() {
-        WorkManager.getInstance(app).enqueueUniquePeriodicWork(
-            "TaskNotificationWork",
-            ExistingPeriodicWorkPolicy.REPLACE,
-            PeriodicWorkRequestBuilder<TaskNotificationWork>(6, TimeUnit.HOURS).build()
-        )
     }
 
     private fun insertTestData() = viewModelScope.launch(Dispatchers.IO) {
