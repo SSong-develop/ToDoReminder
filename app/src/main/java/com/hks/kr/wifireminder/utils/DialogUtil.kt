@@ -4,8 +4,8 @@ import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.hks.kr.wifireminder.application.MainApplication.Companion.pixelRatio
 
-fun DialogFragment.resizeDialogSize(widthRatio : Float , heightRatio : Float){
-    val dialogParams : WindowManager.LayoutParams = this.dialog!!.window!!.attributes
+fun DialogFragment.resizeDialogSize(widthRatio: Float, heightRatio: Float) {
+    val dialogParams: WindowManager.LayoutParams = this.dialog!!.window!!.attributes
 
     (pixelRatio.screenWidth * widthRatio).toInt().also {
         dialogParams.width = it

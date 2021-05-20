@@ -21,5 +21,6 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideCategoryRepository(categoryDao: CategoryDao) : CategoryRepository = CategoryRepositoryImpl(categoryDao)
+    fun provideCategoryRepository(categoryDao: CategoryDao): CategoryRepository =
+        CategoryRepositoryImpl(categoryDao)
 }

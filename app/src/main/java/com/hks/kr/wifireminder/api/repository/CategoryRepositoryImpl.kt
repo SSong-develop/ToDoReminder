@@ -13,7 +13,8 @@ class CategoryRepositoryImpl(
         categoryDao.insertCategory(categoryDTO)
     }
 
-    override suspend fun getAllCategory() : List<CategoryEntity> = categoryDao.getAllCategory().asDomainCategoryEntity()
+    override suspend fun getAllCategory(): List<CategoryEntity> =
+        categoryDao.getAllCategory().asDomainCategoryEntity()
 
     override suspend fun deleteCategory(categoryName: String) {
         categoryDao.deleteCategory(categoryName)

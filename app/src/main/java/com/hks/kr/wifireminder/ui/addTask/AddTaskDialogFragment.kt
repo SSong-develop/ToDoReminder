@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.hks.kr.wifireminder.databinding.FragmentAddTaskBinding
 import com.hks.kr.wifireminder.ui.home.HomeViewModel
@@ -33,6 +32,6 @@ class AddTaskDialogFragment : DialogFragment() {
         binding.bindingViewModel = viewModel
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        resizeDialogSize(0.875f,0.542f)
+        resizeDialogSize(0.875f, 0.542f)
     }
 }

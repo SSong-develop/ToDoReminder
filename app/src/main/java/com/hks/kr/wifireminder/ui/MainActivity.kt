@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configureStatusBarColor() {
-        window.statusBarColor = ContextCompat.getColor(this,R.color.black)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
     }
 
     private fun observeIsAlreadyDoneCode() {

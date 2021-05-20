@@ -19,11 +19,11 @@ interface TaskDao {
     suspend fun deleteAllTask()
 
     @Query("SELECT COUNT(*) FROM task_table WHERE :categoryName = taskCategory")
-    suspend fun getCategoryCount(categoryName : String) : Int
+    suspend fun getCategoryCount(categoryName: String): Int
 
     @Query("SELECT * FROM task_table WHERE :categoryName = taskCategory")
-    suspend fun fetchTaskByCategory(categoryName : String) : List<TaskDTO>
+    suspend fun fetchTaskByCategory(categoryName: String): List<TaskDTO>
 
     @Query("SELECT COUNT(*) FROM task_table")
-    suspend fun getAllTaskCount() : Int
+    suspend fun getAllTaskCount(): Int
 }

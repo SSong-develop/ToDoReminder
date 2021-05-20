@@ -1,6 +1,5 @@
 package com.hks.kr.wifireminder.api.local.entity
 
-import android.graphics.Color
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -10,14 +9,14 @@ import com.hks.kr.wifireminder.domain.entity.CategoryEntity
 data class CategoryDTO(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "category_id")
-    val categoryId : Int,
+    val categoryId: Int,
     @ColumnInfo(name = "category_name")
     val categoryName: String,
     @ColumnInfo(name = "category_count")
     val categoryCount: Int
 )
 
-fun List<CategoryDTO>.asDomainCategoryEntity() : List<CategoryEntity>{
+fun List<CategoryDTO>.asDomainCategoryEntity(): List<CategoryEntity> {
     return map {
         CategoryEntity(
             categoryName = it.categoryName,

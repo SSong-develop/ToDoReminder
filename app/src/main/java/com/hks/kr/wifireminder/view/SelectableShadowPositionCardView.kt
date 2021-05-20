@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import com.hks.kr.wifireminder.R
-import com.hks.kr.wifireminder.utils.dpToPixel
 import com.hks.kr.wifireminder.utils.dpToPixelFloat
 import java.lang.Float.MIN_VALUE
 

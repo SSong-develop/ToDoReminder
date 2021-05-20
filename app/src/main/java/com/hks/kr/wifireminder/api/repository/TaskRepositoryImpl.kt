@@ -24,9 +24,11 @@ class TaskRepositoryImpl(
         taskDao.deleteAllTask()
     }
 
-    override suspend fun getCategoryCount(categoryName: String): Int = taskDao.getCategoryCount(categoryName)
+    override suspend fun getCategoryCount(categoryName: String): Int =
+        taskDao.getCategoryCount(categoryName)
 
-    override suspend fun fetchTaskByCategory(categoryName: String): List<TaskEntity> = taskDao.fetchTaskByCategory(categoryName).asDomainTaskEntity()
+    override suspend fun fetchTaskByCategory(categoryName: String): List<TaskEntity> =
+        taskDao.fetchTaskByCategory(categoryName).asDomainTaskEntity()
 
     override suspend fun getAllTaskCount(): Int = taskDao.getAllTaskCount()
 }
