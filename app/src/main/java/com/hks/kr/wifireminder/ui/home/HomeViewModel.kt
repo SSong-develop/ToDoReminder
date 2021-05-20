@@ -128,11 +128,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getAllTaskCount() = viewModelScope.launch(Dispatchers.IO) {
+    private fun getAllTaskCount() = viewModelScope.launch {
         runCatching {
             taskRepository.getAllTaskCount()
         }.onSuccess {
-            _allTaskCount.postValue(it)
+            _allTaskCount.value = it
         }.onFailure {
             // reTrial or just throw error
         }

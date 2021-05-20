@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.binding.AppBindingComponent
@@ -23,20 +24,29 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    private lateinit var mainFragmentFactory: MainFragmentFactory
+
     @Inject
     lateinit var notificationManager: NotificationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        mainFragmentFactory = MainFragmentFactory.getInstance(this)
+        supportFragmentManager.fragmentFactory = mainFragmentFactory
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(
                 this,
-                R.layout.activity_main,
-                AppBindingComponent(lifecycleScope)
+                R.layout.activity_main
             )
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.activity_nav_host_fragment, FrameFragment()).commit()
+        supportFragmentManager.commit {
+            replace(
+                R.id.activity_nav_host_fragment, supportFragmentManager.fragmentFactory.instantiate(
+                    classLoader,
+                    FrameFragment::class.java.name
+                )
+            )
+        }
 
         configureStatusBarColor()
         observeIsAlreadyDoneCode()
