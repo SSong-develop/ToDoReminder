@@ -20,7 +20,10 @@ import javax.inject.Inject
  *
  * TODO : Color를 계절별로 나타내고 싶은데 방법이 마땅하게 떠오르질 않아 살려줘
  *
- * TODO : StateFlow도 하나 정도는 써보고 싶은데 어떻게 써야할지 감이 안오네;;;
+ * TODO : ADDTASK 뷰 만들기
+ *
+ * TODO : 할일을 끝냈는지 아닌지에 대한 결과를 가져오는??? 그런것도 있으면 좋을거 같아요 , 특정 버튼을 누르면 이제 할일을 끝냈다는 표시인거고
+ * TODO : 정해진 시간이 끝나면 자동으로 이를 WorkManager가 지워버리는 거죠
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(

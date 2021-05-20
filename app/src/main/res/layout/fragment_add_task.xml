@@ -7,7 +7,7 @@
 
         <variable
             name="bindingViewModel"
-            type="com.hks.kr.wifireminder.ui.home.HomeViewModel" />
+            type="com.hks.kr.wifireminder.ui.addTask.AddTaskViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
