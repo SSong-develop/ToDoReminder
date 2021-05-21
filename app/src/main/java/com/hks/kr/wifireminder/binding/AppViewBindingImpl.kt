@@ -1,8 +1,16 @@
 package com.hks.kr.wifireminder.binding
 
+import android.widget.TextView
 import androidx.lifecycle.LifecycleCoroutineScope
-import com.google.android.material.chip.Chip
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 
 class AppViewBindingImpl(private val scope: LifecycleCoroutineScope) : AppViewBinding {
-    // activity에서 stateFlow or? Coroutine을 사용할 일이 있을 경우에 작성하면 좋은 방법
+    override fun setText(view: TextView, stateFlow: StateFlow<String>) {
+        scope.launchWhenStarted {
+            stateFlow.collect {
+                view.text = it
+            }
+        }
+    }
 }

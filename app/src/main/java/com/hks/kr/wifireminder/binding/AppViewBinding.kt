@@ -1,8 +1,11 @@
 package com.hks.kr.wifireminder.binding
 
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.Chip
+import kotlinx.coroutines.flow.StateFlow
 
 interface AppViewBinding {
-    // activity에서 stateFlow or? Coroutine을 사용할 일이 있을 경우에 작성하면 좋은 방법
+    @BindingAdapter("textStateFlow")
+    fun setText(view : TextView, stateFlow : StateFlow<String>)
 }
