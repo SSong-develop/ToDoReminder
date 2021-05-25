@@ -13,6 +13,7 @@ import com.hks.kr.wifireminder.databinding.FragmentAddTaskBinding
 import com.hks.kr.wifireminder.ui.home.HomeViewModel
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.resizeDialogSize
+import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,5 +35,11 @@ class AddTaskDialogFragment : DialogFragment() {
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         resizeDialogSize(0.875f, 0.542f)
+        binding.textCustomSpinner.apply {
+            dataSet = arrayOf("hello","Lets","See","The","Magic")
+            selectionChanged { _, string ->
+                requireContext().shortToast(string)
+            }
+        }
     }
 }

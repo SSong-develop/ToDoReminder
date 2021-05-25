@@ -21,14 +21,20 @@
             android:layout_height="match_parent"
             tools:context=".ui.addTask.AddTaskDialogFragment">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="it's a test fucking bro~!"
+            <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
+                android:id="@+id/text_custom_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                app:selected_text_size="18sp"
+                app:drop_down_text_size="24sp"
+                app:drop_down_height="50dp"
+                app:drop_down_padding="1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
