@@ -27,7 +27,7 @@
                 android:layout_height="35dp"
                 app:selected_text_size="18sp"
                 app:drop_down_text_size="24sp"
-                app:drop_down_height="50dp"
+                app:drop_down_height="40dp"
                 app:drop_down_padding="1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

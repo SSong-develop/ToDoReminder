@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
 import com.hks.kr.wifireminder.R
+import com.hks.kr.wifireminder.utils.OnChangeProp
 import com.hks.kr.wifireminder.utils.dpToPixel
 
 /**
@@ -19,29 +20,31 @@ import com.hks.kr.wifireminder.utils.dpToPixel
 class CustomizableSpinner : AppCompatSpinner {
     constructor(context : Context) : super(context)
     constructor(context : Context , attrs : AttributeSet) : super(context,attrs) {
+        // context , attrs 를 받는 생성자를 호출 , 즉 xml상에서 이 CustomizableSpinner가 호출됐을 때 typedArray를 initialize한다.
         attrs.let {
             typedArray = context.obtainStyledAttributes(it, R.styleable.CustomizableSpinner,0,0)
         }
     }
 
     // Local Variables
+    // 선택이 바뀌는 함수
     private var selectionChanged: ((Int, String) -> Unit)? = null
-    private var defaultColor = Color.BLACK
+    // xml attribute를 위한 typeArray
     private var typedArray: TypedArray? = null
 
     // Custom adapter initialized with empty array
+    // spinner를 위한 adapter
     private val dataAdapter = CustomizableDropdownAdapter(context, arrayOf(), dropDownView = {
         return@CustomizableDropdownAdapter getDropDownView(it)
     }, selectedView = {
         return@CustomizableDropdownAdapter getSelectedView(it)
     })
 
-    var dataSet = arrayOf<String>()
-        set(value) {
-            dataAdapter.objects = value
-            dataAdapter.notifyDataSetChanged()
-            field = value
-        }
+    // spinner DataSet submit
+    // 이건 delegate Pattern으로 변경
+    var dataSet by OnChangeProp(arrayOf<String>()){
+        submitList(it)
+    }
 
     init {
         // set adapter
@@ -53,12 +56,24 @@ class CustomizableSpinner : AppCompatSpinner {
                 position: Int,
                 id: Long
             ) {
+                // selectionChanged 함수
+                // 내 앱에서는 포지션은 필요하진 않을거 같은데
                 selectionChanged?.invoke(position, dataSet[position])
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 // empty
             }
+        }
+    }
+
+    /**
+     * submit list
+     */
+    private fun submitList(value : Array<String>){
+        dataAdapter.apply {
+            objects = value
+            notifyDataSetChanged()
         }
     }
 
