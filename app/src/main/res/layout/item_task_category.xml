@@ -24,9 +24,9 @@
         <com.hks.kr.wifireminder.view.SelectableShadowPositionCardView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            app:blurRadius="8dp"
-            app:shadowStrokeWidth="4dp"
-            app:cornerRadius="12dp"
+            app:blur_radius="8dp"
+            app:shadow_stroke_width="4dp"
+            app:corner_radius="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatSpinner
+import androidx.core.content.res.ResourcesCompat
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.utils.OnChangeProp
 import com.hks.kr.wifireminder.utils.dpToPixel
@@ -84,6 +85,10 @@ class CustomizableSpinner : AppCompatSpinner {
         val textView = LayoutInflater.from(context)
             .inflate(android.R.layout.simple_spinner_item, null) as TextView
         textView.text = text
+        textView.apply {
+            typeface = ResourcesCompat.getFont(context,R.font.montserrat_black)
+            includeFontPadding = false
+        }
 
         for(i in 0..typedArray?.indexCount!!){
             val attr = typedArray?.getIndex(i)
@@ -118,6 +123,10 @@ class CustomizableSpinner : AppCompatSpinner {
     private fun getDropDownView(text : String) : TextView {
         val textView = LayoutInflater.from(context).inflate(android.R.layout.simple_spinner_dropdown_item,null) as TextView
         textView.text = text
+        textView.apply {
+            typeface = ResourcesCompat.getFont(context,R.font.montserrat_black)
+            includeFontPadding = false
+        }
 
         for(i in 0..typedArray?.indexCount!!){
             val attr = typedArray?.getIndex(i)

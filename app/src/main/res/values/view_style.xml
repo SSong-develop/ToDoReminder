@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ShadowConstraintLayout">
-        <attr name="shadowTopOffset" format="dimension" />
-        <attr name="shadowBottomOffset" format="dimension" />
-        <attr name="shadowStartOffset" format="dimension" />
-        <attr name="shadowEndOffset" format="dimension" />
-        <attr name="shadowStartY" format="dimension" />
-        <attr name="shadowColor" format="color" />
-        <attr name="shadowStrokeWidth" format="dimension" />
-        <attr name="cornerRadius" format="dimension" />
-        <attr name="blurRadius" format="dimension" />
-        <attr name="borderColor" format="color" />
-        <attr name="enableShadowTop" format="boolean" />
-        <attr name="enableShadowBottom" format="boolean" />
-        <attr name="enableShadowStart" format="boolean" />
-        <attr name="enableShadowEnd" format="boolean" />
-        <attr name="enableShadow" format="boolean" />
-        <attr name="enableBorder" format="boolean" />
-        <attr name="borderHeight" format="dimension" />
+        <attr name="shadow_top_offset" format="dimension" />
+        <attr name="shadow_bottom_offset" format="dimension" />
+        <attr name="shadow_start_offset" format="dimension" />
+        <attr name="shadow_end_offset" format="dimension" />
+        <attr name="shadow_start_y" format="dimension" />
+        <attr name="shadow_color" format="color" />
+        <attr name="shadow_stroke_width" format="dimension" />
+        <attr name="corner_radius" format="dimension" />
+        <attr name="blur_radius" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="enable_shadow_top" format="boolean" />
+        <attr name="enable_shadow_bottom" format="boolean" />
+        <attr name="enable_shadow_start" format="boolean" />
+        <attr name="enable_shadow_end" format="boolean" />
+        <attr name="enable_shadow" format="boolean" />
+        <attr name="enable_border" format="boolean" />
+        <attr name="border_height" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="CustomizableSpinner">

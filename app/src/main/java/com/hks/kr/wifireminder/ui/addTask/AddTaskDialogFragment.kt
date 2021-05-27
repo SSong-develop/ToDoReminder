@@ -35,7 +35,7 @@ class AddTaskDialogFragment : DialogFragment() {
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         resizeDialogSize(0.875f, 0.542f)
-        binding.textCustomSpinner.apply {
+        binding.addTaskCategorySpinner.apply {
             dataSet = arrayOf("hello","Lets","See","The","Magic")
             selectionChanged { _, string ->
                 requireContext().shortToast(string)

@@ -69,61 +69,61 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
     private fun getStyleableAttrs(attrs: AttributeSet) {
         context.theme.obtainStyledAttributes(attrs, R.styleable.ShadowConstraintLayout, 0, 0).use {
             shadowTopOffset = it.getDimension(
-                R.styleable.ShadowConstraintLayout_shadowTopOffset,
+                R.styleable.ShadowConstraintLayout_shadow_top_offset,
                 0.dpToPixelFloat
             )
             shadowBottomOffset = it.getDimension(
-                R.styleable.ShadowConstraintLayout_shadowBottomOffset,
+                R.styleable.ShadowConstraintLayout_shadow_bottom_offset,
                 0.dpToPixelFloat
             )
             shadowStartOffset = it.getDimension(
-                R.styleable.ShadowConstraintLayout_shadowStartOffset,
+                R.styleable.ShadowConstraintLayout_shadow_start_offset,
                 0.dpToPixelFloat
             )
             shadowEndOffset = it.getDimension(
-                R.styleable.ShadowConstraintLayout_shadowEndOffset,
+                R.styleable.ShadowConstraintLayout_shadow_end_offset,
                 0.dpToPixelFloat
             )
             shadowStartY = it.getDimension(
-                R.styleable.ShadowConstraintLayout_shadowStartY,
+                R.styleable.ShadowConstraintLayout_shadow_start_y,
                 MIN_VALUE
             )
             shadowStrokeWidth = it.getDimension(
-                R.styleable.ShadowConstraintLayout_shadowStrokeWidth,
+                R.styleable.ShadowConstraintLayout_shadow_stroke_width,
                 4.dpToPixelFloat
             )
             cornerRadius = it.getDimension(
-                R.styleable.ShadowConstraintLayout_cornerRadius,
+                R.styleable.ShadowConstraintLayout_corner_radius,
                 4.dpToPixelFloat
             )
             blurRadius = it.getDimension(
-                R.styleable.ShadowConstraintLayout_blurRadius,
+                R.styleable.ShadowConstraintLayout_blur_radius,
                 16.dpToPixelFloat
             )
             borderHeight = it.getDimension(
-                R.styleable.ShadowConstraintLayout_borderHeight,
+                R.styleable.ShadowConstraintLayout_border_height,
                 0f
             )
             shadowColor = it.getColor(
-                R.styleable.ShadowConstraintLayout_shadowColor,
+                R.styleable.ShadowConstraintLayout_shadow_color,
                 Color.GRAY
             )
             borderColor = it.getColor(
-                R.styleable.ShadowConstraintLayout_borderColor,
+                R.styleable.ShadowConstraintLayout_border_color,
                 Color.BLACK
             )
             enableShadow =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadow, true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow, true)
             enableBorder =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableBorder, false)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_border, false)
             enableShadowTop =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowTop, false)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_top, false)
             enableShadowBottom =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowBottom, true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_bottom, true)
             enableShadowStart =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowStart, true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_start, true)
             enableShadowEnd =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enableShadowEnd, true)
+                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_end, true)
         }
     }
 

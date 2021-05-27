@@ -23,4 +23,6 @@
     <string name="home_fragment_todo_title">YOUR TASKS</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add_task_category_text">Category</string>
 </resources>
