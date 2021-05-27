@@ -26,4 +26,6 @@
 
     <string name="add_task_category_text">Category</string>
     <string name="add_task_task_name_text">TaskName</string>
+    <string name="add_task_task_period_text">TaskPeriod</string>
+    <string name="add_task_task_importance_text">TaskImportance</string>
 </resources>
