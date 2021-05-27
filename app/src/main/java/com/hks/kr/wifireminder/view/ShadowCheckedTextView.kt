@@ -11,4 +11,6 @@ class ShadowCheckedTextView constructor(
     // 그림자가 있는 spinner를 원합니다.
     // 스피너의 선택된 아이템은 CheckedTextView라는 친구로 xml을 사용하는데
     // 이를 커스텀해서 그림자가 보여지도록 하면 될 거 같습니다.
+    // 이걸 사용할 것은 selected item spinner에 다가 사용할 거임
+
 }
