@@ -9,7 +9,7 @@ import com.hks.kr.wifireminder.domain.entity.CategoryEntity
 data class CategoryDTO(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "category_id")
-    val categoryId: Int,
+    val categoryId: Int = 0,
     @ColumnInfo(name = "category_name")
     val categoryName: String,
     @ColumnInfo(name = "category_count")

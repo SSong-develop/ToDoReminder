@@ -27,6 +27,7 @@
         <attr name="selected_max_lines" format="integer"/>
         <attr name="selected_height" format="dimension"/>
         <attr name="selected_padding" format="dimension"/>
+        <attr name="selected_text_font" format="reference"/>
 
         <attr name="drop_down_text_size" format="dimension"/>
         <attr name="drop_down_text_color" format="color"/>
@@ -34,5 +35,7 @@
         <attr name="drop_down_max_lines" format="integer"/>
         <attr name="drop_down_height" format="dimension"/>
         <attr name="drop_down_padding" format="dimension"/>
+        <attr name="drop_down_text_font" format="reference"/>
+
     </declare-styleable>
 </resources>

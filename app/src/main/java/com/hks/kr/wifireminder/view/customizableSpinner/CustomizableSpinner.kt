@@ -86,7 +86,6 @@ class CustomizableSpinner : AppCompatSpinner {
             .inflate(android.R.layout.simple_spinner_item, null) as TextView
         textView.text = text
         textView.apply {
-            typeface = ResourcesCompat.getFont(context,R.font.montserrat_black)
             includeFontPadding = false
         }
 
@@ -112,6 +111,11 @@ class CustomizableSpinner : AppCompatSpinner {
                     val padding = typedArray?.getDimensionPixelOffset(attr,1)!!
                     textView.setPadding(padding,padding,padding,padding)
                 }
+                R.styleable.CustomizableSpinner_selected_text_font -> {
+                    val fontId = typedArray?.getResourceId(R.styleable.CustomizableSpinner_selected_text_font,-1)
+                    val typeface = fontId?.let { ResourcesCompat.getFont(context, it) }
+                    textView.typeface = typeface
+                }
             }
         }
         return textView
@@ -124,7 +128,6 @@ class CustomizableSpinner : AppCompatSpinner {
         val textView = LayoutInflater.from(context).inflate(android.R.layout.simple_spinner_dropdown_item,null) as TextView
         textView.text = text
         textView.apply {
-            typeface = ResourcesCompat.getFont(context,R.font.montserrat_black)
             includeFontPadding = false
         }
 
@@ -149,6 +152,11 @@ class CustomizableSpinner : AppCompatSpinner {
                 R.styleable.CustomizableSpinner_drop_down_padding -> {
                     val padding = typedArray?.getDimensionPixelOffset(attr,1.dpToPixel)!!
                     textView.setPadding(padding,padding,padding,padding)
+                }
+                R.styleable.CustomizableSpinner_drop_down_text_font -> {
+                    val fontId = typedArray?.getResourceId(R.styleable.CustomizableSpinner_drop_down_text_font,-1)
+                    val typeface = fontId?.let { ResourcesCompat.getFont(context, it) }
+                    textView.typeface = typeface
                 }
             }
         }
