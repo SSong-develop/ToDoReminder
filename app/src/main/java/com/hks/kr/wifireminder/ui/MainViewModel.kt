@@ -16,6 +16,9 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+/**
+ * TODO : 기간이 지난 TASK들을 지워주는 WORKMANAGER를 만들어야 합니다!!!
+ */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val app: Application,
