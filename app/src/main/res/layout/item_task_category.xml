@@ -24,13 +24,17 @@
         <com.hks.kr.wifireminder.view.SelectableShadowPositionCardView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            app:blur_radius="8dp"
-            app:shadow_stroke_width="4dp"
-            app:corner_radius="12dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:blur_radius="16dp"
+            app:corner_radius="16dp"
+            app:enable_shadow_end="true"
+            app:enable_shadow_start="true"
+            app:enable_shadow_top="false"
+            app:enable_shadow_bottom="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:shadow_stroke_width="4dp">
 
             <com.hks.kr.wifireminder.view.CircleIconImageView
                 android:id="@+id/task_category_icon"
@@ -39,22 +43,22 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_baseline_ac_unit_24"
-                tools:src="@drawable/ic_baseline_ac_unit_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/ic_baseline_ac_unit_24" />
 
             <TextView
                 android:id="@+id/task_category_name"
+                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:textColor="@color/black"
-                android:textStyle="bold"
                 android:fontFamily="@font/montserrat_black"
                 android:includeFontPadding="false"
-                android:textSize="18sp"
                 android:text="@{items.CategoryName}"
-                style="@style/TextAppearance.AppCompat.Title"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/task_category_icon"
                 app:layout_constraintTop_toBottomOf="@id/task_category_icon"
                 tools:text="Environment" />
@@ -68,9 +72,9 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:includeFontPadding="false"
                 android:text="@{Integer.toString(items.CategoryCount) + ` tasks`}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/task_category_icon"
                 app:layout_constraintTop_toBottomOf="@id/task_category_name"
-                app:layout_constraintBottom_toBottomOf="parent"
                 tools:text="3 tasks" />
         </com.hks.kr.wifireminder.view.SelectableShadowPositionCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

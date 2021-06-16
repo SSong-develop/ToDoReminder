@@ -5,19 +5,18 @@
         <attr name="shadow_bottom_offset" format="dimension" />
         <attr name="shadow_start_offset" format="dimension" />
         <attr name="shadow_end_offset" format="dimension" />
-        <attr name="shadow_start_y" format="dimension" />
         <attr name="shadow_color" format="color" />
         <attr name="shadow_stroke_width" format="dimension" />
         <attr name="corner_radius" format="dimension" />
         <attr name="blur_radius" format="dimension" />
         <attr name="border_color" format="color" />
+        <attr name="card_background_color" format="color"/>
         <attr name="enable_shadow_top" format="boolean" />
         <attr name="enable_shadow_bottom" format="boolean" />
         <attr name="enable_shadow_start" format="boolean" />
         <attr name="enable_shadow_end" format="boolean" />
         <attr name="enable_shadow" format="boolean" />
         <attr name="enable_border" format="boolean" />
-        <attr name="border_height" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="CustomizableSpinner">
