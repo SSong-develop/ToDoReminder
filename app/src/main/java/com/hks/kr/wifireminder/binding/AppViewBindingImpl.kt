@@ -7,11 +7,11 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import com.hks.kr.wifireminder.utils.debounce
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 
-class AppViewBindingImpl(private val scope: LifecycleCoroutineScope) : AppViewBinding , LifecycleObserver {
+class AppViewBindingImpl(private val scope: LifecycleCoroutineScope) : AppViewBinding,
+    LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     override fun setText(view: TextView, stateFlow: StateFlow<String>) {
         scope.launchWhenStarted {
@@ -22,7 +22,7 @@ class AppViewBindingImpl(private val scope: LifecycleCoroutineScope) : AppViewBi
     }
 
     override fun setOnCoroutineDebounce(view: View, listener: View.OnClickListener) {
-        val clickWithDebounce : (view : View) -> Unit = debounce(scope = scope) {
+        val clickWithDebounce: (view: View) -> Unit = debounce(scope = scope) {
             listener.onClick(it)
         }
         view.setOnClickListener(clickWithDebounce)

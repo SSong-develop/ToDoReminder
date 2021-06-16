@@ -20,9 +20,25 @@ internal data class MonthConfig(
 
     internal val months: List<CalendarMonth> = run {
         return@run if (hasBoundaries) {
-            generateBoundedMonths(startMonth,endMonth,firstDayOfWeek,maxRowCount,inDateStyle,outDateStyle,job)
-        }else{
-            generateUnboundedMonths(startMonth,endMonth, firstDayOfWeek, maxRowCount, inDateStyle, outDateStyle, job)
+            generateBoundedMonths(
+                startMonth,
+                endMonth,
+                firstDayOfWeek,
+                maxRowCount,
+                inDateStyle,
+                outDateStyle,
+                job
+            )
+        } else {
+            generateUnboundedMonths(
+                startMonth,
+                endMonth,
+                firstDayOfWeek,
+                maxRowCount,
+                inDateStyle,
+                outDateStyle,
+                job
+            )
         }
     }
 

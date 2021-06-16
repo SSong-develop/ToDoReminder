@@ -38,13 +38,13 @@ infix fun View.setOnDebounceClickListener(listener: View.OnClickListener?) {
  * debounce는 특정시간동안 들어온 이벤트를 하나의 이벤트로 묶어서 처리해주는 기능을 의미하는데 이게 과연 그걸 작동할까요??
  */
 fun <T> debounce(
-    delayMills : Long = 300L,
-    scope : CoroutineScope,
-    action : (T) -> Unit
-) : (T) -> Unit {
-    var debounceJob : Job? = null
-    return { param : T ->
-        if(debounceJob == null) {
+    delayMills: Long = 300L,
+    scope: CoroutineScope,
+    action: (T) -> Unit
+): (T) -> Unit {
+    var debounceJob: Job? = null
+    return { param: T ->
+        if (debounceJob == null) {
             debounceJob = scope.launch {
                 action(param)
                 delay(delayMills)

@@ -2,7 +2,6 @@ package com.hks.kr.wifireminder.di
 
 import android.app.Application
 import com.hks.kr.wifireminder.utils.PixelRatio
-import com.hks.kr.wifireminder.utils.VersionCheckUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,9 +15,9 @@ class SingletonModule {
     @Provides
     @Singleton
     @ApplicationContext
-    fun provideApplication(app : Application) = app
+    fun provideApplication(app: Application) = app
 
     @Provides
     @Singleton
-    fun providePixelRatio(@ApplicationContext context : Application) = PixelRatio(context)
+    fun providePixelRatio(@ApplicationContext context: Application) = PixelRatio(context)
 }

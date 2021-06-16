@@ -2,7 +2,6 @@ package com.hks.kr.wifireminder.view.customizableSpinner
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -19,17 +18,18 @@ import com.hks.kr.wifireminder.utils.dpToPixel
  * in xml attribute must set app:drop_down_padding value 1dp!!!!
  */
 class CustomizableSpinner : AppCompatSpinner {
-    constructor(context : Context) : super(context)
-    constructor(context : Context , attrs : AttributeSet) : super(context,attrs) {
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         // context , attrs 를 받는 생성자를 호출 , 즉 xml상에서 이 CustomizableSpinner가 호출됐을 때 typedArray를 initialize한다.
         attrs.let {
-            typedArray = context.obtainStyledAttributes(it, R.styleable.CustomizableSpinner,0,0)
+            typedArray = context.obtainStyledAttributes(it, R.styleable.CustomizableSpinner, 0, 0)
         }
     }
 
     // Local Variables
     // 선택이 바뀌는 함수
     private var selectionChanged: ((Int, String) -> Unit)? = null
+
     // xml attribute를 위한 typeArray
     private var typedArray: TypedArray? = null
 
@@ -43,7 +43,7 @@ class CustomizableSpinner : AppCompatSpinner {
 
     // spinner DataSet submit
     // 이건 delegate Pattern으로 변경
-    var dataSet by OnChangeProp(arrayOf<String>()){
+    var dataSet by OnChangeProp(arrayOf<String>()) {
         submitList(it)
     }
 
@@ -71,7 +71,7 @@ class CustomizableSpinner : AppCompatSpinner {
     /**
      * submit list
      */
-    private fun submitList(value : Array<String>){
+    private fun submitList(value: Array<String>) {
         dataAdapter.apply {
             objects = value
             notifyDataSetChanged()
@@ -89,30 +89,36 @@ class CustomizableSpinner : AppCompatSpinner {
             includeFontPadding = false
         }
 
-        for(i in 0..typedArray?.indexCount!!){
+        for (i in 0..typedArray?.indexCount!!) {
             val attr = typedArray?.getIndex(i)
-            when(attr){
+            when (attr) {
                 R.styleable.CustomizableSpinner_selected_text_color ->
-                    textView.setTextColor(typedArray?.getColor(attr,0)!!)
+                    textView.setTextColor(typedArray?.getColor(attr, 0)!!)
 
                 R.styleable.CustomizableSpinner_selected_background_color ->
-                    textView.setBackgroundColor(typedArray?.getColor(attr,0)!!)
+                    textView.setBackgroundColor(typedArray?.getColor(attr, 0)!!)
 
                 R.styleable.CustomizableSpinner_selected_text_size ->
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,typedArray?.getDimensionPixelSize(attr,0)!!.toFloat())
+                    textView.setTextSize(
+                        TypedValue.COMPLEX_UNIT_PX,
+                        typedArray?.getDimensionPixelSize(attr, 0)!!.toFloat()
+                    )
 
                 R.styleable.CustomizableSpinner_selected_max_lines ->
-                    textView.maxLines = typedArray?.getInt(attr,1)!!
+                    textView.maxLines = typedArray?.getInt(attr, 1)!!
 
                 R.styleable.CustomizableSpinner_selected_height ->
-                    textView.height = typedArray?.getDimensionPixelOffset(attr,1)!!
+                    textView.height = typedArray?.getDimensionPixelOffset(attr, 1)!!
 
                 R.styleable.CustomizableSpinner_selected_padding -> {
-                    val padding = typedArray?.getDimensionPixelOffset(attr,1)!!
-                    textView.setPadding(padding,padding,padding,padding)
+                    val padding = typedArray?.getDimensionPixelOffset(attr, 1)!!
+                    textView.setPadding(padding, padding, padding, padding)
                 }
                 R.styleable.CustomizableSpinner_selected_text_font -> {
-                    val fontId = typedArray?.getResourceId(R.styleable.CustomizableSpinner_selected_text_font,-1)
+                    val fontId = typedArray?.getResourceId(
+                        R.styleable.CustomizableSpinner_selected_text_font,
+                        -1
+                    )
                     val typeface = fontId?.let { ResourcesCompat.getFont(context, it) }
                     textView.typeface = typeface
                 }
@@ -124,37 +130,44 @@ class CustomizableSpinner : AppCompatSpinner {
     /**
      * customize dropdown view from attributes provided in xml
      */
-    private fun getDropDownView(text : String) : TextView {
-        val textView = LayoutInflater.from(context).inflate(android.R.layout.simple_spinner_dropdown_item,null) as TextView
+    private fun getDropDownView(text: String): TextView {
+        val textView = LayoutInflater.from(context)
+            .inflate(android.R.layout.simple_spinner_dropdown_item, null) as TextView
         textView.text = text
         textView.apply {
             includeFontPadding = false
         }
 
-        for(i in 0..typedArray?.indexCount!!){
+        for (i in 0..typedArray?.indexCount!!) {
             val attr = typedArray?.getIndex(i)
-            when(attr){
+            when (attr) {
                 R.styleable.CustomizableSpinner_drop_down_text_color ->
-                    textView.setTextColor(typedArray?.getColor(attr,0)!!)
+                    textView.setTextColor(typedArray?.getColor(attr, 0)!!)
 
                 R.styleable.CustomizableSpinner_drop_down_background_color ->
-                    textView.setBackgroundColor(typedArray?.getColor(attr,0)!!)
+                    textView.setBackgroundColor(typedArray?.getColor(attr, 0)!!)
 
                 R.styleable.CustomizableSpinner_drop_down_text_size ->
-                    textView.setTextSize(TypedValue.COMPLEX_UNIT_PX,typedArray?.getDimensionPixelSize(attr,0)!!.toFloat())
+                    textView.setTextSize(
+                        TypedValue.COMPLEX_UNIT_PX,
+                        typedArray?.getDimensionPixelSize(attr, 0)!!.toFloat()
+                    )
 
                 R.styleable.CustomizableSpinner_drop_down_max_lines ->
-                    textView.maxLines = typedArray?.getInt(attr,1)!!
+                    textView.maxLines = typedArray?.getInt(attr, 1)!!
 
                 R.styleable.CustomizableSpinner_drop_down_height ->
-                    textView.height = typedArray?.getDimensionPixelOffset(attr,50.dpToPixel)!!
+                    textView.height = typedArray?.getDimensionPixelOffset(attr, 50.dpToPixel)!!
 
                 R.styleable.CustomizableSpinner_drop_down_padding -> {
-                    val padding = typedArray?.getDimensionPixelOffset(attr,1.dpToPixel)!!
-                    textView.setPadding(padding,padding,padding,padding)
+                    val padding = typedArray?.getDimensionPixelOffset(attr, 1.dpToPixel)!!
+                    textView.setPadding(padding, padding, padding, padding)
                 }
                 R.styleable.CustomizableSpinner_drop_down_text_font -> {
-                    val fontId = typedArray?.getResourceId(R.styleable.CustomizableSpinner_drop_down_text_font,-1)
+                    val fontId = typedArray?.getResourceId(
+                        R.styleable.CustomizableSpinner_drop_down_text_font,
+                        -1
+                    )
                     val typeface = fontId?.let { ResourcesCompat.getFont(context, it) }
                     textView.typeface = typeface
                 }
@@ -166,14 +179,14 @@ class CustomizableSpinner : AppCompatSpinner {
     /**
      *  SetUp selection changed callback
      */
-    fun selectionChanged(selectionChanged : ((Int,String) -> Unit)?) {
+    fun selectionChanged(selectionChanged: ((Int, String) -> Unit)?) {
         this.selectionChanged = selectionChanged
     }
 
     /**
      * Set selected value
      */
-    fun setSelectedValue(value : String , animate : Boolean = false){
-        if(dataSet.contains(value)) this.setSelection(dataSet.indexOf(value),animate)
+    fun setSelectedValue(value: String, animate: Boolean = false) {
+        if (dataSet.contains(value)) this.setSelection(dataSet.indexOf(value), animate)
     }
 }

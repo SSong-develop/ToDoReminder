@@ -32,14 +32,16 @@ data class CalendarMonth(
 
     override fun compareTo(other: CalendarMonth): Int {
         val monthResult = yearMonth.compareTo(other.yearMonth)
-        if(monthResult == 0){
+        if (monthResult == 0) {
             return indexInSameMonth.compareTo(other.indexInSameMonth)
         }
         return monthResult
     }
 
     override fun toString(): String {
-        return "CalendarMonth { first = ${weekDays.first().first()}, last = ${weekDays.last().last()}} " +
+        return "CalendarMonth { first = ${weekDays.first().first()}, last = ${
+            weekDays.last().last()
+        }} " +
                 "indexInSameMonth = $indexInSameMonth, numberOfSameMonth = $numberOfSameMonth"
     }
 }

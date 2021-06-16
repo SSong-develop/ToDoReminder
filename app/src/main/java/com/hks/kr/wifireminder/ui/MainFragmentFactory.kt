@@ -10,10 +10,10 @@ import com.hks.kr.wifireminder.ui.profile.ProfileFragment
 /**
  * Fragment에 생성자에 parameter가 필요할 경우 Factory Pattern을 사용해서 fragment를 넘겨준다.
  */
-class MainFragmentFactory(activity : Activity) : FragmentFactory() {
+class MainFragmentFactory(activity: Activity) : FragmentFactory() {
 
     override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-        return when(loadFragmentClass(classLoader, className)){
+        return when (loadFragmentClass(classLoader, className)) {
             FrameFragment::class.java -> FrameFragment()
             HomeFragment::class.java -> HomeFragment()
             ProfileFragment::class.java -> ProfileFragment()
@@ -22,6 +22,6 @@ class MainFragmentFactory(activity : Activity) : FragmentFactory() {
     }
 
     companion object {
-        fun getInstance(activity : Activity) : MainFragmentFactory = MainFragmentFactory(activity)
+        fun getInstance(activity: Activity): MainFragmentFactory = MainFragmentFactory(activity)
     }
 }

@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.hks.kr.wifireminder.databinding.FragmentAddTaskBinding
-import com.hks.kr.wifireminder.ui.home.HomeViewModel
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.resizeDialogSize
 import com.hks.kr.wifireminder.utils.shortToast
@@ -37,13 +35,13 @@ class AddTaskDialogFragment : DialogFragment() {
         resizeDialogSize(0.875f, 0.542f)
         // category를 처음 설정한다면 이는
         binding.addTaskCategorySpinner.apply {
-            dataSet = arrayOf("hello","Lets","See","The","Magic","카테고리를 늘리고 싶으시면 이쪽을 클릭해주세요")
+            dataSet = arrayOf("hello", "Lets", "See", "The", "Magic", "카테고리를 늘리고 싶으시면 이쪽을 클릭해주세요")
             selectionChanged { _, itemText ->
                 requireContext().shortToast(itemText)
             }
         }
         binding.addTaskTaskImportanceSpinner.apply {
-            dataSet = arrayOf("High","Medium","Low")
+            dataSet = arrayOf("High", "Medium", "Low")
             selectionChanged { _, itemText ->
                 requireContext().shortToast(itemText)
             }

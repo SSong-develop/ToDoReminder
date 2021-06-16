@@ -8,8 +8,8 @@ import androidx.lifecycle.LifecycleCoroutineScope
  * 이를 DataBindingComponent를 통해서 해결할 수 있다.
  * 게다가 static을 제거하고 동적으로 bindingAdapter를 바인딩 클래스에 포함시킬 수 있다.
  */
-class AppBindingComponent(private val scope: LifecycleCoroutineScope) : DataBindingComponent  {
-    override fun getAppViewBinding() : AppViewBinding {
+class AppBindingComponent(private val scope: LifecycleCoroutineScope) : DataBindingComponent {
+    override fun getAppViewBinding(): AppViewBinding {
         return AppViewBindingImpl(scope)
     }
 }

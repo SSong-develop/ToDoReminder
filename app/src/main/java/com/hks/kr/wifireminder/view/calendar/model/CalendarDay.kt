@@ -15,12 +15,12 @@ data class CalendarDay internal constructor(val date: LocalDate, val owner: DayO
     val day = date.dayOfMonth
 
     // Find the actual month on the calendar that owns this date.
-    internal val positionYearMonth : YearMonth
-    get() = when(owner) {
-        DayOwner.THIS_MONTH -> date.yearMonth
-        DayOwner.PREVIOUS_MONTH -> date.yearMonth.next
-        DayOwner.NEXT_MONTH -> date.yearMonth.previous
-    }
+    internal val positionYearMonth: YearMonth
+        get() = when (owner) {
+            DayOwner.THIS_MONTH -> date.yearMonth
+            DayOwner.PREVIOUS_MONTH -> date.yearMonth.next
+            DayOwner.NEXT_MONTH -> date.yearMonth.previous
+        }
 
     override fun toString(): String {
         return "CalendarDay { date = $date , owner = $owner}"
@@ -34,8 +34,8 @@ data class CalendarDay internal constructor(val date: LocalDate, val owner: DayO
     }
 
     override fun equals(other: Any?): Boolean {
-        if(this === other) return true
-        if(javaClass != other?.javaClass) return false
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
 
         other as CalendarDay
         return date == other.date && owner == other.owner

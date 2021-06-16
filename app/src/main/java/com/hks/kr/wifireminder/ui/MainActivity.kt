@@ -10,7 +10,6 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.binding.AppBindingComponent
-import com.hks.kr.wifireminder.binding.AppViewBinding
 import com.hks.kr.wifireminder.databinding.ActivityMainBinding
 import com.hks.kr.wifireminder.notification.WifiConnectService
 import com.hks.kr.wifireminder.ui.frame.FrameFragment
