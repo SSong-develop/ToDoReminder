@@ -16,6 +16,9 @@ class MainApplication : Application(), Configuration.Provider {
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
+    @Inject
+    lateinit var pixelRatio: PixelRatio
+
     override fun onCreate() {
         super.onCreate()
         initializedSingleton()
@@ -28,7 +31,7 @@ class MainApplication : Application(), Configuration.Provider {
     private fun initializedSingleton() {
         sampleKeystore = Keystore
         versionCheckUtils = VersionCheckUtils
-        pixelRatio = PixelRatio(this)
+        MainApplication.pixelRatio = this.pixelRatio
     }
 
     companion object {
