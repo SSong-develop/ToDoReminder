@@ -14,6 +14,10 @@ import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * TODO : 재밌는거 생각남 , CATEGORY 리사이클러뷰에 GRADIENT를 넣어두고 스크롤 할떄마다 GRADIENT의 양이 달라지는거지 SCROLL OFFSET에 따라서
+ * 그럼 진짜 괜찮을거 같아요!!!
+ */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
