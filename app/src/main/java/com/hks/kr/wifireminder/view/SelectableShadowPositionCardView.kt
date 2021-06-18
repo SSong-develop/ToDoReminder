@@ -34,7 +34,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
 
     private val porterDuffXferMode = PorterDuffXfermode(PorterDuff.Mode.SRC)
 
-    private var shadowColor = Color.BLACK
+    private var shadowColor = Color.GRAY
 
     private var shadowStrokeWidth = 4.dpToPixelFloat
 
