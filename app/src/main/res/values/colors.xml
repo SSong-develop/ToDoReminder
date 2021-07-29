@@ -21,4 +21,7 @@
     <color name="test_icon_color3">#464545</color>
     <color name="test_icon_color4">#C4BCB8</color>
     <color name="test_icon_color5">#E2DFD8</color>
+
+    <color name="red">#CA002A</color>
+    <color name="blue">#0000FF</color>
 </resources>
