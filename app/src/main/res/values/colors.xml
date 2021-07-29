@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray">#808080</color>
 
     <color name="home_app_bar_color">#D3D6FD</color>
     <color name="home_colapsing_tool_bar_color">#AAB7F9</color>
@@ -24,4 +25,8 @@
 
     <color name="red">#CA002A</color>
     <color name="blue">#0000FF</color>
+
+    <color name="calendar_day_selected_font_color">#FFFFFF</color>
+    <color name="calendar_day_unselected_bg_color">#00000000</color>
+
 </resources>

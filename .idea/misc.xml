@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/thdgn/AndroidStudioProjects/WIFIReminder/app/src/main/res/drawable/bg_calendar_select_day.xml" value="0.3764102564102564" />
         <entry key="..\:/Users/thdgn/AndroidStudioProjects/WIFIReminder/app/src/main/res/layout/view_calendar_day.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/thdgn/AndroidStudioProjects/WIFIReminder/app/src/main/res/layout/view_calendar_empty.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/thdgn/AndroidStudioProjects/WIFIReminder/app/src/main/res/layout/view_calendar_month.xml" value="0.36614583333333334" />
