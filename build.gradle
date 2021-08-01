@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply plugin : "org.jlleitschuh.gradle.ktlint"
 buildscript {
-    ext.kotlin_version = "1.5.20"
+    ext.kotlin_version = "1.5.10"
     ext {
         version_material_design = "1.2.1"
         version_lifecycle = "2.3.1"
@@ -14,7 +14,7 @@ buildscript {
         version_activity_ktx = "1.2.3"
         version_dagger = "2.34.1"
         version_ktlint = "8.2.0"
-        version_hilt="2.35"
+        version_hilt="2.38.1"
     }
     repositories {
         google()
@@ -23,7 +23,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath 'com.android.tools.build:gradle:7.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$version_hilt"
