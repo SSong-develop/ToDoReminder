@@ -40,15 +40,6 @@ class MainActivity : AppCompatActivity() {
                 AppBindingComponent(lifecycleScope)
             )
 
-        supportFragmentManager.commit {
-            replace(
-                R.id.activity_nav_host_fragment, supportFragmentManager.fragmentFactory.instantiate(
-                    classLoader,
-                    FrameFragment::class.java.name
-                )
-            )
-        }
-
         configureStatusBarColor()
         observeIsAlreadyDoneCode()
     }
