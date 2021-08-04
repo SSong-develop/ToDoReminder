@@ -29,4 +29,7 @@
     <color name="calendar_day_selected_font_color">#FFFFFF</color>
     <color name="calendar_day_unselected_bg_color">#00000000</color>
 
+    <color name="calendar_day_highlight_bg_color">#4D6b8ff9</color>
+    <color name="calendar_picker_bg_color">#00FFFFFF</color>
+
 </resources>
