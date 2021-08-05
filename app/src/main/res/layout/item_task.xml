@@ -29,7 +29,6 @@
 
             <TextView
                 android:id="@+id/task_name"
-                style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -46,7 +45,6 @@
 
             <TextView
                 android:id="@+id/task_period"
-                style="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -58,7 +56,6 @@
 
             <TextView
                 android:id="@+id/task_importance"
-                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

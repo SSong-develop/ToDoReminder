@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.hks.kr.wifireminder.databinding.FragmentAddTaskBinding
+import com.hks.kr.wifireminder.ui.calendar.CalendarDialogFragment
 import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.resizeDialogSize
 import com.hks.kr.wifireminder.utils.shortToast
@@ -49,5 +50,13 @@ class AddTaskDialogFragment : DialogFragment() {
                 requireContext().shortToast(itemText)
             }
         }
+
+        binding.btnSelectDate.setOnClickListener {
+            CalendarDialogFragment().show(childFragmentManager, CALENDAR_DIALOG_FRAGMENT_TAG)
+        }
+    }
+
+    companion object {
+        private const val CALENDAR_DIALOG_FRAGMENT_TAG = "CalendarDialogFragment"
     }
 }

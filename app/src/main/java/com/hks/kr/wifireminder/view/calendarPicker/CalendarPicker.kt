@@ -318,6 +318,7 @@ class CalendarPicker @JvmOverloads constructor(
         }
         calendarAdapter.submitList(calendarData)
     }
+
     // Range를 바꾸는 경우엔 기존에 선택되어 있는 녀석들을 초기화 해주어야 한다.
     private fun resetSelection() {
         val startDatePosition = startDateSelection?.position
