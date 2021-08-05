@@ -12,7 +12,7 @@ import dagger.assisted.AssistedInject
 import javax.inject.Inject
 
 @HiltWorker
-class TaskNotificationWork @AssistedInject constructor(
+class TaskNotificationWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters,
 ) : CoroutineWorker(context, params) {

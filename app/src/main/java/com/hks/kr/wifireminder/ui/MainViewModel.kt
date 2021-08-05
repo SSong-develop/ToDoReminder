@@ -9,7 +9,7 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.hks.kr.wifireminder.datastore.PrefsStore
-import com.hks.kr.wifireminder.workers.TaskNotificationWork
+import com.hks.kr.wifireminder.workers.TaskNotificationWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(
         WorkManager.getInstance(app).enqueueUniquePeriodicWork(
             "TaskNotificationWork",
             ExistingPeriodicWorkPolicy.REPLACE,
-            PeriodicWorkRequestBuilder<TaskNotificationWork>(6, TimeUnit.HOURS).build()
+            PeriodicWorkRequestBuilder<TaskNotificationWorker>(6, TimeUnit.HOURS).build()
         )
     }
 
