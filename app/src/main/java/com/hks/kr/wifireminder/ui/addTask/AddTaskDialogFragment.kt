@@ -14,6 +14,9 @@ import com.hks.kr.wifireminder.utils.resizeDialogSize
 import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * DialogFragment가 아니라 그냥 Fragment로 해야할 거 같음
+ */
 @AndroidEntryPoint
 class AddTaskDialogFragment : DialogFragment() {
 
