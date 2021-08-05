@@ -118,7 +118,6 @@
                 app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
                 app:layout_constraintTop_toTopOf="@id/add_task_task_importance_text"
                 app:layout_constraintBottom_toBottomOf="@id/add_task_task_importance_text" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
