@@ -12,8 +12,8 @@ import javax.inject.Inject
 class DefaultTaskRepository @Inject constructor(
     private val taskLocalDataSource: TaskLocalDataSource
 ) : TasksRepository {
+
     override fun observeTasks(): LiveData<Result<List<Task>>> {
-        debugE(taskLocalDataSource.observeTasks().value)
         return taskLocalDataSource.observeTasks()
     }
 
