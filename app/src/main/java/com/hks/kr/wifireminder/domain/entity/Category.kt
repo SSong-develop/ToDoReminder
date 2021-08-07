@@ -1,6 +1,6 @@
 package com.hks.kr.wifireminder.domain.entity
 
-data class CategoryEntity(
+data class Category(
     val categoryName: String,
     val categoryCount: Int
 )

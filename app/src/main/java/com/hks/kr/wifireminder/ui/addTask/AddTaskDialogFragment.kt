@@ -10,7 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.hks.kr.wifireminder.databinding.FragmentAddTaskBinding
 import com.hks.kr.wifireminder.ui.calendar.CalendarDialogFragment
-import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
+import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.resizeDialogSize
 import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint

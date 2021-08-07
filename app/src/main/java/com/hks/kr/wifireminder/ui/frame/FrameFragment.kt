@@ -9,7 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentFrameBinding
-import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
+import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,9 +1,10 @@
-package com.hks.kr.wifireminder.domain.repository
+package com.hks.kr.wifireminder.data.source
 
 import com.hks.kr.wifireminder.data.CategoryDTO
 import com.hks.kr.wifireminder.domain.entity.Category
 
-interface CategoryRepository {
+interface CategoriesRepository {
+
     suspend fun insertCategory(categoryDTO: CategoryDTO)
 
     suspend fun getAllCategory(): List<Category>

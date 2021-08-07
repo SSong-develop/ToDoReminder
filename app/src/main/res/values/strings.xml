@@ -28,4 +28,6 @@
     <string name="add_task_task_name_text">TaskName</string>
     <string name="add_task_task_period_text">TaskPeriod</string>
     <string name="add_task_task_importance_text">TaskImportance</string>
+
+    <string name="loading_tasks_error">Error while loading tasks</string>
 </resources>

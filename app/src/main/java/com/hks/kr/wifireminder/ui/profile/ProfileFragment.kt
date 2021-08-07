@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.hks.kr.wifireminder.databinding.FragmentProfileBinding
-import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
+import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 
 class ProfileFragment : Fragment() {
 

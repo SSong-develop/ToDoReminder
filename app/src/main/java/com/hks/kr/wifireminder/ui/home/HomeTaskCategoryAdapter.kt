@@ -6,12 +6,12 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.hks.kr.wifireminder.databinding.ItemTaskCategoryBinding
-import com.hks.kr.wifireminder.domain.entity.CategoryEntity
+import com.hks.kr.wifireminder.domain.entity.Category
 
 class HomeTaskCategoryAdapter(
-    private val onItemClicked: (idx: Int, item: CategoryEntity) -> Unit
+    private val onItemClicked: (idx: Int, item: Category) -> Unit
 ) : Adapter<HomeTaskCategoryAdapter.CategoryViewHolder>() {
-    private val items = mutableListOf<CategoryEntity>()
+    private val items = mutableListOf<Category>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,12 +33,12 @@ class HomeTaskCategoryAdapter(
             }
         }
 
-        fun bind(item: CategoryEntity) {
+        fun bind(item: Category) {
             binding.items = item
         }
     }
 
-    fun submitList(itemList: List<CategoryEntity>) {
+    fun submitList(itemList: List<Category>) {
         items.clear()
         items.addAll(itemList)
         notifyDataSetChanged()
@@ -47,7 +47,7 @@ class HomeTaskCategoryAdapter(
 }
 
 @BindingAdapter("task_category_items")
-fun RecyclerView.setItems(items: List<CategoryEntity>) {
+fun RecyclerView.setItems(items: List<Category>) {
     (adapter as? HomeTaskCategoryAdapter)?.run {
         submitList(items)
     }

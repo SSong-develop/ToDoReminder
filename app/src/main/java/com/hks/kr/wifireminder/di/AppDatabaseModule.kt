@@ -2,7 +2,7 @@ package com.hks.kr.wifireminder.di
 
 import android.content.Context
 import androidx.room.Room
-import com.hks.kr.wifireminder.api.local.database.AppDatabase
+import com.hks.kr.wifireminder.data.source.local.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

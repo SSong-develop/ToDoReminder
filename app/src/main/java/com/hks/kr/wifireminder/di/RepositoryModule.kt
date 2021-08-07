@@ -1,27 +1,26 @@
 package com.hks.kr.wifireminder.di
 
-import com.hks.kr.wifireminder.api.local.database.CategoryDao
-import com.hks.kr.wifireminder.api.local.database.TaskDao
-import com.hks.kr.wifireminder.api.repository.CategoryRepositoryImpl
-import com.hks.kr.wifireminder.api.repository.TaskRepositoryImpl
+import com.hks.kr.wifireminder.data.source.local.dao.CategoryDao
+import com.hks.kr.wifireminder.data.source.local.dao.TaskDao
+import com.hks.kr.wifireminder.data.repository.CategoryRepositoryImpl
+import com.hks.kr.wifireminder.data.source.DefaultTaskRepository
+import com.hks.kr.wifireminder.data.source.TasksRepository
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
-import com.hks.kr.wifireminder.domain.repository.TaskRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-// todo : 이부분 굉장히 이상함 다시 생각해보세요 송훈기 학생
 @InstallIn(SingletonComponent::class)
 @Module
-object RepositoryModule {
-    @Provides
+abstract class TasksRepositoryModule {
+    @Binds
     @Singleton
-    fun provideTaskRepository(taskDao: TaskDao): TaskRepository = TaskRepositoryImpl(taskDao)
+    abstract fun bindTasksRepository(tasksRepository : DefaultTaskRepository) : TasksRepository
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideCategoryRepository(categoryDao: CategoryDao): CategoryRepository =
-        CategoryRepositoryImpl(categoryDao)
+    abstract fun bindCategoryRepository(categoryRepository : CategoryRepositoryImpl) : CategoryRepository
 }

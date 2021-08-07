@@ -10,24 +10,24 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.ItemTaskBinding
-import com.hks.kr.wifireminder.domain.entity.TaskEntity
+import com.hks.kr.wifireminder.domain.entity.Task
 
 /**
  * ConcatAdapter를 사용해서 한번 해볼까요???
  *
  */
-val diffItemCallback = object : DiffUtil.ItemCallback<TaskEntity>() {
-    override fun areItemsTheSame(oldItem: TaskEntity, newItem: TaskEntity): Boolean =
-        oldItem.taskId == newItem.taskId
+val diffItemCallback = object : DiffUtil.ItemCallback<Task>() {
+    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: TaskEntity, newItem: TaskEntity): Boolean =
-        oldItem.taskId == newItem.taskId
+    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean =
+        oldItem.id == newItem.id
 
 }
 
 class HomeTaskAdapter(
-    private val onItemClicked: (idx: Int, item: TaskEntity) -> Unit
-) : ListAdapter<TaskEntity, HomeTaskAdapter.TaskViewHolder>(diffItemCallback) {
+    private val onItemClicked: (idx: Int, item: Task) -> Unit
+) : ListAdapter<Task, HomeTaskAdapter.TaskViewHolder>(diffItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -44,20 +44,18 @@ class HomeTaskAdapter(
             }
         }
 
-        fun bind(item: TaskEntity) {
+        fun bind(item: Task) {
             binding.task = item
         }
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(getItem(position))
-        holder.itemView.animation =
-            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.home_list_animation)
     }
 }
 
 @BindingAdapter("task_adapter_item")
-fun RecyclerView.setItems(items: List<TaskEntity>) {
+fun RecyclerView.setItems(items: List<Task>) {
     (adapter as? HomeTaskAdapter)?.run {
         submitList(items)
     }

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.hks.kr.wifireminder.databinding.FragmentCalendarBinding
-import com.hks.kr.wifireminder.utils.FragmentBindingDelegate
+import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.resizeDialogSize
 
 class CalendarDialogFragment : DialogFragment() {

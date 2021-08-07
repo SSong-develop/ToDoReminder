@@ -1,17 +1,16 @@
 package com.hks.kr.wifireminder.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.hks.kr.wifireminder.api.local.entity.CategoryDTO
-import com.hks.kr.wifireminder.api.local.entity.TaskDTO
-import com.hks.kr.wifireminder.domain.entity.CategoryEntity
-import com.hks.kr.wifireminder.domain.entity.TaskEntity
+import androidx.lifecycle.*
+import com.hks.kr.wifireminder.R
+import com.hks.kr.wifireminder.data.CategoryDTO
+import com.hks.kr.wifireminder.data.Result
+import com.hks.kr.wifireminder.data.TaskDTO
+import com.hks.kr.wifireminder.data.source.TasksRepository
+import com.hks.kr.wifireminder.domain.entity.Category
+import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
-import com.hks.kr.wifireminder.domain.repository.TaskRepository
+import com.hks.kr.wifireminder.utils.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,81 +26,52 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val taskRepository: TaskRepository,
+    private val taskRepository: TasksRepository,
     private val categoryRepository: CategoryRepository
 ) : ViewModel() {
 
-    private val _taskEntityList = MutableLiveData<List<TaskEntity>>(listOf())
-    val taskEntityList: LiveData<List<TaskEntity>>
+    private val _taskEntityList = MutableLiveData<List<Task>?>(listOf())
+    val taskEntityList: LiveData<List<Task>?>
         get() = _taskEntityList
 
-    private val _taskCategoryList = MutableLiveData<List<CategoryEntity>>(listOf())
-    val taskCategoryList: LiveData<List<CategoryEntity>>
+    private val _taskItem: LiveData<List<Task>> =
+        taskRepository.observeTasks().distinctUntilChanged().switchMap { filterTasks(it) }
+    val taskItem: LiveData<List<Task>> = _taskItem
+
+    private val _taskCategoryList = MutableLiveData<List<Category>>(listOf())
+    val taskCategoryList: LiveData<List<Category>>
         get() = _taskCategoryList
 
     private val _allTaskCount = MutableLiveData<Int>()
     val allTaskCount: LiveData<Int>
         get() = _allTaskCount
 
+    private val _snackBarText = MutableLiveData<Event<Int>>()
+    val snackBarText: LiveData<Event<Int>>
+        get() = _snackBarText
+
     init {
+        mockTask()
         insertTestData()
         insertTestCategoryData()
         getAllTaskCount()
     }
 
-    private fun insertTestData() = viewModelScope.launch(Dispatchers.IO) {
-        runCatching {
-            taskRepository.insertTask(TaskDTO(1, "[TEST] 밥먹기", "test1", 5, 6))
-            taskRepository.insertTask(TaskDTO(2, "[TEST] 산책하기", "test2", 8, 3))
-            taskRepository.insertTask(TaskDTO(3, "[TEST] 운동하기", "test3", 12, 10))
-            taskRepository.insertTask(TaskDTO(4, "[TEST] 개발하기", "test4", 15, 99))
-            taskRepository.insertTask(TaskDTO(5, "[TEST] 롤하기", "test1", 19, 1))
-            taskRepository.insertTask(TaskDTO(6, "[TEST] 밥먹기2", "test2", 52, 62))
-            taskRepository.insertTask(TaskDTO(7, "[TEST] 산책하기2", "test3", 82, 32))
-            taskRepository.insertTask(TaskDTO(8, "[TEST] 운동하기2", "test4", 122, 102))
-            taskRepository.insertTask(TaskDTO(9, "[TEST] 개발하기2", "test1", 152, 992))
-            taskRepository.insertTask(TaskDTO(10, "[TEST] 롤하기2", "test2", 192, 12))
-            taskRepository.insertTask(TaskDTO(11, "[TEST] 밥먹기3", "test3", 53, 63))
-            taskRepository.insertTask(TaskDTO(12, "[TEST] 산책하기3", "test4", 83, 33))
-        }.onSuccess {
-            taskRepository.fetchAllTaskSortByImportance().let {
-                _taskEntityList.postValue(it)
+    private fun insertTestData() = viewModelScope.launch {
+        mockTask().also {
+            taskRepository.getTasks().let { result ->
+                if (result is Result.Success) {
+                    _taskEntityList.value = result.data
+                } else {
+                    showSnackBarMessage(R.string.loading_tasks_error)
+                }
             }
-        }.onFailure {
-            // reTrial or just throw error
         }
     }
 
-    private fun insertTestCategoryData() = viewModelScope.launch(Dispatchers.IO) {
+    private fun insertTestCategoryData() = viewModelScope.launch {
         runCatching {
-            categoryRepository.insertCategory(
-                CategoryDTO(
-                    1,
-                    "test1",
-                    taskRepository.getCategoryCount("test1")
-                )
-            )
-            categoryRepository.insertCategory(
-                CategoryDTO(
-                    2,
-                    "test2",
-                    taskRepository.getCategoryCount("test2")
-                )
-            )
-            categoryRepository.insertCategory(
-                CategoryDTO(
-                    3,
-                    "test3",
-                    taskRepository.getCategoryCount("test3")
-                )
-            )
-            categoryRepository.insertCategory(
-                CategoryDTO(
-                    4,
-                    "test4",
-                    taskRepository.getCategoryCount("test4")
-                )
-            )
+            mockCategory()
         }.onSuccess {
             categoryRepository.getAllCategory().let {
                 _taskCategoryList.postValue(it)
@@ -111,21 +81,25 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun fetchTaskByCategory(categoryName: String) = viewModelScope.launch(Dispatchers.IO) {
+    fun fetchTaskByCategory(categoryName: String) = viewModelScope.launch {
         runCatching {
-            taskRepository.fetchTaskByCategory(categoryName)
+            taskRepository.getTaskByCategory(categoryName)
         }.onSuccess {
-            _taskEntityList.postValue(it)
+            if (it is Result.Success) {
+                _taskEntityList.value = it.data
+            }
         }.onFailure {
             // reTrial or just throw error
         }
     }
 
-    fun fetchAllTask() = viewModelScope.launch(Dispatchers.IO) {
+    fun fetchAllTask() = viewModelScope.launch {
         runCatching {
-            taskRepository.fetchAllTaskSortByImportance()
+            taskRepository.getTaskByImportance()
         }.onSuccess {
-            _taskEntityList.postValue(it)
+            if (it is Result.Success) {
+                _taskEntityList.value = it.data
+            }
         }.onFailure {
             // reTrial or just throw error
         }
@@ -133,11 +107,109 @@ class HomeViewModel @Inject constructor(
 
     private fun getAllTaskCount() = viewModelScope.launch {
         runCatching {
-            taskRepository.getAllTaskCount()
+            taskRepository.getCategoriesCount()
         }.onSuccess {
             _allTaskCount.value = it
         }.onFailure {
             // reTrial or just throw error
         }
+    }
+
+    private fun showSnackBarMessage(message: Int) {
+        _snackBarText.value = Event(message)
+    }
+
+    private fun filterTasks(taskResult: Result<List<Task>>): LiveData<List<Task>> {
+        val result = MutableLiveData<List<Task>>()
+
+        if (taskResult is Result.Success) {
+            viewModelScope.launch {
+                result.value = filterItems(taskResult.data)
+            }
+        }
+        return result
+    }
+
+    private fun filterItems(tasks: List<Task>): List<Task> {
+        val tasksToShow = ArrayList<Task>()
+
+        for (task in tasks) {
+            tasksToShow.add(task)
+        }
+        return tasksToShow
+    }
+
+    private fun mockTask() = viewModelScope.launch {
+        taskRepository.saveTask(
+            TaskDTO(
+                id = "1",
+                title = "[Test] 송훈기",
+                description = "살려줘 송훈기",
+                category = "test1",
+                endDate = "2021-09-01",
+                importance = 1
+            )
+        )
+        taskRepository.saveTask(
+            TaskDTO(
+                id = "2",
+                title = "[Test] 송훈기1",
+                description = "살려줘 송훈기1",
+                category = "test2",
+                endDate = "2021-09-02",
+                importance = 2
+            )
+        )
+        taskRepository.saveTask(
+            TaskDTO(
+                id = "3",
+                title = "[Test] 송훈기2",
+                description = "살려줘 송훈기2",
+                category = "test3",
+                endDate = "2021-09-03",
+                importance = 3
+            )
+        )
+        taskRepository.saveTask(
+            TaskDTO(
+                id = "4",
+                title = "[Test] 송훈기3",
+                description = "살려줘 송훈기3",
+                category = "test4",
+                endDate = "2021-09-04",
+                importance = 4
+            )
+        )
+    }
+
+    private fun mockCategory() = viewModelScope.launch {
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                1,
+                "test1",
+                taskRepository.getCategoryCount("test1")
+            )
+        )
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                2,
+                "test2",
+                taskRepository.getCategoryCount("test2")
+            )
+        )
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                3,
+                "test3",
+                taskRepository.getCategoryCount("test3")
+            )
+        )
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                4,
+                "test4",
+                taskRepository.getCategoryCount("test4")
+            )
+        )
     }
 }

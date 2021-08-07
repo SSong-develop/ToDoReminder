@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.utils
+package com.hks.kr.wifireminder.utils.delegate
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
