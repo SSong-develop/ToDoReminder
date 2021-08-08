@@ -7,15 +7,16 @@ import androidx.room.PrimaryKey
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.domain.entity.Category
 import java.sql.Blob
+import java.util.*
 
 /**
  * TODO : Icon , Icon Background Color need To Insert
  */
 @Entity(tableName = "category")
 data class CategoryDTO(
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "category_id")
-    var categoryId: Int = 0,
+    var categoryId: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "category_title")
     val categoryTitle: String,
     @ColumnInfo(name = "task_count_by_category")
@@ -29,6 +30,7 @@ data class CategoryDTO(
 fun List<CategoryDTO>.asDomainCategoryEntity(): List<Category> {
     return map {
         Category(
+            id = it.categoryId,
             categoryName = it.categoryTitle,
             categoryCount = it.categoryCount,
             backgroundColorCode = it.backgroundColorCode,

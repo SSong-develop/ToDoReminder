@@ -131,7 +131,6 @@ class HomeViewModel @Inject constructor(
     private fun mockTask() = viewModelScope.launch(Dispatchers.IO) {
         taskRepository.saveTask(
             TaskDTO(
-                id = "1",
                 title = "[Test] 송훈기",
                 description = "살려줘 송훈기",
                 category = "test1",
@@ -141,7 +140,6 @@ class HomeViewModel @Inject constructor(
         )
         taskRepository.saveTask(
             TaskDTO(
-                id = "2",
                 title = "[Test] 송훈기1",
                 description = "살려줘 송훈기1",
                 category = "test2",
@@ -151,7 +149,6 @@ class HomeViewModel @Inject constructor(
         )
         taskRepository.saveTask(
             TaskDTO(
-                id = "3",
                 title = "[Test] 송훈기2",
                 description = "살려줘 송훈기2",
                 category = "test3",
@@ -161,7 +158,6 @@ class HomeViewModel @Inject constructor(
         )
         taskRepository.saveTask(
             TaskDTO(
-                id = "4",
                 title = "[Test] 송훈기3",
                 description = "살려줘 송훈기3",
                 category = "test4",
@@ -174,38 +170,34 @@ class HomeViewModel @Inject constructor(
     private fun mockCategory() = viewModelScope.launch(Dispatchers.IO) {
         categoryRepository.insertCategory(
             CategoryDTO(
-                1,
-                "test1",
-                taskRepository.getCategoryCount("test1"),
-                "#AA11AA",
-                R.drawable.ic_home
+                categoryTitle = "test1",
+                categoryCount = taskRepository.getCategoryCount("test1"),
+                backgroundColorCode = "#AA11AA",
+                icon = R.drawable.ic_home
             )
         )
         categoryRepository.insertCategory(
             CategoryDTO(
-                2,
-                "test2",
-                taskRepository.getCategoryCount("test2"),
-                "#4D6B8FF9",
-                R.drawable.ic_person
+                categoryTitle = "test2",
+                categoryCount = taskRepository.getCategoryCount("test2"),
+                backgroundColorCode = "#4D6B8FF9",
+                icon = R.drawable.ic_person
             )
         )
         categoryRepository.insertCategory(
             CategoryDTO(
-                3,
-                "test3",
-                taskRepository.getCategoryCount("test3"),
-                "#AA11AA",
-                R.drawable.ic_add
+                categoryTitle = "test3",
+                categoryCount = taskRepository.getCategoryCount("test3"),
+                backgroundColorCode = "#AA11AA",
+                icon = R.drawable.ic_add
             )
         )
         categoryRepository.insertCategory(
             CategoryDTO(
-                4,
-                "test4",
-                taskRepository.getCategoryCount("test4"),
-                "#4D6B8FF9",
-                R.drawable.ic_home
+                categoryTitle = "test4",
+                categoryCount = taskRepository.getCategoryCount("test4"),
+                backgroundColorCode = "#4D6B8FF9",
+                icon = R.drawable.ic_home
             )
         )
     }
