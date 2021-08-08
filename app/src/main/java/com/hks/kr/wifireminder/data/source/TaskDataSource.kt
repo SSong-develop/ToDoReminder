@@ -4,12 +4,13 @@ import androidx.lifecycle.LiveData
 import com.hks.kr.wifireminder.data.Result
 import com.hks.kr.wifireminder.data.TaskDTO
 import com.hks.kr.wifireminder.domain.entity.Task
+import kotlinx.coroutines.flow.Flow
 
 interface TaskDataSource {
 
-    fun observeTasks() : LiveData<Result<List<Task>>>
-
     fun observeTask(taskId : String) : LiveData<Result<Task>>
+
+    fun observeTasks() : Flow<List<Task>>
 
     suspend fun getTasks() : Result<List<Task>>
 

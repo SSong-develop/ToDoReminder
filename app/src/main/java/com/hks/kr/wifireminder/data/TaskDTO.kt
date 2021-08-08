@@ -19,7 +19,7 @@ import java.util.*
 @Entity(tableName = "tasks")
 data class TaskDTO(
     @PrimaryKey
-    @ColumnInfo(name = "taskId")
+    @ColumnInfo(name = "task_id")
     var id: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "title")
     val title: String,
@@ -27,9 +27,9 @@ data class TaskDTO(
     val description: String,
     @ColumnInfo(name = "category")
     val category: String,
-    @ColumnInfo(name = "startDate")
+    @ColumnInfo(name = "start_data")
     val startDate: String = DateUtil.dateFormatBarWithOutTime.format(Date(System.currentTimeMillis())),
-    @ColumnInfo(name = "endDate")
+    @ColumnInfo(name = "end_date")
     val endDate: String,
     @ColumnInfo(name = "importance")
     val importance: Int

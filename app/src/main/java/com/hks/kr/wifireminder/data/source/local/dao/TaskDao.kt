@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.google.android.play.core.tasks.Task
 import com.hks.kr.wifireminder.data.TaskDTO
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Inner Join 사용해서 Category가 있는지 확인하고 그다음에 하는게 맞는거 같은데
@@ -16,10 +17,11 @@ interface TaskDao {
     /**
      * Observes list of tasks
      *
+     *
      * @return all tasks
      */
-    @Query("SELECT * FROM tasks")
-    fun observeTasks(): LiveData<List<TaskDTO>>
+    @Query("SELECT * FROM tasks ORDER BY importance DESC")
+    fun observeTasks(): Flow<List<TaskDTO>>
 
     /**
      * Observes a single task
@@ -27,7 +29,7 @@ interface TaskDao {
      * @param taskId the task id
      * @return the task with taskId
      */
-    @Query("SELECT * FROM tasks WHERE taskId = :taskId")
+    @Query("SELECT * FROM tasks WHERE task_id = :taskId")
     fun observeTaskById(taskId: String): LiveData<TaskDTO>
 
     /**
@@ -44,7 +46,7 @@ interface TaskDao {
      * @param taskId the task id
      * @return the task with taskId
      */
-    @Query("SELECT * FROM tasks WHERE taskId = :taskId")
+    @Query("SELECT * FROM tasks WHERE task_id = :taskId")
     suspend fun getTaskById(taskId: String): TaskDTO?
 
     /**
@@ -62,7 +64,7 @@ interface TaskDao {
      *
      * @return the number of tasks deleted. it will be always 1
      */
-    @Query("DELETE FROM tasks WHERE taskId = :taskId")
+    @Query("DELETE FROM tasks WHERE task_id = :taskId")
     suspend fun deleteTaskById(taskId: String): Int
 
     /**
@@ -70,7 +72,7 @@ interface TaskDao {
      *
      * @return the number of tasks deleted , it will not specify number
      */
-    @Query("DELETE FROM tasks WHERE endDate = :endDate")
+    @Query("DELETE FROM tasks WHERE end_date = :endDate")
     suspend fun deleteTaskByDate(endDate: String): Int
 
     /**

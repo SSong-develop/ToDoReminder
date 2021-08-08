@@ -7,13 +7,14 @@ import com.hks.kr.wifireminder.data.source.local.TaskLocalDataSource
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.utils.debugE
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DefaultTaskRepository @Inject constructor(
     private val taskLocalDataSource: TaskLocalDataSource
 ) : TasksRepository {
 
-    override fun observeTasks(): LiveData<Result<List<Task>>> {
+    override fun observeTasks(): Flow<List<Task>> {
         return taskLocalDataSource.observeTasks()
     }
 

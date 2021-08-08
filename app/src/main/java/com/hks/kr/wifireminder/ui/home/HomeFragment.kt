@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onCategoryItemClicked(position: Int, category: Category) {
-        viewModel.fetchTaskByCategory(category.categoryName)
+
     }
 
     fun navigateToAddTask() {

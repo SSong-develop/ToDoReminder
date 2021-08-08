@@ -36,13 +36,14 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shadow_stroke_width="4dp">
 
-            <com.hks.kr.wifireminder.view.CircleIconImageView
+            <ImageView
                 android:id="@+id/task_category_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/ic_baseline_ac_unit_24"
+                app:img_path_src="@{items.icon}"
+                app:background_color="@{items.backgroundColorCode}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_baseline_ac_unit_24" />

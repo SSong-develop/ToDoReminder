@@ -4,10 +4,11 @@ import androidx.lifecycle.LiveData
 import com.hks.kr.wifireminder.data.Result
 import com.hks.kr.wifireminder.data.TaskDTO
 import com.hks.kr.wifireminder.domain.entity.Task
+import kotlinx.coroutines.flow.Flow
 
 interface TasksRepository {
 
-    fun observeTasks(): LiveData<Result<List<Task>>>
+    fun observeTasks():Flow<List<Task>>
 
     fun observeTask(taskId: String): LiveData<Result<Task>>
 
@@ -28,4 +29,5 @@ interface TasksRepository {
     suspend fun deleteTaskByEndDate(endDate: String)
 
     suspend fun getCategoryCount(categoryTitle : String) : Int
+
 }

@@ -30,4 +30,5 @@
     <string name="add_task_task_importance_text">TaskImportance</string>
 
     <string name="loading_tasks_error">Error while loading tasks</string>
+    <string name="loading_categories_error">Error while loading categories</string>
 </resources>

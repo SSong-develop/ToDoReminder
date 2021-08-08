@@ -32,4 +32,6 @@
     <color name="calendar_day_highlight_bg_color">#4D6b8ff9</color>
     <color name="calendar_picker_bg_color">#00FFFFFF</color>
 
+    <color name="main_point_blue">#6b8ff9</color>
+
 </resources>

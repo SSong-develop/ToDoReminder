@@ -6,14 +6,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.hks.kr.wifireminder.data.CategoryDTO
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
 
     @Query("SELECT * FROM category")
-    fun observeCategories() : LiveData<List<CategoryDTO>>
+    fun observeCategories() : Flow<List<CategoryDTO>>
 
-    @Query("SELECT * FROM category WHERE categoryId = :categoryId")
+    @Query("SELECT * FROM category WHERE category_id = :categoryId")
     fun observeCategoryById(categoryId : Int) : LiveData<CategoryDTO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
