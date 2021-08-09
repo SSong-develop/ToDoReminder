@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="bindingViewModel"
             type="com.hks.kr.wifireminder.ui.home.HomeViewModel" />
@@ -22,34 +24,34 @@
             android:id="@+id/home_fragment_todo_category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/home_fragment_category_title"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat_black"
             android:includeFontPadding="false"
+            android:text="@string/home_fragment_category_title"
             android:textColor="@color/home_fragment_category_title_color"
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_category_list"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_category_list" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_category_list"
+            task_category_items="@{bindingViewModel.categoryItems}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginTop="24dp"
             android:clipChildren="false"
             android:clipToPadding="false"
-            android:layout_marginTop="24dp"
-            android:paddingBottom="8dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
-            android:overScrollMode="never"
+            android:paddingBottom="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            task_category_items="@{bindingViewModel.categoryItems}"
-            app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_title"
-            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_title" />
+            app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_title" />
 
         <TextView
             android:id="@+id/home_fragment_todo_title"
@@ -60,9 +62,9 @@
             android:includeFontPadding="false"
             android:text="@string/home_fragment_todo_title"
             android:textColor="@color/home_fragment_category_title_color"
+            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list"
             app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
-            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_list"
-            app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list" />
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_category_list" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/home_fragment_all_task_count"
@@ -73,9 +75,9 @@
             app:chipBackgroundColor="@color/white"
             app:chipStrokeColor="@color/home_fragment_category_title_color"
             app:chipStrokeWidth="1dp"
-            app:layout_constraintTop_toTopOf="@id/home_fragment_todo_title"
             app:layout_constraintBottom_toBottomOf="@id/home_fragment_todo_title"
-            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list" />
+            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
+            app:layout_constraintTop_toTopOf="@id/home_fragment_todo_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_list"
@@ -88,20 +90,39 @@
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_title"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_title" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/home_fragment_add_task_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:src="@drawable/ic_add"
             android:onClick="@{() ->bindingFragment.navigateToAddTask()}"
-            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:fabSize="mini"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/white"
             app:borderWidth="0dp"
-            app:backgroundTint="@color/white" />
+            app:fabSize="mini"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{bindingViewModel.taskDataLoading ? View.VISIBLE : View.GONE }"
+            app:layout_constraintBottom_toBottomOf="@id/home_fragment_todo_list"
+            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
+            app:layout_constraintStart_toStartOf="@id/home_fragment_todo_list"
+            app:layout_constraintTop_toTopOf="@id/home_fragment_todo_list" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{bindingViewModel.categoryDataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_list"
+            app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_category_list"
+            app:layout_constraintTop_toTopOf="@id/home_fragment_todo_category_list"
+            app:layout_constraintBottom_toBottomOf="@id/home_fragment_todo_category_list"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

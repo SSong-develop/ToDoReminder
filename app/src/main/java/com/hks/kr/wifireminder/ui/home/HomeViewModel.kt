@@ -67,10 +67,16 @@ class HomeViewModel @Inject constructor(
         get() = _snackBarText
 
     /**
-     * DataLoading UI State LiveData
+     * taskDataLoading UI State LiveData
      */
-    private val _dataLoading = MutableLiveData<Boolean>()
-    val dataLoading : LiveData<Boolean> = _dataLoading
+    private val _taskDataLoading = MutableLiveData<Boolean>()
+    val taskDataLoading : LiveData<Boolean> = _taskDataLoading
+
+    /**
+     * CategoryDataLoading UI State LiveData
+     */
+    private val _categoryDataLoading = MutableLiveData<Boolean>()
+    val categoryDataLoading : LiveData<Boolean> = _categoryDataLoading
 
     init {
         mockTask()
@@ -84,27 +90,24 @@ class HomeViewModel @Inject constructor(
     private fun emitTasks() = viewModelScope.launch {
         _taskFlow.onStart {
             // can use Loading State
-            _dataLoading.value = true
-        }.onCompletion {
-            _dataLoading.value = false
+            _taskDataLoading.value = true
         }.catch { _ ->
             // can use Error State
             showSnackBarMessage(R.string.loading_tasks_error)
         }.collect {
+            _taskDataLoading.value = false
             _taskItems.value = it
         }
     }
 
     private fun emitCategories() = viewModelScope.launch {
         _categoryFlow.onStart {
-            // can use Loading State
-            _dataLoading.value = true
-        }.onCompletion {
-            _dataLoading.value = false
+            _categoryDataLoading.value = true
         }.catch {
             // can use Error State
             showSnackBarMessage(R.string.loading_categories_error)
         }.collect {
+            _categoryDataLoading.value = false
             _categoryItems.value = it
         }
     }
@@ -124,6 +127,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun mockTask() = viewModelScope.launch(Dispatchers.IO) {
+        taskRepository.deleteAllTasks()
         taskRepository.saveTask(
             TaskDTO(
                 title = "[Test] 송훈기",
@@ -163,6 +167,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun mockCategory() = viewModelScope.launch(Dispatchers.IO) {
+        categoryRepository.deleteCategories()
         categoryRepository.insertCategory(
             CategoryDTO(
                 categoryTitle = "test1",

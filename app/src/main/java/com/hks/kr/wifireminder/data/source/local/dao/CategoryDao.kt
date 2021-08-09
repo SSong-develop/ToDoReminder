@@ -25,4 +25,7 @@ interface CategoryDao {
 
     @Query("DELETE FROM category WHERE :categoryName = category_title")
     suspend fun deleteCategory(categoryName: String)
+
+    @Query("DELETE FROM category")
+    suspend fun deleteCategories()
 }
