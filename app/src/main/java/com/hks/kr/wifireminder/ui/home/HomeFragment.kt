@@ -10,7 +10,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.entity.Task
-import com.hks.kr.wifireminder.ui.addTask.AddTaskDialogFragment
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.setUpSnackBar
 import com.hks.kr.wifireminder.utils.shortToast
@@ -71,9 +70,4 @@ class HomeFragment : Fragment() {
     private fun onCategoryItemClicked(position: Int, category: Category) {
 
     }
-
-    fun navigateToAddTask() {
-        AddTaskDialogFragment().show(childFragmentManager, "TAG")
-    }
-
 }

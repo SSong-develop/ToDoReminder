@@ -81,10 +81,13 @@ class HomeViewModel @Inject constructor(
     init {
         mockTask()
         mockCategory()
-        getAllTaskCount()
 
+        /**
+         * Show Mock Data
+         */
         emitTasks()
         emitCategories()
+        getAllTaskCount()
     }
 
     private fun emitTasks() = viewModelScope.launch {

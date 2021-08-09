@@ -18,7 +18,7 @@
             android:layout_height="0dp"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"
-            app:navGraph="@navigation/navigation"
+            app:navGraph="@navigation/nav_home"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

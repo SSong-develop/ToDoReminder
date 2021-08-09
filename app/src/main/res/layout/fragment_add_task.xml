@@ -10,119 +10,125 @@
             type="com.hks.kr.wifireminder.ui.addTask.AddTaskViewModel" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="8dp">
+        tools:context=".ui.addTask.AddTaskFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ui.addTask.AddTaskDialogFragment">
+        <ImageView
+            android:id="@+id/iv_pop_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            android:padding="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/add_task_category_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_task_category_text"
-                android:fontFamily="@font/montserrat_bold"
-                android:includeFontPadding="false"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/add_task_category_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:includeFontPadding="false"
+            android:text="@string/add_task_category_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/add_task_task_name"
+            app:layout_constraintVertical_chainStyle="spread"/>
 
-            <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
-                android:id="@+id/add_task_category_spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="8dp"
-                app:title_spinner_item="@{bindingViewModel.categoryItems}"
-                app:onSelectChanged="@{bindingViewModel}"
-                app:drop_down_text_size="12sp"
-                app:drop_down_padding="8dp"
-                app:drop_down_text_font="@font/montserrat_bold"
-                app:selected_text_font="@font/montserrat_bold"
-                app:drop_down_text_color="@color/home_fragment_category_title_color"
-                app:selected_text_color="@color/home_fragment_category_title_color"
-                app:layout_constraintTop_toTopOf="@id/add_task_category_text"
-                app:layout_constraintStart_toEndOf="@id/add_task_category_text"
-                app:layout_constraintBottom_toBottomOf="@id/add_task_category_text"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
+            android:id="@+id/add_task_category_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            app:drop_down_padding="8dp"
+            app:drop_down_text_color="@color/home_fragment_category_title_color"
+            app:drop_down_text_font="@font/montserrat_bold"
+            app:drop_down_text_size="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/add_task_category_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/add_task_category_text"
+            app:layout_constraintTop_toTopOf="@id/add_task_category_text"
+            app:onSelectChanged="@{bindingViewModel}"
+            app:selected_text_color="@color/home_fragment_category_title_color"
+            app:selected_text_font="@font/montserrat_bold"
+            app:title_spinner_item="@{bindingViewModel.categoryItems}" />
 
-            <TextView
-                android:id="@+id/add_task_task_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_task_task_name_text"
-                android:fontFamily="@font/montserrat_bold"
-                android:includeFontPadding="false"
-                android:layout_marginTop="32dp"
-                app:layout_constraintStart_toStartOf="@id/add_task_category_text"
-                app:layout_constraintTop_toBottomOf="@id/add_task_category_text" />
+        <TextView
+            android:id="@+id/add_task_task_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:includeFontPadding="false"
+            android:text="@string/add_task_task_name_text"
+            app:layout_constraintStart_toStartOf="@id/add_task_category_text"
+            app:layout_constraintTop_toBottomOf="@id/add_task_category_text"
+            app:layout_constraintBottom_toTopOf="@id/add_task_task_period_text"/>
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:textSize="12sp"
-                android:inputType="text"
-                android:hint="@string/add_task_task_name_text"
-                app:layout_constraintStart_toEndOf="@id/add_task_task_name"
-                app:layout_constraintTop_toTopOf="@id/add_task_task_name"
-                app:layout_constraintBottom_toBottomOf="@id/add_task_task_name"
-                app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner" />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:hint="@string/add_task_task_name_text"
+            android:inputType="text"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/add_task_task_name"
+            app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
+            app:layout_constraintStart_toEndOf="@id/add_task_task_name"
+            app:layout_constraintTop_toTopOf="@id/add_task_task_name" />
 
-            <TextView
-                android:id="@+id/add_task_task_period_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_task_task_period_text"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginTop="40dp"
-                app:layout_constraintStart_toStartOf="@id/add_task_category_text"
-                app:layout_constraintTop_toBottomOf="@id/add_task_task_name" />
+        <TextView
+            android:id="@+id/add_task_task_period_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/add_task_task_period_text"
+            app:layout_constraintStart_toStartOf="@id/add_task_category_text"
+            app:layout_constraintTop_toBottomOf="@id/add_task_task_name"
+            app:layout_constraintBottom_toTopOf="@id/add_task_task_importance_text"/>
 
-            <Button
-                android:id="@+id/btn_select_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="날짜 선택"
-                android:textSize="12sp"
-                app:layout_constraintStart_toEndOf="@id/add_task_task_period_text"
-                app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
-                app:layout_constraintTop_toTopOf="@id/add_task_task_period_text"
-                app:layout_constraintBottom_toBottomOf="@id/add_task_task_period_text" />
+        <com.hks.kr.wifireminder.view.calendarPicker.CalendarPicker
+            android:id="@+id/btn_select_date"
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_marginStart="16dp"
+            android:text="날짜 선택"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/add_task_task_period_text"
+            app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
+            app:layout_constraintStart_toEndOf="@id/add_task_task_period_text"
+            app:layout_constraintTop_toTopOf="@id/add_task_task_period_text" />
 
-            <TextView
-                android:id="@+id/add_task_task_importance_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_task_task_importance_text"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="@id/add_task_category_text"
-                app:layout_constraintTop_toBottomOf="@id/add_task_task_period_text" />
+        <TextView
+            android:id="@+id/add_task_task_importance_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/add_task_task_importance_text"
+            app:layout_constraintStart_toStartOf="@id/add_task_category_text"
+            app:layout_constraintTop_toBottomOf="@id/add_task_task_period_text"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
-                android:id="@+id/add_task_task_importance_spinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                app:importance_spinner_item="@{bindingViewModel.categoryImportance}"
-                app:importanceSelectChanged="@{bindingViewModel}"
-                app:drop_down_padding="8dp"
-                app:selected_text_font="@font/montserrat_bold"
-                app:drop_down_text_size="12sp"
-                app:drop_down_text_font="@font/montserrat_bold"
-                app:drop_down_text_color="@color/home_fragment_category_title_color"
-                app:selected_text_color="@color/home_fragment_category_title_color"
-                app:layout_constraintStart_toEndOf="@id/add_task_task_importance_text"
-                app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
-                app:layout_constraintTop_toTopOf="@id/add_task_task_importance_text"
-                app:layout_constraintBottom_toBottomOf="@id/add_task_task_importance_text" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
+            android:id="@+id/add_task_task_importance_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:drop_down_padding="8dp"
+            app:drop_down_text_color="@color/home_fragment_category_title_color"
+            app:drop_down_text_font="@font/montserrat_bold"
+            app:drop_down_text_size="12sp"
+            app:importanceSelectChanged="@{bindingViewModel}"
+            app:importance_spinner_item="@{bindingViewModel.categoryImportance}"
+            app:layout_constraintBottom_toBottomOf="@id/add_task_task_importance_text"
+            app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
+            app:layout_constraintStart_toEndOf="@id/add_task_task_importance_text"
+            app:layout_constraintTop_toTopOf="@id/add_task_task_importance_text"
+            app:selected_text_color="@color/home_fragment_category_title_color"
+            app:selected_text_font="@font/montserrat_bold" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

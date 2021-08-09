@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentFrameBinding
+import com.hks.kr.wifireminder.ui.MainViewModel
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class FrameFragment : Fragment() {
 
     private var binding: FragmentFrameBinding by FragmentBindingDelegate()
+
+    private val viewModel : MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +32,7 @@ class FrameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
 
+        viewModel.setFabVisible(true)
         configureBottomNavigation()
     }
 

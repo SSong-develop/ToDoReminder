@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.binding.AppBindingComponent
 import com.hks.kr.wifireminder.databinding.ActivityMainBinding
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
             R.layout.activity_main,
             AppBindingComponent(lifecycleScope)
         )
+        binding.lifecycleOwner = this
+        binding.activity = this
+        binding.bindViewModel = viewModel
+        lifecycle.addObserver(viewModel)
 
         configureStatusBarColor()
         observeIsAlreadyDoneCode()
@@ -53,5 +58,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun navigateToAddTask() {
+        viewModel.setFabVisible(false)
+        findNavController(R.id.activity_nav_host_fragment).navigate(R.id.action_frameFragment_to_addTaskFragment)
     }
 }
