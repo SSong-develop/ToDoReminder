@@ -1,6 +1,7 @@
 package com.hks.kr.wifireminder.data
 
 import android.graphics.drawable.Drawable
+import androidx.annotation.DrawableRes
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -23,6 +24,7 @@ data class CategoryDTO(
     val categoryCount: Int,
     @ColumnInfo(name = "background_color_code")
     val backgroundColorCode : String,
+    @DrawableRes
     @ColumnInfo(name = "category_icon")
     val icon : Int
 )

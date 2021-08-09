@@ -37,19 +37,6 @@ class AddTaskDialogFragment : DialogFragment() {
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         resizeDialogSize(0.875f, 0.542f)
-        // category를 처음 설정한다면 이는
-        binding.addTaskCategorySpinner.apply {
-            dataSet = arrayOf("hello", "Lets", "See", "The", "Magic", "카테고리를 늘리고 싶으시면 이쪽을 클릭해주세요")
-            selectionChanged { _, itemText ->
-                requireContext().shortToast(itemText)
-            }
-        }
-        binding.addTaskTaskImportanceSpinner.apply {
-            dataSet = arrayOf("High", "Medium", "Low")
-            selectionChanged { _, itemText ->
-                requireContext().shortToast(itemText)
-            }
-        }
 
         binding.btnSelectDate.setOnClickListener {
             CalendarDialogFragment().show(childFragmentManager, CALENDAR_DIALOG_FRAGMENT_TAG)

@@ -35,7 +35,6 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val applicationContext : Application,
     private val taskRepository: TasksRepository,
     private val categoryRepository: CategoryRepository,
     private val savedStateHandle : SavedStateHandle
@@ -108,10 +107,6 @@ class HomeViewModel @Inject constructor(
         }.collect {
             _categoryItems.value = it
         }
-    }
-
-    private fun emitTasksCount(){
-        _allTaskCount.value = _taskItems.value?.size
     }
 
     private fun getAllTaskCount() = viewModelScope.launch {
