@@ -1,5 +1,6 @@
 package com.hks.kr.wifireminder.ui.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
@@ -38,6 +39,7 @@ class HomeTaskCategoryAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun submitList(itemList: List<Category>) {
         items.clear()
         items.addAll(itemList)
