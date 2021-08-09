@@ -20,7 +20,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val app: Application,
     private val prefsStore: PrefsStore
-) : ViewModel(),LifecycleObserver {
+) : ViewModel() {
     private val _isSingleInvoked = MutableLiveData<Boolean>()
     val isSingleInvoked: LiveData<Boolean>
         get() = _isSingleInvoked

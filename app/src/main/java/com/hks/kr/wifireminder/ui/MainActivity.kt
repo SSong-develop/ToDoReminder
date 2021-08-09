@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.activity = this
         binding.bindViewModel = viewModel
-        lifecycle.addObserver(viewModel)
 
         configureStatusBarColor()
         observeIsAlreadyDoneCode()
