@@ -47,7 +47,6 @@
             android:paddingStart="4dp"
             android:paddingEnd="4dp"
             android:paddingBottom="8dp"
-            category_scroll_listener="@{bindingViewModel}"
             app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_title"
@@ -88,7 +87,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="12dp"
             android:overScrollMode="never"
-            task_scroll_listener="@{bindingViewModel}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_title" />

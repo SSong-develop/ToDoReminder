@@ -83,8 +83,7 @@ class AddTaskViewModel @Inject constructor(
         _snackBarText.value = Event(message)
     }
 
-    fun isValidate(): Boolean {
-        return !title.value.isNullOrEmpty() && !description.value.isNullOrEmpty() && !date.value?.first.isNullOrEmpty() && !date.value?.second.isNullOrEmpty()
-    }
+    fun isValidate(): Boolean =
+        !title.value.isNullOrEmpty() && !description.value.isNullOrEmpty() && !date.value?.first.isNullOrEmpty() && !date.value?.second.isNullOrEmpty()
 
 }

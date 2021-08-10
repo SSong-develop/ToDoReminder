@@ -57,13 +57,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun configureSnackBar() {
-        view?.setUpSnackBar(viewLifecycleOwner,viewModel.snackBarText,Snackbar.LENGTH_SHORT)
+        view?.setUpSnackBar(viewLifecycleOwner, viewModel.snackBarText, Snackbar.LENGTH_SHORT)
     }
 
     private fun configureCategoryList() = binding.homeFragmentTodoCategoryList.let { list ->
-        list.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        list.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         list.adapter = homeTaskCategoryAdapter
         list.scrollToPosition(viewModel.categoryListPosition ?: 0)
+        list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val position =
+                    ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
+                viewModel.saveCategoryScrollPosition(position)
+            }
+        })
     }
 
     private fun configureTaskList() = binding.homeFragmentTodoList.let { list ->
@@ -71,6 +80,14 @@ class HomeFragment : Fragment() {
         list.adapter = homeTaskAdapter
         LinearSnapHelper().attachToRecyclerView(list)
         list.scrollToPosition(viewModel.taskListPosition ?: 0)
+        list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                val position =
+                    ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
+                viewModel.saveTaskScrollPosition(position)
+            }
+        })
     }
 
     private fun onTaskItemClicked(position: Int, task: Task) {

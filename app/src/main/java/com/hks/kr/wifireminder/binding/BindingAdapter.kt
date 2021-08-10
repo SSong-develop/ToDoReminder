@@ -28,33 +28,4 @@ object BindingAdapter {
         imageView.setBackgroundColor(color)
     }
 
-    /**
-     * TODO : Test 요망
-     */
-    @JvmStatic
-    @BindingAdapter("task_scroll_listener")
-    fun setTaskScrollListener(recyclerView: RecyclerView , viewModel : HomeViewModel){
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val position = ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
-                viewModel.saveTaskScrollPosition(position)
-            }
-        })
-    }
-
-    /**
-     * TODO : Test 요망
-     */
-    @JvmStatic
-    @BindingAdapter("category_scroll_listener")
-    fun setCategoryScrollListener(recyclerView : RecyclerView , viewModel : HomeViewModel){
-        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val position = ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
-                viewModel.saveCategoryScrollPosition(position)
-            }
-        })
-    }
 }
