@@ -10,5 +10,5 @@ data class Task(
     val category : String,
     val startDate : String,
     val endDate : String,
-    val importance : Int
+    val importance : String
 )

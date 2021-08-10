@@ -8,6 +8,10 @@
         <variable
             name="bindingViewModel"
             type="com.hks.kr.wifireminder.ui.addTask.AddTaskViewModel" />
+
+        <variable
+            name="fragment"
+            type="com.hks.kr.wifireminder.ui.addTask.AddTaskFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,6 +25,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_arrow_back_24"
             android:padding="12dp"
+            android:onClick="@{() -> fragment.popBackStack()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -33,10 +38,11 @@
             android:fontFamily="@font/montserrat_bold"
             android:includeFontPadding="false"
             android:text="@string/add_task_category_text"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintEnd_toStartOf="@id/add_task_category_spinner"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/add_task_task_name"
-            app:layout_constraintVertical_chainStyle="spread"/>
+            app:layout_constraintTop_toBottomOf="@id/iv_pop_back"
+            app:layout_constraintBottom_toTopOf="@id/add_task_task_name" />
 
         <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
             android:id="@+id/add_task_category_spinner"
@@ -66,19 +72,46 @@
             android:text="@string/add_task_task_name_text"
             app:layout_constraintStart_toStartOf="@id/add_task_category_text"
             app:layout_constraintTop_toBottomOf="@id/add_task_category_text"
-            app:layout_constraintBottom_toTopOf="@id/add_task_task_period_text"/>
+            app:layout_constraintBottom_toTopOf="@id/tv_description"/>
 
         <EditText
+            android:id="@+id/edt_task_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:hint="@string/add_task_task_name_text"
             android:inputType="text"
             android:textSize="12sp"
+            android:text="@={bindingViewModel.title}"
             app:layout_constraintBottom_toBottomOf="@id/add_task_task_name"
             app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
             app:layout_constraintStart_toEndOf="@id/add_task_task_name"
             app:layout_constraintTop_toTopOf="@id/add_task_task_name" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:includeFontPadding="false"
+            android:text="@string/add_task_task_description_text"
+            app:layout_constraintStart_toStartOf="@id/add_task_category_text"
+            app:layout_constraintTop_toBottomOf="@id/add_task_task_name"
+            app:layout_constraintBottom_toTopOf="@id/add_task_task_period_text"/>
+
+        <EditText
+            android:id="@+id/edt_task_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:hint="@string/add_task_task_description_text"
+            android:inputType="text"
+            android:textSize="12sp"
+            android:text="@={bindingViewModel.description}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_description"
+            app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
+            app:layout_constraintStart_toEndOf="@id/tv_description"
+            app:layout_constraintTop_toTopOf="@id/tv_description" />
 
         <TextView
             android:id="@+id/add_task_task_period_text"
@@ -87,20 +120,21 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/add_task_task_period_text"
             app:layout_constraintStart_toStartOf="@id/add_task_category_text"
-            app:layout_constraintTop_toBottomOf="@id/add_task_task_name"
-            app:layout_constraintBottom_toTopOf="@id/add_task_task_importance_text"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            app:layout_constraintBottom_toTopOf="@id/calendar"/>
 
         <com.hks.kr.wifireminder.view.calendarPicker.CalendarPicker
-            android:id="@+id/btn_select_date"
-            android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_marginStart="16dp"
+            android:id="@+id/calendar"
+            android:layout_width="0dp"
+            android:layout_height="280dp"
             android:text="날짜 선택"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/add_task_task_period_text"
+            android:layout_marginTop="16dp"
+            app:setOnRangeSelectListener="@{bindingViewModel}"
+            app:layout_constraintBottom_toTopOf="@id/add_task_task_importance_text"
             app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
-            app:layout_constraintStart_toEndOf="@id/add_task_task_period_text"
-            app:layout_constraintTop_toTopOf="@id/add_task_task_period_text" />
+            app:layout_constraintStart_toStartOf="@id/add_task_category_text"
+            app:layout_constraintTop_toBottomOf="@id/add_task_task_name" />
 
         <TextView
             android:id="@+id/add_task_task_importance_text"
@@ -108,8 +142,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat_bold"
             android:text="@string/add_task_task_importance_text"
+            android:layout_marginBottom="40dp"
             app:layout_constraintStart_toStartOf="@id/add_task_category_text"
-            app:layout_constraintTop_toBottomOf="@id/add_task_task_period_text"
+            app:layout_constraintTop_toBottomOf="@id/calendar"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <com.hks.kr.wifireminder.view.customizableSpinner.CustomizableSpinner
@@ -129,6 +164,21 @@
             app:layout_constraintTop_toTopOf="@id/add_task_task_importance_text"
             app:selected_text_color="@color/home_fragment_category_title_color"
             app:selected_text_font="@font/montserrat_bold" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="저장"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> fragment.saveTask()}"
+            app:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="@id/add_task_category_text"
+            app:layout_constraintEnd_toEndOf="@id/add_task_category_spinner"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

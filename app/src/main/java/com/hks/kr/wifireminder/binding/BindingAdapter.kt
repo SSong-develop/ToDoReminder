@@ -28,6 +28,9 @@ object BindingAdapter {
         imageView.setBackgroundColor(color)
     }
 
+    /**
+     * TODO : Test 요망
+     */
     @JvmStatic
     @BindingAdapter("task_scroll_listener")
     fun setTaskScrollListener(recyclerView: RecyclerView , viewModel : HomeViewModel){
@@ -40,6 +43,9 @@ object BindingAdapter {
         })
     }
 
+    /**
+     * TODO : Test 요망
+     */
     @JvmStatic
     @BindingAdapter("category_scroll_listener")
     fun setCategoryScrollListener(recyclerView : RecyclerView , viewModel : HomeViewModel){

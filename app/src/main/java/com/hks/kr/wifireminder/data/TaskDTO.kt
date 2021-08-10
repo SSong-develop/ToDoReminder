@@ -14,6 +14,8 @@ import java.util.*
  * @param startDate startDate of task
  * @param endDate endDate of task
  * @param importance importance of the task
+ *
+ * TODO : importance can not be String , change Integer
  */
 
 @Entity(tableName = "tasks")
@@ -32,7 +34,7 @@ data class TaskDTO(
     @ColumnInfo(name = "end_date")
     val endDate: String,
     @ColumnInfo(name = "importance")
-    val importance: Int
+    val importance: String
 ) {
 
     val titleForList: String

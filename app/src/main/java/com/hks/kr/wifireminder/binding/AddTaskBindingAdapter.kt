@@ -50,8 +50,7 @@ object AddTaskBindingAdapter {
     @BindingAdapter("app:importanceSelectChanged")
     fun importanceSelectChanged(customSpinner: CustomizableSpinner,viewModel: AddTaskViewModel){
         customSpinner.selectionChanged { i, s ->
-            viewModel.importance.value = i
-            debugE(viewModel.importance.value)
+            viewModel.importance.value = s
         }
     }
 

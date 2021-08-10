@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.view.calendarPicker.adapter.CalendarAdapter
@@ -69,6 +70,7 @@ class CalendarPicker @JvmOverloads constructor(
 
         setBackgroundColor(ContextCompat.getColor(context, R.color.calendar_picker_bg_color))
 
+        overScrollMode = OVER_SCROLL_NEVER
         initAdapter()
         initListener()
     }

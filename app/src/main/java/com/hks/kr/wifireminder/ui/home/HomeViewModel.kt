@@ -21,13 +21,6 @@ import javax.inject.Inject
 
 /**
  * TODO : 처음에 앱이 켜질 때 왜 task 개수들이 1개씩 밖에 안보이는 이슈가 있는지??? 이거 알아봐야 할듯 싶습니다.
- *
- * TODO : Color를 계절별로 나타내고 싶은데 방법이 마땅하게 떠오르질 않아
- *
- * TODO : 할일을 끝냈는지 아닌지에 대한 결과를 가져오는??? 그런것도 있으면 좋을거 같아요 , 특정 버튼을 누르면 이제 할일을 끝냈다는 표시인거고
- * TODO : 정해진 시간이 끝나면 자동으로 이를 WorkManager가 지워버리는 거죠
- *
- * TODO : LiveData를 과연 내가 제대로 형식을 짜서 쓰고 있는건지를 생각해볼 필요가 있어 훈기야
  */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -50,9 +43,15 @@ class HomeViewModel @Inject constructor(
     val categoryItems: LiveData<List<Category>>
         get() = _categoryItems
 
+    /**
+     * TaskList Scroll Position
+     */
     val taskListPosition: Int?
         get() = savedStateHandle.get<Int>(TASK_LIST_SCROLL_POSITION)
 
+    /**
+     * CategoryList Scroll Position
+     */
     val categoryListPosition: Int?
         get() = savedStateHandle.get<Int>(CATEGORY_LIST_SCROLL_POSITION)
 
@@ -150,7 +149,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기",
                 category = "test1",
                 endDate = "2021-09-01",
-                importance = 1
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -159,7 +158,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기1",
                 category = "test2",
                 endDate = "2021-09-02",
-                importance = 2
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -168,7 +167,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기2",
                 category = "test3",
                 endDate = "2021-09-03",
-                importance = 3
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -177,7 +176,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -186,7 +185,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -195,7 +194,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -204,7 +203,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -213,7 +212,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -222,7 +221,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -231,7 +230,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
         taskRepository.saveTask(
@@ -240,7 +239,7 @@ class HomeViewModel @Inject constructor(
                 description = "살려줘 송훈기3",
                 category = "test4",
                 endDate = "2021-09-04",
-                importance = 4
+                importance = "High"
             )
         )
     }

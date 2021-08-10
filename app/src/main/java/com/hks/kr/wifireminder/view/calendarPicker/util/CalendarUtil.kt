@@ -23,7 +23,7 @@ fun Calendar.toPrettyDateString(locale: Locale = Locale.getDefault()): String {
     val month = (get(MONTH) + 1).toString()
     val year = get(YEAR).toString()
     val day = get(DAY_OF_MONTH).toString()
-    return "$year.$month.$day"
+    return "$year-$month-$day"
 }
 
 /**
