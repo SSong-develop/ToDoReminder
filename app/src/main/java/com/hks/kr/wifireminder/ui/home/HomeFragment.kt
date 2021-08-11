@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.entity.Task
@@ -91,7 +93,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun onTaskItemClicked(position: Int, task: Task) {
-        requireContext().shortToast("$position & $task")
+        val bundleArgs = Bundle()
+        bundleArgs.putParcelable("task",task)
+        findNavController().navigate(R.id.action_homeFragment_to_taskDetailFragment,bundleArgs)
     }
 
     private fun onCategoryItemClicked(position: Int, category: Category) {

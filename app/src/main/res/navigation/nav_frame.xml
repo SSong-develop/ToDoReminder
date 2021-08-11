@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_activty"
     app:startDestination="@id/frameFragment">
 
     <fragment
         android:id="@+id/frameFragment"
         android:name="com.hks.kr.wifireminder.ui.frame.FrameFragment"
-        android:label="FrameFragment" >
+        android:label="FrameFragment"
+        tools:layout="@layout/fragment_frame">
         <action
             android:id="@+id/action_frameFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
@@ -15,5 +17,6 @@
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.hks.kr.wifireminder.ui.addTask.AddTaskFragment"
-        android:label="AddTaskFragment" />
+        android:label="AddTaskFragment"
+        tools:layout="@layout/fragment_add_task"/>
 </navigation>
