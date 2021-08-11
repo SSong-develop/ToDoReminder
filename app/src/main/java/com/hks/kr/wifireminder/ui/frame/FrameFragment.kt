@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.plusAssign
 import androidx.navigation.ui.setupWithNavController
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentFrameBinding
+import com.hks.kr.wifireminder.navigation.KeepStateNavigator
 import com.hks.kr.wifireminder.ui.MainViewModel
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,6 +42,7 @@ class FrameFragment : Fragment() {
         val navHostFragment =
             childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
+
         binding.bottomNavigation.setupWithNavController(navController)
     }
 }

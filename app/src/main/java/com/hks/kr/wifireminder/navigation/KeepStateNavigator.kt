@@ -18,6 +18,7 @@ class KeepStateNavigator(
     private val fragmentManager: FragmentManager, // Should pass childFragmentManager
     private val containerId: Int
 ) : FragmentNavigator(context, fragmentManager, containerId) {
+
     override fun navigate(
         destination: Destination,
         args: Bundle?,
