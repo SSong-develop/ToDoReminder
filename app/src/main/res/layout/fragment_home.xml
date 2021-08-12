@@ -78,6 +78,46 @@
             app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
             app:layout_constraintTop_toTopOf="@id/home_fragment_todo_title" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{bindingViewModel.isExistTask ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_fragment_todo_title">
+
+            <ImageView
+                android:id="@+id/iv_empty_icon"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_margin="16dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_empty_list"
+                app:layout_constraintBottom_toTopOf="@id/tv_empty_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/tv_empty_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:includeFontPadding="false"
+                android:text="@string/task_empty_text"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/iv_empty_icon"
+                app:layout_constraintStart_toStartOf="@id/iv_empty_icon"
+                app:layout_constraintTop_toBottomOf="@id/iv_empty_icon" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/home_fragment_todo_list"
             task_adapter_item="@{bindingViewModel.taskItems}"

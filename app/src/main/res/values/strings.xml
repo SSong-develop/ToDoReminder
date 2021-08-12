@@ -8,6 +8,8 @@
     <string name="task_notification_text">해야할 일들이 있습니다</string>
     <string name="task_notification_description">해야할 일들을 알려줍니다</string>
 
+    <string name="task_empty_text">할일을 추가해보세요</string>
+
     <string name="wifi_checker_onLost_text">와이파이가 끊어집니다. 외출잘하고 오세요</string>
 
     <string name="wifi_notification_channel_id" translatable="false">wifi_notice_channel</string>

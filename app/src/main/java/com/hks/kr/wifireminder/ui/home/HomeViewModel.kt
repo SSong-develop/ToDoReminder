@@ -65,6 +65,12 @@ class HomeViewModel @Inject constructor(
         get() = _snackBarText
 
     /**
+     * Task Value State LiveData
+     */
+    private val _isExistTask = MutableLiveData<Boolean>()
+    val isExistTask: LiveData<Boolean> = _isExistTask
+
+    /**
      * taskDataLoading UI State LiveData
      */
     private val _taskDataLoading = MutableLiveData<Boolean>()
@@ -97,7 +103,12 @@ class HomeViewModel @Inject constructor(
             showSnackBarMessage(R.string.loading_tasks_error)
         }.collect {
             _taskDataLoading.value = false
-            _taskItems.value = it
+            if(it.isEmpty()){
+                _isExistTask.value = false
+            } else {
+                _isExistTask.value = true
+                _taskItems.value = it
+            }
         }
     }
 
