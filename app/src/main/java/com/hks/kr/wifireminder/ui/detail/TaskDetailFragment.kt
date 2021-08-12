@@ -1,12 +1,11 @@
 package com.hks.kr.wifireminder.ui.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentTaskDetailBinding
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
@@ -15,19 +14,20 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TaskDetailFragment : Fragment() {
 
-    private var binding : FragmentTaskDetailBinding by FragmentBindingDelegate()
+    private var binding: FragmentTaskDetailBinding by FragmentBindingDelegate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = FragmentTaskDetailBinding.inflate(inflater,container,false).also { FragmentTaskDetailBinding ->
-        binding = FragmentTaskDetailBinding
-    }.root
+    ): View = FragmentTaskDetailBinding.inflate(inflater, container, false)
+        .also { FragmentTaskDetailBinding ->
+            binding = FragmentTaskDetailBinding
+        }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.fragment = this
-        
+
         arguments?.getParcelable<Task>("task")?.let {
             val stringBuilder = StringBuilder()
             stringBuilder.append("${it.title} \n")
@@ -38,7 +38,7 @@ class TaskDetailFragment : Fragment() {
         }
     }
 
-    fun popBackStack(){
+    fun popBackStack() {
         findNavController().popBackStack()
     }
 }

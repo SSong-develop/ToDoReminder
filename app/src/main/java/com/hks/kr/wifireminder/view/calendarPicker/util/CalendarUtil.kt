@@ -47,7 +47,7 @@ fun Calendar.isAfter(otherCalendar: Calendar): Boolean {
 /**
  * ???
  */
-fun Calendar.totalMonthDifference(startCalendar : Calendar) : Int {
+fun Calendar.totalMonthDifference(startCalendar: Calendar): Int {
     val yearDiff = get(YEAR) - startCalendar.get(YEAR)
     val monthDiff = get(MONTH) - startCalendar.get(MONTH)
 
@@ -57,6 +57,6 @@ fun Calendar.totalMonthDifference(startCalendar : Calendar) : Int {
 /**
  * 주말인지 아닌지 알려주는 함수
  */
-fun Calendar.isWeekend() : Boolean {
+fun Calendar.isWeekend(): Boolean {
     return get(DAY_OF_WEEK) == SATURDAY || get(DAY_OF_WEEK) == SUNDAY
 }

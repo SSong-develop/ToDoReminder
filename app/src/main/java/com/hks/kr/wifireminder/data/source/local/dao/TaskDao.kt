@@ -2,7 +2,6 @@ package com.hks.kr.wifireminder.data.source.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.google.android.play.core.tasks.Task
 import com.hks.kr.wifireminder.data.TaskDTO
 import kotlinx.coroutines.flow.Flow
 

@@ -23,21 +23,21 @@ class CalendarAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseCalendarViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return when(viewType) {
+        return when (viewType) {
             CalendarType.MONTH.ordinal -> {
-                MonthViewHolder(layoutInflater.inflate(R.layout.view_calendar_month,parent,false))
+                MonthViewHolder(layoutInflater.inflate(R.layout.view_calendar_month, parent, false))
             }
             CalendarType.DAY.ordinal -> {
-                DayViewHolder(layoutInflater.inflate(R.layout.view_calendar_day,parent,false))
+                DayViewHolder(layoutInflater.inflate(R.layout.view_calendar_day, parent, false))
             }
             else -> {
-                EmptyViewHolder(layoutInflater.inflate(R.layout.view_calendar_empty,parent,false))
+                EmptyViewHolder(layoutInflater.inflate(R.layout.view_calendar_empty, parent, false))
             }
         }
     }
 
     override fun onBindViewHolder(holder: BaseCalendarViewHolder, position: Int) {
-        holder.onBind(getItem(position),onActionListener)
+        holder.onBind(getItem(position), onActionListener)
     }
 
     override fun getItemViewType(position: Int): Int {

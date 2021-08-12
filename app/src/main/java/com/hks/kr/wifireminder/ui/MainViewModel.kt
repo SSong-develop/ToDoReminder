@@ -1,7 +1,10 @@
 package com.hks.kr.wifireminder.ui
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
@@ -21,6 +24,7 @@ class MainViewModel @Inject constructor(
     private val app: Application,
     private val prefsStore: PrefsStore
 ) : ViewModel() {
+
     private val _isSingleInvoked = MutableLiveData<Boolean>()
     val isSingleInvoked: LiveData<Boolean>
         get() = _isSingleInvoked
@@ -57,11 +61,11 @@ class MainViewModel @Inject constructor(
         block()
     }
 
-    fun setFabVisible(value : Boolean){
+    fun setFabVisible(value: Boolean) {
         _addTaskVisibility.value = value
     }
 
-    private fun showFab(){
+    private fun showFab() {
         _addTaskVisibility.value = true
     }
 }

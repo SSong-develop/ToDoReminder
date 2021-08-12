@@ -83,7 +83,7 @@ class HomeViewModel @Inject constructor(
     val categoryDataLoading: LiveData<Boolean> = _categoryDataLoading
 
     init {
-        mockTask()
+        /*mockTask()*/
         mockCategory()
 
         /**
@@ -103,7 +103,7 @@ class HomeViewModel @Inject constructor(
             showSnackBarMessage(R.string.loading_tasks_error)
         }.collect {
             _taskDataLoading.value = false
-            if(it.isEmpty()){
+            if (it.isEmpty()) {
                 _isExistTask.value = false
             } else {
                 _isExistTask.value = true

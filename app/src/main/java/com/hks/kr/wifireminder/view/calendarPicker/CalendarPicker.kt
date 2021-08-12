@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.view.calendarPicker.adapter.CalendarAdapter

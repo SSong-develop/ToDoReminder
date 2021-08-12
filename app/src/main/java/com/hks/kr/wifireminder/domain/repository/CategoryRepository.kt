@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {
 
-    fun observeCategories() : Flow<List<Category>>
+    fun observeCategories(): Flow<List<Category>>
 
     suspend fun insertCategory(categoryDTO: CategoryDTO)
 

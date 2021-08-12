@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.plusAssign
 import androidx.navigation.ui.setupWithNavController
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentFrameBinding
-import com.hks.kr.wifireminder.navigation.KeepStateNavigator
 import com.hks.kr.wifireminder.ui.MainViewModel
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +19,7 @@ class FrameFragment : Fragment() {
 
     private var binding: FragmentFrameBinding by FragmentBindingDelegate()
 
-    private val viewModel : MainViewModel by activityViewModels()
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

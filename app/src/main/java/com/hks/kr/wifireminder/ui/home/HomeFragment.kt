@@ -17,7 +17,6 @@ import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.setUpSnackBar
-import com.hks.kr.wifireminder.utils.shortToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -94,8 +93,8 @@ class HomeFragment : Fragment() {
 
     private fun onTaskItemClicked(position: Int, task: Task) {
         val bundleArgs = Bundle()
-        bundleArgs.putParcelable("task",task)
-        findNavController().navigate(R.id.action_homeFragment_to_taskDetailFragment,bundleArgs)
+        bundleArgs.putParcelable("task", task)
+        findNavController().navigate(R.id.action_homeFragment_to_taskDetailFragment, bundleArgs)
     }
 
     private fun onCategoryItemClicked(position: Int, category: Category) {

@@ -38,7 +38,7 @@ object AddTaskBindingAdapter {
         val itemArray = item.let {
             Array<String>(it.size) { _ -> "" }
         }
-        for(i in item.indices){
+        for (i in item.indices) {
             itemArray[i] = item[i]
         }
         customSpinner.apply {
@@ -48,7 +48,7 @@ object AddTaskBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("app:importanceSelectChanged")
-    fun importanceSelectChanged(customSpinner: CustomizableSpinner,viewModel: AddTaskViewModel){
+    fun importanceSelectChanged(customSpinner: CustomizableSpinner, viewModel: AddTaskViewModel) {
         customSpinner.selectionChanged { i, s ->
             viewModel.importance.value = s
         }

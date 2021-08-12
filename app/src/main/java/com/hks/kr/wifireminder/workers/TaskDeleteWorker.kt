@@ -17,11 +17,11 @@ import javax.inject.Inject
 class TaskDeleteWorker @AssistedInject constructor(
     @Assisted context: Context,
     @Assisted params: WorkerParameters
-) : CoroutineWorker(context,params) {
-    
+) : CoroutineWorker(context, params) {
+
     @Inject
-    lateinit var taskDao : TaskDao
-    
+    lateinit var taskDao: TaskDao
+
     override suspend fun doWork(): Result {
         return Result.success()
     }

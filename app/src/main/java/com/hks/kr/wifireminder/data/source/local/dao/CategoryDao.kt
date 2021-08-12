@@ -12,10 +12,10 @@ import kotlinx.coroutines.flow.Flow
 interface CategoryDao {
 
     @Query("SELECT * FROM category")
-    fun observeCategories() : Flow<List<CategoryDTO>>
+    fun observeCategories(): Flow<List<CategoryDTO>>
 
     @Query("SELECT * FROM category WHERE category_id = :categoryId")
-    fun observeCategoryById(categoryId : Int) : LiveData<CategoryDTO>
+    fun observeCategoryById(categoryId: Int): LiveData<CategoryDTO>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCategory(categoryDTO: CategoryDTO)

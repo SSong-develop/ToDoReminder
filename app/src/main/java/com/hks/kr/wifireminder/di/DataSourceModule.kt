@@ -14,6 +14,6 @@ abstract class DataSourceModule {
 
     @Binds
     @Singleton
-    abstract fun bindTaskLocalDataSource(taskLocalDataSource: TaskLocalDataSource) : TaskDataSource
+    abstract fun bindTaskLocalDataSource(taskLocalDataSource: TaskLocalDataSource): TaskDataSource
 
 }

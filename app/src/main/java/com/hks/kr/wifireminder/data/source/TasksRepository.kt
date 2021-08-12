@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface TasksRepository {
 
-    fun observeTasks():Flow<List<Task>>
+    fun observeTasks(): Flow<List<Task>>
 
     fun observeTask(taskId: String): LiveData<Result<Task>>
 
@@ -16,11 +16,11 @@ interface TasksRepository {
 
     suspend fun getTask(taskId: String): Result<Task>
 
-    suspend fun getTaskByCategory(categoryTitle : String) : Result<List<Task>>
+    suspend fun getTaskByCategory(categoryTitle: String): Result<List<Task>>
 
-    suspend fun getTaskByImportance() : Result<List<Task>>
+    suspend fun getTaskByImportance(): Result<List<Task>>
 
-    suspend fun getCategoriesCount() : Int
+    suspend fun getCategoriesCount(): Int
 
     suspend fun saveTask(task: TaskDTO)
 
@@ -28,6 +28,6 @@ interface TasksRepository {
 
     suspend fun deleteTaskByEndDate(endDate: String)
 
-    suspend fun getCategoryCount(categoryTitle : String) : Int
+    suspend fun getCategoryCount(categoryTitle: String): Int
 
 }

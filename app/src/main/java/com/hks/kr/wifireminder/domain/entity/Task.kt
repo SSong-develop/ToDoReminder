@@ -8,11 +8,11 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class Task(
-    val id : String,
-    val title : String,
-    val description : String,
-    val category : String,
-    val startDate : String,
-    val endDate : String,
-    val importance : String
+    val id: String,
+    val title: String,
+    val description: String,
+    val category: String,
+    val startDate: String,
+    val endDate: String,
+    val importance: String
 ) : Parcelable

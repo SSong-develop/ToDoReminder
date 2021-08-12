@@ -12,7 +12,7 @@ object DateUtil {
         SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
     }
 
-    fun countDday(date : Date) : Long = try {
+    fun countDday(date: Date): Long = try {
         val todayCalendar = Calendar.getInstance()
         val dDayCalendar = Calendar.getInstance()
         dDayCalendar.time = date
@@ -21,7 +21,7 @@ object DateUtil {
         val dDayTime = dDayCalendar.timeInMillis
 
         ((dDayTime - todayTime) / oneDayTime) + 1
-    } catch (e : Exception) {
+    } catch (e: Exception) {
         debugE(e.message)
         -1
     }

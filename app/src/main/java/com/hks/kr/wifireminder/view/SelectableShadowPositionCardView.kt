@@ -9,9 +9,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.utils.OnChangeProp
-import com.hks.kr.wifireminder.utils.dpToPixel
 import com.hks.kr.wifireminder.utils.dpToPixelFloat
-import java.lang.Float.MIN_VALUE
 
 class SelectableShadowPositionCardView @JvmOverloads constructor(
     context: Context,
@@ -118,9 +116,15 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             enableShadowTop =
                 it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_top, enableShadowTop)
             enableShadowBottom =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_bottom, enableShadowBottom)
+                it.getBoolean(
+                    R.styleable.ShadowConstraintLayout_enable_shadow_bottom,
+                    enableShadowBottom
+                )
             enableShadowStart =
-                it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_start, enableShadowStart)
+                it.getBoolean(
+                    R.styleable.ShadowConstraintLayout_enable_shadow_start,
+                    enableShadowStart
+                )
             enableShadowEnd =
                 it.getBoolean(R.styleable.ShadowConstraintLayout_enable_shadow_end, enableShadowEnd)
         }
@@ -166,7 +170,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             xfermode = porterDuffXferMode
             maskFilter = blurMaskFilter
         }
-        if(enableShadowTop){
+        if (enableShadowTop) {
             shadowTopPath.apply {
                 reset()
                 moveTo((useableWidth + shadowEndOffset), shadowTopOffset)
@@ -174,7 +178,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             }
         }
 
-        if(enableShadowStart){
+        if (enableShadowStart) {
             shadowStartPath.apply {
                 reset()
                 moveTo(shadowStartOffset, shadowTopOffset)
@@ -182,7 +186,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             }
         }
 
-        if(enableShadowBottom){
+        if (enableShadowBottom) {
             shadowBottomPath.apply {
                 reset()
                 moveTo(shadowStartOffset, (useableHeight + shadowBottomOffset))
@@ -190,7 +194,7 @@ class SelectableShadowPositionCardView @JvmOverloads constructor(
             }
         }
 
-        if(enableShadowEnd){
+        if (enableShadowEnd) {
             shadowEndPath.apply {
                 reset()
                 moveTo((useableWidth + shadowEndOffset), (useableHeight + shadowBottomOffset))

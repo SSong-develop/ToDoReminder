@@ -1,19 +1,17 @@
 package com.hks.kr.wifireminder.data.source.local
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
-import com.hks.kr.wifireminder.data.*
+import com.hks.kr.wifireminder.data.Result
+import com.hks.kr.wifireminder.data.TaskDTO
+import com.hks.kr.wifireminder.data.asDomainTask
+import com.hks.kr.wifireminder.data.asDomainTaskList
 import com.hks.kr.wifireminder.data.source.TaskDataSource
 import com.hks.kr.wifireminder.data.source.local.dao.TaskDao
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.utils.debugE
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TaskLocalDataSource @Inject constructor(
@@ -56,7 +54,7 @@ class TaskLocalDataSource @Inject constructor(
     override suspend fun getTaskByCategory(categoryTitle: String): Result<List<Task>> {
         return try {
             Result.Success(taskDao.fetchTaskByCategory(categoryTitle).asDomainTaskList())
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Result.Error(e)
         }
     }
@@ -64,7 +62,7 @@ class TaskLocalDataSource @Inject constructor(
     override suspend fun getTaskByImportance(): Result<List<Task>> {
         return try {
             Result.Success(taskDao.fetchTaskSortByImportance().asDomainTaskList())
-        } catch (e : Exception) {
+        } catch (e: Exception) {
             Result.Error(e)
         }
     }
@@ -72,7 +70,7 @@ class TaskLocalDataSource @Inject constructor(
     override suspend fun getCategoriesCount(): Int {
         return try {
             taskDao.getAllTaskCount()
-        } catch (e : Exception){
+        } catch (e: Exception) {
             debugE(e)
             -1
         }
@@ -90,7 +88,7 @@ class TaskLocalDataSource @Inject constructor(
         taskDao.deleteTaskByDate(endDate)
     }
 
-    override suspend fun getCategoryCount(categoryTitle : String): Int {
+    override suspend fun getCategoryCount(categoryTitle: String): Int {
         return taskDao.getCategoryCount(categoryTitle)
     }
 

@@ -7,9 +7,9 @@ import com.hks.kr.wifireminder.view.calendarPicker.CalendarPicker
 object CalendarBindingAdapter {
     @JvmStatic
     @BindingAdapter("app:setOnRangeSelectListener")
-    fun setOnRangeSelectListener(calendarPicker: CalendarPicker , viewModel : AddTaskViewModel) {
+    fun setOnRangeSelectListener(calendarPicker: CalendarPicker, viewModel: AddTaskViewModel) {
         calendarPicker.setOnRangeSelectedListener { startDate, endDate, startLabel, endLabel ->
-            viewModel.date.value = Pair(startLabel,endLabel)
+            viewModel.date.value = Pair(startLabel, endLabel)
         }
     }
 }
