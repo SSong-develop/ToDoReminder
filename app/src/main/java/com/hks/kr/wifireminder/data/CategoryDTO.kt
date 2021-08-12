@@ -10,9 +10,6 @@ import com.hks.kr.wifireminder.domain.entity.Category
 import java.sql.Blob
 import java.util.*
 
-/**
- * TODO : Icon , Icon Background Color need To Insert
- */
 @Entity(tableName = "category")
 data class CategoryDTO(
     @PrimaryKey

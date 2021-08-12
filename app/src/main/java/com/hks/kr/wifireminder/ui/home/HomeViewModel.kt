@@ -19,9 +19,6 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-/**
- * TODO : 처음에 앱이 켜질 때 왜 task 개수들이 1개씩 밖에 안보이는 이슈가 있는지??? 이거 알아봐야 할듯 싶습니다.
- */
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val taskRepository: TasksRepository,

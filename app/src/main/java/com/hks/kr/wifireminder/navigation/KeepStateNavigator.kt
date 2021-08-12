@@ -8,10 +8,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.FragmentNavigator
 
-/**
- * TODO : KeepStateNavigator에 대해서 좀 더 알아볼 필요가 있음
- */
-
 @Navigator.Name("keep_state_fragment")
 class KeepStateNavigator(
     private val context: Context,

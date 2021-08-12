@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WIFIReminder</string>
+    <string name="app_name">ToDoReminder</string>
 
     <string name="task_notification_channel_id" translatable="false">todo_task_channel</string>
     <string name="task_notification_channel_name" translatable="true">해야할 일</string>
