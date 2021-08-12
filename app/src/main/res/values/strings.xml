@@ -34,6 +34,7 @@
 
     <string name="loading_tasks_error">Error while loading tasks</string>
     <string name="loading_categories_error">Error while loading categories</string>
+    <string name="error_task_count">Error while task count</string>
     <string name="save_task_error">Error while Save tasks</string>
     <string name="save_task_success">Success save task</string>
 </resources>

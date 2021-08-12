@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
     val categoryListPosition: Int?
         get() = savedStateHandle.get<Int>(CATEGORY_LIST_SCROLL_POSITION)
 
-    // TODO : 이부분 별로임
+    // TODO : 이거 Flow로 변경해야함 , TaskRepository 바꿔줘야 함
     private val _allTaskCount = MutableLiveData<Int>()
     val allTaskCount: LiveData<Int>
         get() = _allTaskCount
@@ -131,6 +131,7 @@ class HomeViewModel @Inject constructor(
             _allTaskCount.value = it
         }.onFailure {
             // reTrial or just throw error
+            showSnackBarMessage(R.string.error_task_count)
         }
     }
 
