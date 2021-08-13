@@ -1,4 +1,4 @@
-#                                             <img src="https://github.com/SSong-develop/ToDoReminder/blob/master/art/appIcon.png" width="100px" height="50px">ToDoReminder
+#                                             <img src="https://github.com/SSong-develop/ToDoReminder/blob/master/art/appIcon.png" width="100px" height="100px">ToDoReminder
 
 TodoReminder is a small TodoApp based on modern Android application tech-stacks and MVVM architecture.
 
