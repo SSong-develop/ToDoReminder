@@ -20,8 +20,6 @@ interface TasksRepository {
 
     suspend fun getTaskByImportance(): Result<List<Task>>
 
-    suspend fun getCategoriesCount(): Int
-
     suspend fun saveTask(task: TaskDTO)
 
     suspend fun deleteAllTasks()
@@ -29,5 +27,4 @@ interface TasksRepository {
     suspend fun deleteTaskByEndDate(endDate: String)
 
     suspend fun getCategoryCount(categoryTitle: String): Int
-
 }

@@ -52,11 +52,6 @@ class HomeViewModel @Inject constructor(
     val categoryListPosition: Int?
         get() = savedStateHandle.get<Int>(CATEGORY_LIST_SCROLL_POSITION)
 
-    // TODO : 이거 Flow로 변경해야함 , TaskRepository 바꿔줘야 함
-    private val _allTaskCount = MutableLiveData<Int>()
-    val allTaskCount: LiveData<Int>
-        get() = _allTaskCount
-
     /**
      * SnackBar Event LiveData
      */
@@ -83,7 +78,7 @@ class HomeViewModel @Inject constructor(
     val categoryDataLoading: LiveData<Boolean> = _categoryDataLoading
 
     init {
-        /*mockTask()*/
+        mockTask()
         mockCategory()
 
         /**
@@ -91,7 +86,6 @@ class HomeViewModel @Inject constructor(
          */
         emitTasks()
         emitCategories()
-        getAllTaskCount()
     }
 
     private fun emitTasks() = viewModelScope.launch {
@@ -124,31 +118,17 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    private fun getAllTaskCount() = viewModelScope.launch {
-        runCatching {
-            taskRepository.getCategoriesCount()
-        }.onSuccess {
-            _allTaskCount.value = it
-        }.onFailure {
-            // reTrial or just throw error
-            showSnackBarMessage(R.string.error_task_count)
-        }
-    }
-
     private fun showSnackBarMessage(message: Int) {
         _snackBarText.value = Event(message)
     }
 
     fun saveTaskScrollPosition(position: Int) {
         savedStateHandle.set(TASK_LIST_SCROLL_POSITION, position)
-        debugE(savedStateHandle.get(TASK_LIST_SCROLL_POSITION))
     }
 
     fun saveCategoryScrollPosition(position: Int) {
         savedStateHandle.set(CATEGORY_LIST_SCROLL_POSITION, position)
-        debugE(savedStateHandle.get(CATEGORY_LIST_SCROLL_POSITION))
     }
-
 
     private fun mockTask() = viewModelScope.launch(Dispatchers.IO) {
         taskRepository.deleteAllTasks()
@@ -157,7 +137,7 @@ class HomeViewModel @Inject constructor(
                 title = "[Test] 송훈기",
                 description = "살려줘 송훈기",
                 category = "test1",
-                endDate = "2021-09-01",
+                endDate = "2021-08-14",
                 importance = "High"
             )
         )

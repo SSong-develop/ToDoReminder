@@ -20,8 +20,6 @@ interface TaskDataSource {
 
     suspend fun getTaskByImportance(): Result<List<Task>>
 
-    suspend fun getCategoriesCount(): Int
-
     suspend fun saveTask(task: TaskDTO)
 
     suspend fun deleteAllTasks()

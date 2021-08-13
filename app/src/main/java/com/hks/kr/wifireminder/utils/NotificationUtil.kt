@@ -32,7 +32,7 @@ fun NotificationManager.sendTaskNotification(
         .setContentTitle(applicationContext.getString(R.string.task_notification_title))
         .setContentText(applicationContext.getString(R.string.task_notification_text))
         .setContentIntent(contentPendingIntent)
-        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setSmallIcon(R.mipmap.ic_app_round)
         .setStyle(NotificationCompat.BigTextStyle().bigText(messageBody))
         .setAutoCancel(true)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -60,9 +60,9 @@ fun NotificationManager.sendWifiNotification(
         .setContentTitle(applicationContext.getString(R.string.wifi_notification_title))
         .setContentText(messageBody)
         .setContentIntent(contentPendingIntent)
-        .setSmallIcon(R.drawable.ic_launcher_foreground)
+        .setSmallIcon(R.mipmap.ic_app_round)
         .setAutoCancel(true)
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     notify(sampleKeystore.provideWifiNotificationID(), builder.build())
 

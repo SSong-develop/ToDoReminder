@@ -9,6 +9,7 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.hks.kr.wifireminder.datastore.PrefsStore
+import com.hks.kr.wifireminder.workers.TaskDeleteWorker
 import com.hks.kr.wifireminder.workers.TaskNotificationWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -43,6 +44,14 @@ class MainViewModel @Inject constructor(
             "TaskNotificationWork",
             ExistingPeriodicWorkPolicy.REPLACE,
             PeriodicWorkRequestBuilder<TaskNotificationWorker>(6, TimeUnit.HOURS).build()
+        )
+    }
+
+    fun initializeDeleteWorker() {
+        WorkManager.getInstance(app).enqueueUniquePeriodicWork(
+            "TaskDeletionWork",
+            ExistingPeriodicWorkPolicy.REPLACE,
+            PeriodicWorkRequestBuilder<TaskDeleteWorker>(15,TimeUnit.MINUTES).build()
         )
     }
 

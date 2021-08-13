@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Inner Join 사용해서 Category가 있는지 확인하고 그다음에 하는게 맞는거 같은데
  * JetCaster 보면서 좀 생각해보는게 맞을 듯 싶음
- *
  */
 @Dao
 interface TaskDao {
@@ -91,10 +90,4 @@ interface TaskDao {
      */
     @Query("SELECT * FROM tasks WHERE :categoryName = category")
     suspend fun fetchTaskByCategory(categoryName: String): List<TaskDTO>
-
-    /**
-     * All Task Count
-     */
-    @Query("SELECT COUNT(*) FROM tasks")
-    suspend fun getAllTaskCount(): Int
 }

@@ -2,7 +2,9 @@ package com.hks.kr.wifireminder.binding
 
 import android.graphics.Color
 import android.widget.ImageView
+import android.widget.Toolbar
 import androidx.databinding.BindingAdapter
+import com.hks.kr.wifireminder.ui.home.HomeViewModel
 
 object BindingAdapter {
 

@@ -38,10 +38,6 @@ class DefaultTaskRepository @Inject constructor(
         return taskLocalDataSource.getTaskByImportance()
     }
 
-    override suspend fun getCategoriesCount(): Int {
-        return taskLocalDataSource.getCategoriesCount()
-    }
-
     override suspend fun saveTask(task: TaskDTO) {
         coroutineScope {
             launch { taskLocalDataSource.saveTask(task) }

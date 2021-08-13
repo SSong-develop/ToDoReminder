@@ -1,6 +1,7 @@
 package com.hks.kr.wifireminder.ui
 
 import android.app.NotificationManager
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             if (!it) {
                 viewModel.runSingleInvoke {
                     viewModel.initializeNotificationWorker()
+                    viewModel.initializeDeleteWorker()
                     notificationManager.createWifiNotificationChannel(this)
                     notificationManager.createTaskNotificationChannel(this)
                     startService<WifiConnectService>()
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun navigateToAddTask() {
+        // TODO : Activity로 작업하는게 더 나아보임
         viewModel.setFabVisible(false)
         findNavController(R.id.activity_nav_host_fragment).navigate(R.id.action_frameFragment_to_addTaskFragment)
     }

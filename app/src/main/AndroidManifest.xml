@@ -24,10 +24,10 @@
             android:exported="true" />
 
         <provider
-            tools:node="remove"
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"
-            android:exported="false" />
+            android:exported="false"
+            tools:node="remove" />
 
         <activity android:name=".ui.MainActivity">
             <intent-filter>

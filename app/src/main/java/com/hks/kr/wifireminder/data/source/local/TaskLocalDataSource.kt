@@ -67,15 +67,6 @@ class TaskLocalDataSource @Inject constructor(
         }
     }
 
-    override suspend fun getCategoriesCount(): Int {
-        return try {
-            taskDao.getAllTaskCount()
-        } catch (e: Exception) {
-            debugE(e)
-            -1
-        }
-    }
-
     override suspend fun saveTask(task: TaskDTO) {
         taskDao.insertTask(task)
     }
