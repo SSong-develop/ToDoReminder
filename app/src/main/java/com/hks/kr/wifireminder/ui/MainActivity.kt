@@ -53,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.runSingleInvoke {
                     viewModel.initializeNotificationWorker()
                     viewModel.initializeDeleteWorker()
+                    viewModel.initializeDefaultCategories()
                     notificationManager.createWifiNotificationChannel(this)
                     notificationManager.createTaskNotificationChannel(this)
                     startService<WifiConnectService>()

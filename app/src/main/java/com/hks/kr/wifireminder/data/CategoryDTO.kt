@@ -14,8 +14,6 @@ data class CategoryDTO(
     var categoryId: String = UUID.randomUUID().toString(),
     @ColumnInfo(name = "category_title")
     val categoryTitle: String,
-    @ColumnInfo(name = "task_count_by_category")
-    val categoryCount: Int,
     @ColumnInfo(name = "background_color_code")
     val backgroundColorCode: String,
     @DrawableRes
@@ -28,7 +26,6 @@ fun List<CategoryDTO>.asDomainCategoryEntity(): List<Category> {
         Category(
             id = it.categoryId,
             categoryName = it.categoryTitle,
-            categoryCount = it.categoryCount,
             backgroundColorCode = it.backgroundColorCode,
             icon = it.icon
         )

@@ -8,7 +8,11 @@ import androidx.lifecycle.viewModelScope
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.hks.kr.wifireminder.R
+import com.hks.kr.wifireminder.data.CategoryDTO
+import com.hks.kr.wifireminder.data.source.TasksRepository
 import com.hks.kr.wifireminder.datastore.PrefsStore
+import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.workers.TaskDeleteWorker
 import com.hks.kr.wifireminder.workers.TaskNotificationWorker
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,12 +21,10 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-/**
- * TODO : 기간이 지난 TASK들을 지워주는 WORKMANAGER를 만들어야 합니다!!!
- */
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val app: Application,
+    private val categoryRepository: CategoryRepository,
     private val prefsStore: PrefsStore
 ) : ViewModel() {
 
@@ -52,6 +54,37 @@ class MainViewModel @Inject constructor(
             "TaskDeletionWork",
             ExistingPeriodicWorkPolicy.REPLACE,
             PeriodicWorkRequestBuilder<TaskDeleteWorker>(15,TimeUnit.MINUTES).build()
+        )
+    }
+
+    fun initializeDefaultCategories() = viewModelScope.launch {
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                categoryTitle = "Life",
+                backgroundColorCode = "#AA11AA",
+                icon = R.drawable.ic_life
+            )
+        )
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                categoryTitle = "Work",
+                backgroundColorCode = "#4D6B8FF9",
+                icon = R.drawable.ic_work
+            )
+        )
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                categoryTitle = "Fun",
+                backgroundColorCode = "#4DAA11AA",
+                icon = R.drawable.ic_fun
+            )
+        )
+        categoryRepository.insertCategory(
+            CategoryDTO(
+                categoryTitle = "ETC",
+                backgroundColorCode = "#6B8FF9",
+                icon = R.drawable.ic_etc
+            )
         )
     }
 

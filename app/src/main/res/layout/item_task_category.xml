@@ -26,26 +26,29 @@
             android:layout_height="wrap_content"
             app:blur_radius="16dp"
             app:corner_radius="16dp"
+            app:enable_shadow_bottom="true"
             app:enable_shadow_end="true"
             app:enable_shadow_start="true"
             app:enable_shadow_top="false"
-            app:enable_shadow_bottom="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:shadow_stroke_width="4dp">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/task_category_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                app:img_path_src="@{items.icon}"
+                android:padding="4dp"
+                android:scaleType="centerCrop"
                 app:background_color="@{items.backgroundColorCode}"
+                app:img_path_src="@{items.icon}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/circleImageView"
                 tools:src="@drawable/ic_baseline_ac_unit_24" />
 
             <TextView
@@ -59,23 +62,11 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintStart_toStartOf="@id/task_category_icon"
                 app:layout_constraintTop_toBottomOf="@id/task_category_icon"
-                tools:text="Environment" />
-
-            <TextView
-                android:id="@+id/task_category_work_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:includeFontPadding="false"
-                android:text="@{Integer.toString(items.CategoryCount) + ` tasks`}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/task_category_icon"
-                app:layout_constraintTop_toBottomOf="@id/task_category_name"
-                tools:text="3 tasks" />
+                tools:text="Environment" />
         </com.hks.kr.wifireminder.view.SelectableShadowPositionCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
