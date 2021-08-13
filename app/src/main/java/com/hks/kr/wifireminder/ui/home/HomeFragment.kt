@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -98,6 +101,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun onCategoryItemClicked(position: Int, category: Category) {
-
+        viewModel.getTasksByCategory(category.categoryName)
     }
 }
