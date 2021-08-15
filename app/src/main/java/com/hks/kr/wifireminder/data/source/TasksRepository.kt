@@ -6,6 +6,9 @@ import com.hks.kr.wifireminder.data.TaskDTO
 import com.hks.kr.wifireminder.domain.entity.Task
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * TODO : 전부 Result로 감싸줄거임 안되면 될때 까지 할거야
+ */
 interface TasksRepository {
 
     fun observeTasks(): Flow<List<Task>>
