@@ -10,6 +10,7 @@ import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.utils.Event
+import com.hks.kr.wifireminder.utils.debugE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -26,14 +27,17 @@ class HomeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    /**
+     * TODO : 여기 로직 부분을 변경해야합니다.
+     */
     private val _taskFlow: Flow<List<Task>> =
         taskRepository.observeTasks()
 
     private val _categoryFlow: Flow<List<Category>> =
         categoryRepository.observeCategories()
 
-    private val _taskItems = MutableLiveData<List<Task>?>(listOf())
-    val taskItems: LiveData<List<Task>?>
+    private val _taskItems = MutableLiveData<List<Task>>(listOf())
+    val taskItems: LiveData<List<Task>>
         get() = _taskItems
 
     private val _categoryItems = MutableLiveData<List<Category>>(listOf())
@@ -60,10 +64,17 @@ class HomeViewModel @Inject constructor(
         get() = _snackBarText
 
     /**
+     * TODO : 로직 변경해야함
+     */
+    /**
      * Task Value State LiveData
      */
     private val _isExistTask = MutableLiveData<Boolean>()
     val isExistTask: LiveData<Boolean> = _isExistTask
+
+    val empty : LiveData<Boolean> = Transformations.map(_taskItems) {
+        it.isEmpty()
+    }
 
     /**
      * taskDataLoading UI State LiveData
@@ -116,10 +127,12 @@ class HomeViewModel @Inject constructor(
         _snackBarText.value = Event(message)
     }
 
+    /** Cached Task RecyclerView Position */
     fun saveTaskScrollPosition(position: Int) {
         savedStateHandle.set(TASK_LIST_SCROLL_POSITION, position)
     }
 
+    /** Cached Category RecyclerView Position */
     fun saveCategoryScrollPosition(position: Int) {
         savedStateHandle.set(CATEGORY_LIST_SCROLL_POSITION, position)
     }
@@ -129,7 +142,7 @@ class HomeViewModel @Inject constructor(
             taskRepository.getTaskByCategory(categoryTitle)
         }.onSuccess { result ->
             if (result is Result.Success) {
-                _taskItems.value = result.data
+                _taskItems.value = result.data!!
             } else {
                 showSnackBarMessage(R.string.loading_tasks_error)
             }

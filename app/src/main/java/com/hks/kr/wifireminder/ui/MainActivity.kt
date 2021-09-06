@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.binding.AppBindingComponent
 import com.hks.kr.wifireminder.databinding.ActivityMainBinding

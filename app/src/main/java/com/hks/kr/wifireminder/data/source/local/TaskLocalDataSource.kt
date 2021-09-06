@@ -11,6 +11,8 @@ import com.hks.kr.wifireminder.data.source.local.dao.TaskDao
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.utils.debugE
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -27,6 +29,12 @@ class TaskLocalDataSource @Inject constructor(
     override fun observeTask(taskId: String): LiveData<Result<Task>> {
         return taskDao.observeTaskById(taskId).map {
             Result.Success(it.asDomainTask())
+        }
+    }
+
+    override fun observeTaskByLiveData(): LiveData<Result<List<Task>>> {
+        return taskDao.observeTasksByLiveData().map {
+            Result.Success(it.asDomainTaskList())
         }
     }
 

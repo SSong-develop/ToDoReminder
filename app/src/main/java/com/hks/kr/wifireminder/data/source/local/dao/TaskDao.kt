@@ -22,6 +22,18 @@ interface TaskDao {
     fun observeTasks(): Flow<List<TaskDTO>>
 
     /**
+     * observes list of tasks
+     *
+     * Room에서 LiveData로 반환하는 과정이 지금 안된다 왜 안되는 건지를 모르겠는데???
+     * 왜 안되지 시발
+     *
+     * 다 되는데 왜 이것만 안됨!
+     * @return all tasks by LiveData
+     */
+    @Query("SELECT * FROM tasks ORDER BY importance DESC")
+    fun observeTasksByLiveData() : LiveData<List<TaskDTO>>
+
+    /**
      * Observes a single task
      *
      * @param taskId the task id

@@ -15,6 +15,8 @@ interface TasksRepository {
 
     fun observeTask(taskId: String): LiveData<Result<Task>>
 
+    fun observeTaskByLiveData() : LiveData<Result<List<Task>>>
+
     suspend fun getTasks(): Result<List<Task>>
 
     suspend fun getTask(taskId: String): Result<Task>

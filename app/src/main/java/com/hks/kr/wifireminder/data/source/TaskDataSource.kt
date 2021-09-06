@@ -13,6 +13,8 @@ interface TaskDataSource {
 
     fun observeTask(taskId: String): LiveData<Result<Task>>
 
+    fun observeTaskByLiveData() : LiveData<Result<List<Task>>>
+
     fun observeTasks(): Flow<List<Task>>
 
     suspend fun getTasks(): Result<List<Task>>

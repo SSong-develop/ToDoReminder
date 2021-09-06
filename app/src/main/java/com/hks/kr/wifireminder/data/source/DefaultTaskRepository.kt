@@ -22,6 +22,13 @@ class DefaultTaskRepository @Inject constructor(
         return taskLocalDataSource.observeTask(taskId)
     }
 
+    /**
+     * 왜 이게 null로 반환되서 나올까 그게 나는 궁금해
+     */
+    override fun observeTaskByLiveData(): LiveData<Result<List<Task>>> {
+        return taskLocalDataSource.observeTaskByLiveData()
+    }
+
     override suspend fun getTasks(): Result<List<Task>> {
         return taskLocalDataSource.getTasks()
     }
