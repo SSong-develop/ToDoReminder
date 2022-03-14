@@ -29,6 +29,8 @@ class HomeViewModel @Inject constructor(
 
     /**
      * TODO : 여기 로직 부분을 변경해야합니다.
+     *
+     * TODO : LiveData를 전부 Flow로 마이그레이션 합니다!
      */
     private val _taskFlow: Flow<List<Task>> =
         taskRepository.observeTasks()
