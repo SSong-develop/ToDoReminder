@@ -2,7 +2,7 @@ package com.hks.kr.wifireminder.di
 
 import com.hks.kr.wifireminder.data.repository.CategoryRepositoryImpl
 import com.hks.kr.wifireminder.data.source.DefaultTaskRepository
-import com.hks.kr.wifireminder.data.source.TasksRepository
+import com.hks.kr.wifireminder.domain.repository.TasksRepository
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import dagger.Binds
 import dagger.Module

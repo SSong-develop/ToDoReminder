@@ -28,6 +28,8 @@ interface TaskDao {
      * 왜 안되지 시발
      *
      * 다 되는데 왜 이것만 안됨!
+     *
+     * TODO : Flow로 반환하도록 하자
      * @return all tasks by LiveData
      */
     @Query("SELECT * FROM tasks ORDER BY importance DESC")

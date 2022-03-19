@@ -1,13 +1,17 @@
 package com.hks.kr.wifireminder.data.source
 
 import androidx.lifecycle.LiveData
-import com.hks.kr.wifireminder.data.Result
+import com.hks.kr.wifireminder.vo.Result
 import com.hks.kr.wifireminder.data.TaskDTO
 import com.hks.kr.wifireminder.domain.entity.Task
 import kotlinx.coroutines.flow.Flow
 
 /**
  * TODO : 전부 Result로 감싸줄거임 안되면 될때 까지 할거야
+ *
+ * TODO : Observe란 단어가 과연 어울리는지를 모르겠다;;
+ *
+ * TODO : Naming 룰에 대해서 좀 확실하게 명시를 하고 그 다음에 생각을 하자
  */
 interface TaskDataSource {
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hks.kr.wifireminder.data.TaskDTO
-import com.hks.kr.wifireminder.data.source.TasksRepository
+import com.hks.kr.wifireminder.domain.repository.TasksRepository
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.utils.Event

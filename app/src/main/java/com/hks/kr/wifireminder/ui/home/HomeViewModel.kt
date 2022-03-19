@@ -2,17 +2,13 @@ package com.hks.kr.wifireminder.ui.home
 
 import androidx.lifecycle.*
 import com.hks.kr.wifireminder.R
-import com.hks.kr.wifireminder.data.CategoryDTO
 import com.hks.kr.wifireminder.data.Result
-import com.hks.kr.wifireminder.data.TaskDTO
-import com.hks.kr.wifireminder.data.source.TasksRepository
+import com.hks.kr.wifireminder.domain.repository.TasksRepository
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.utils.Event
-import com.hks.kr.wifireminder.utils.debugE
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect

@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.data
+package com.hks.kr.wifireminder.vo
 
 
 sealed class Result<out R> {

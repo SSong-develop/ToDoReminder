@@ -1,9 +1,10 @@
-package com.hks.kr.wifireminder.data.source
+package com.hks.kr.wifireminder.domain.repository
 
 import androidx.lifecycle.LiveData
 import com.hks.kr.wifireminder.data.Result
 import com.hks.kr.wifireminder.data.TaskDTO
 import com.hks.kr.wifireminder.domain.entity.Task
+import com.hks.kr.wifireminder.vo.Result
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -13,15 +14,15 @@ interface TasksRepository {
 
     fun observeTasks(): Flow<List<Task>>
 
-    fun observeTask(taskId: String): LiveData<Result<Task>>
+    fun observeTask(taskId: String): LiveData<com.hks.kr.wifireminder.vo.Result<Task>>
 
-    fun observeTaskByLiveData() : LiveData<Result<List<Task>>>
+    fun observeTaskByLiveData() : LiveData<com.hks.kr.wifireminder.vo.Result<List<Task>>>
 
-    suspend fun getTasks(): Result<List<Task>>
+    suspend fun getTasks(): com.hks.kr.wifireminder.vo.Result<List<Task>>
 
-    suspend fun getTask(taskId: String): Result<Task>
+    suspend fun getTask(taskId: String): com.hks.kr.wifireminder.vo.Result<Task>
 
-    suspend fun getTaskByCategory(categoryTitle: String): Result<List<Task>>
+    suspend fun getTaskByCategory(categoryTitle: String): com.hks.kr.wifireminder.vo.Result<List<Task>>
 
     suspend fun getTaskByImportance(): Result<List<Task>>
 
