@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hks.kr.wifireminder.data.TaskDTO
+import com.hks.kr.wifireminder.data.source.local.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.repository.TasksRepository
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.utils.Event
+import com.hks.kr.wifireminder.vo.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -38,8 +39,18 @@ class AddTaskViewModel @Inject constructor(
     val categoryImportance: List<String>
         get() = _categoryImportance
 
-    private val categoryFlow: Flow<List<Category>> =
-        categoryRepository.observeCategories()
+    private val categoryFlow: Flow<Result<List<Category>>> =
+        categoryRepository.collectCategories(
+            onStart = {
+
+            },
+            onComplete = {
+
+            },
+            onError = {
+
+            }
+        )
 
     private val _categoryItems = MutableLiveData<List<Category>>()
     val categoryItems: LiveData<List<Category>>
@@ -49,25 +60,10 @@ class AddTaskViewModel @Inject constructor(
     val snackBarText: LiveData<Event<Int>>
         get() = _snackBarText
 
-
-    init {
-        viewModelScope.launch {
-            categoryFlow.onStart {
-
-            }.onCompletion {
-
-            }.catch {
-
-            }.collect {
-                _categoryItems.value = it
-            }
-        }
-    }
-
     fun saveTask() =
         viewModelScope.launch {
             taskRepository.saveTask(
-                TaskDTO(
+                TaskEntity(
                     title = title.value.toString(),
                     description = description.value.toString(),
                     startDate = date.value!!.first,
@@ -77,7 +73,6 @@ class AddTaskViewModel @Inject constructor(
                 )
             )
         }
-
 
     fun showSnackBarMessage(message: Int) {
         _snackBarText.value = Event(message)

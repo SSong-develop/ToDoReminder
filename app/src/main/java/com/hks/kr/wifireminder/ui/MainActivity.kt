@@ -17,12 +17,17 @@ import com.hks.kr.wifireminder.utils.startService
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+/**
+ *
+ * TODO : Task를 끝낸 것에 대한 인증을 할 수 있으면 좋겠다.
+ * 예를 들어 사진으로 찍어서 이를 보관하고 나중에 내가 이러한 일들을 해냈다는 것을 유저들이 확인할 수 있도록 하는 그런것 처럼!
+ * 카메라Api, View 등등만 하면 될 거 같음. -> 재밌을 거 같다.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding : ActivityMainBinding by lazy { DataBindingUtil.setContentView(this, R.layout.activity_main) }
     private val viewModel: MainViewModel by viewModels()
-    private val sharedViewModel: SharedViewModel by viewModels()
 
     @Inject
     lateinit var notificationManager: NotificationManager

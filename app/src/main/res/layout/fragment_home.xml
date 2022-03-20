@@ -104,7 +104,6 @@
                     android:fontFamily="@font/montserrat_black"
                     android:includeFontPadding="false"
                     android:text="@string/home_fragment_todo_title"
-                    android:onClick="@{() -> vm.emitTasks()}"
                     android:textColor="@color/home_fragment_category_title_color"
                     app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list"
                     app:layout_constraintStart_toStartOf="parent"

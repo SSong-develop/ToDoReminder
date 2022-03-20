@@ -8,4 +8,8 @@
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_person"
         android:title="profile" />
+    <item
+        android:id="@+id/certificationFragment"
+        android:icon="@drawable/ic_etc"
+        android:title="certification" />
 </menu>

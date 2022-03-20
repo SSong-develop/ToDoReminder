@@ -23,4 +23,8 @@
         android:name="com.hks.kr.wifireminder.ui.detail.TaskDetailFragment"
         android:label="TaskDetailFragment"
         tools:layout="@layout/fragment_task_detail"/>
+    <fragment
+        android:id="@+id/certificationFragment"
+        android:name="com.hks.kr.wifireminder.ui.certification.CertificationFragment"
+        android:label="CertificationFragment" />
 </navigation>
