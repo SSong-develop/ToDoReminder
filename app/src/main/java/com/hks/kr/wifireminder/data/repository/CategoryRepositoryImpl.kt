@@ -1,34 +1,47 @@
 package com.hks.kr.wifireminder.data.repository
 
-import com.hks.kr.wifireminder.data.CategoryDTO
-import com.hks.kr.wifireminder.data.asDomainCategoryEntity
-import com.hks.kr.wifireminder.data.source.local.dao.CategoryDao
+import com.hks.kr.wifireminder.data.source.local.datasource.TaskCategoryDataSource
+import com.hks.kr.wifireminder.data.source.local.entity.CategoryEntity
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
+import com.hks.kr.wifireminder.vo.Result
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class CategoryRepositoryImpl @Inject constructor(
-    private val categoryDao: CategoryDao
+    private val taskCategoryDataSource: TaskCategoryDataSource
 ) : CategoryRepository {
 
-    override fun observeCategories(): Flow<List<Category>> {
-        return categoryDao.observeCategories().map { it.asDomainCategoryEntity() }
+    override fun collectCategories(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: () -> Unit
+    ): Flow<Result<List<Category>>> {
+        return taskCategoryDataSource.collectCategories().onStart {
+            onStart()
+        }.onCompletion {
+            onComplete()
+        }.catch {
+            onError()
+        }
     }
 
-    override suspend fun insertCategory(categoryDTO: CategoryDTO) {
-        categoryDao.insertCategory(categoryDTO)
+    override suspend fun insertCategory(categoryEntity: CategoryEntity) {
+        taskCategoryDataSource.insertCategory(categoryEntity)
     }
 
-    override suspend fun getAllCategory(): List<Category> =
-        categoryDao.getAllCategory().asDomainCategoryEntity()
+    override suspend fun getCategories(): Result<List<Category>> {
+        return taskCategoryDataSource.getCategories()
+    }
 
     override suspend fun deleteCategory(categoryName: String) {
-        categoryDao.deleteCategory(categoryName)
+        taskCategoryDataSource.deleteCategory(categoryName)
     }
 
     override suspend fun deleteCategories() {
-        categoryDao.deleteCategories()
+        taskCategoryDataSource.deleteCategories()
     }
 }

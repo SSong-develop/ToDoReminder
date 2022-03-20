@@ -7,11 +7,11 @@
         <import type="android.view.View" />
 
         <variable
-            name="bindingViewModel"
+            name="vm"
             type="com.hks.kr.wifireminder.ui.home.HomeViewModel" />
 
         <variable
-            name="bindingFragment"
+            name="fragment"
             type="com.hks.kr.wifireminder.ui.home.HomeFragment" />
     </data>
 
@@ -54,7 +54,6 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_fragment_todo_category_list"
-                        task_category_items="@{bindingViewModel.categoryItems}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
@@ -63,6 +62,7 @@
                         android:orientation="horizontal"
                         android:overScrollMode="never"
                         android:paddingStart="4dp"
+                        task_category_items="@{vm.categoryStateFlow}"
                         android:paddingEnd="4dp"
                         android:paddingBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -73,7 +73,7 @@
                     <ProgressBar
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="@{bindingViewModel.categoryDataLoading ? View.VISIBLE : View.GONE}"
+                        android:visibility="@{vm.categoryDataLoading ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="@id/home_fragment_todo_category_list"
                         app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_category_list"
                         app:layout_constraintStart_toStartOf="@id/home_fragment_todo_category_list"
@@ -104,7 +104,7 @@
                     android:fontFamily="@font/montserrat_black"
                     android:includeFontPadding="false"
                     android:text="@string/home_fragment_todo_title"
-                    android:onClick="@{() -> bindingViewModel.emitTasks()}"
+                    android:onClick="@{() -> vm.emitTasks()}"
                     android:textColor="@color/home_fragment_category_title_color"
                     app:layout_constraintBottom_toTopOf="@id/home_fragment_todo_list"
                     app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{bindingViewModel.isExistTask ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{vm.isExistTask ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -152,13 +152,13 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_fragment_todo_list"
-                    task_adapter_item="@{bindingViewModel.taskItems}"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="12dp"
                     android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -168,7 +168,7 @@
                 <ProgressBar
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="@{bindingViewModel.taskDataLoading ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{vm.taskDataLoading ? View.VISIBLE : View.GONE }"
                     app:layout_constraintBottom_toBottomOf="@id/home_fragment_todo_list"
                     app:layout_constraintEnd_toEndOf="@id/home_fragment_todo_list"
                     app:layout_constraintStart_toStartOf="@id/home_fragment_todo_list"

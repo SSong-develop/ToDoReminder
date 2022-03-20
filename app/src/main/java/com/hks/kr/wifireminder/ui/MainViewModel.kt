@@ -9,7 +9,7 @@ import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.hks.kr.wifireminder.R
-import com.hks.kr.wifireminder.data.CategoryDTO
+import com.hks.kr.wifireminder.data.source.local.entity.CategoryEntity
 import com.hks.kr.wifireminder.datastore.PrefsStore
 import com.hks.kr.wifireminder.domain.repository.CategoryRepository
 import com.hks.kr.wifireminder.workers.TaskDeleteWorker
@@ -31,12 +31,7 @@ class MainViewModel @Inject constructor(
     val isSingleInvoked: LiveData<Boolean>
         get() = _isSingleInvoked
 
-    private val _addTaskVisibility = MutableLiveData<Boolean>()
-    val addTaskVisibility: LiveData<Boolean>
-        get() = _addTaskVisibility
-
     init {
-        showFab()
         getResultOfSingleInvoked()
     }
 
@@ -58,28 +53,28 @@ class MainViewModel @Inject constructor(
 
     fun initializeDefaultCategories() = viewModelScope.launch {
         categoryRepository.insertCategory(
-            CategoryDTO(
+            CategoryEntity(
                 categoryTitle = "Life",
                 backgroundColorCode = "#AA11AA",
                 icon = R.drawable.ic_life
             )
         )
         categoryRepository.insertCategory(
-            CategoryDTO(
+            CategoryEntity(
                 categoryTitle = "Work",
                 backgroundColorCode = "#4D6B8FF9",
                 icon = R.drawable.ic_work
             )
         )
         categoryRepository.insertCategory(
-            CategoryDTO(
+            CategoryEntity(
                 categoryTitle = "Fun",
                 backgroundColorCode = "#4DAA11AA",
                 icon = R.drawable.ic_fun
             )
         )
         categoryRepository.insertCategory(
-            CategoryDTO(
+            CategoryEntity(
                 categoryTitle = "ETC",
                 backgroundColorCode = "#6B8FF9",
                 icon = R.drawable.ic_etc
@@ -100,13 +95,5 @@ class MainViewModel @Inject constructor(
             prefsStore.onSingleInvoke()
         }
         block()
-    }
-
-    fun setFabVisible(value: Boolean) {
-        _addTaskVisibility.value = value
-    }
-
-    private fun showFab() {
-        _addTaskVisibility.value = true
     }
 }

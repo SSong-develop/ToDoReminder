@@ -1,14 +1,9 @@
 package com.hks.kr.wifireminder.data.source.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.hks.kr.wifireminder.data.TaskDTO
+import com.hks.kr.wifireminder.data.source.local.entity.TaskEntity
 import kotlinx.coroutines.flow.Flow
 
-/**
- * Inner Join 사용해서 Category가 있는지 확인하고 그다음에 하는게 맞는거 같은데
- * JetCaster 보면서 좀 생각해보는게 맞을 듯 싶음
- */
 @Dao
 interface TaskDao {
 
@@ -19,21 +14,7 @@ interface TaskDao {
      * @return all tasks
      */
     @Query("SELECT * FROM tasks ORDER BY importance DESC")
-    fun observeTasks(): Flow<List<TaskDTO>>
-
-    /**
-     * observes list of tasks
-     *
-     * Room에서 LiveData로 반환하는 과정이 지금 안된다 왜 안되는 건지를 모르겠는데???
-     * 왜 안되지 시발
-     *
-     * 다 되는데 왜 이것만 안됨!
-     *
-     * TODO : Flow로 반환하도록 하자
-     * @return all tasks by LiveData
-     */
-    @Query("SELECT * FROM tasks ORDER BY importance DESC")
-    fun observeTasksByLiveData() : LiveData<List<TaskDTO>>
+    fun collectTasks(): Flow<List<TaskEntity>>
 
     /**
      * Observes a single task
@@ -42,7 +23,7 @@ interface TaskDao {
      * @return the task with taskId
      */
     @Query("SELECT * FROM tasks WHERE task_id = :taskId")
-    fun observeTaskById(taskId: String): LiveData<TaskDTO>
+    fun collectTask(taskId: String): Flow<TaskEntity>
 
     /**
      * Select all tasks from the tasks table
@@ -50,7 +31,7 @@ interface TaskDao {
      * @return all tasks
      */
     @Query("SELECT * FROM tasks")
-    suspend fun getTasks(): List<TaskDTO>
+    suspend fun getTasks(): List<TaskEntity>
 
     /**
      * Select a task by id
@@ -59,17 +40,17 @@ interface TaskDao {
      * @return the task with taskId
      */
     @Query("SELECT * FROM tasks WHERE task_id = :taskId")
-    suspend fun getTaskById(taskId: String): TaskDTO?
+    suspend fun getTaskById(taskId: String): TaskEntity?
 
     /**
      * Insert a task in the database. If the task already exists, replace it.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTask(taskDTO: TaskDTO)
+    suspend fun insertTask(taskDTO: TaskEntity)
 
     @Transaction
     @Query("SELECT * FROM tasks ORDER BY importance DESC")
-    suspend fun fetchTaskSortByImportance(): List<TaskDTO>
+    suspend fun fetchTaskSortByImportance(): List<TaskEntity>
 
     /**
      * Delete a task by id
@@ -103,5 +84,5 @@ interface TaskDao {
      * get Specify Category Task
      */
     @Query("SELECT * FROM tasks WHERE :categoryName = category")
-    suspend fun fetchTaskByCategory(categoryName: String): List<TaskDTO>
+    suspend fun fetchTaskByCategory(categoryName: String): List<TaskEntity>
 }

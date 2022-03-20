@@ -32,7 +32,6 @@ class FrameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.setFabVisible(true)
         configureBottomNavigation()
     }
 

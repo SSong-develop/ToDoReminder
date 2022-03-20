@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.ui
+package com.hks.kr.wifireminder.ui.factory
 
 import android.app.Activity
 import androidx.fragment.app.Fragment

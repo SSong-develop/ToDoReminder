@@ -4,7 +4,7 @@ import androidx.databinding.BindingAdapter
 import com.hks.kr.wifireminder.ui.addTask.AddTaskViewModel
 import com.hks.kr.wifireminder.view.calendarPicker.CalendarPicker
 
-object CalendarBindingAdapter {
+object CalendarBinding {
     @JvmStatic
     @BindingAdapter("app:setOnRangeSelectListener")
     fun setOnRangeSelectListener(calendarPicker: CalendarPicker, viewModel: AddTaskViewModel) {

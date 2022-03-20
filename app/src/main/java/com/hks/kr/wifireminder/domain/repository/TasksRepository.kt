@@ -1,32 +1,34 @@
 package com.hks.kr.wifireminder.domain.repository
 
-import androidx.lifecycle.LiveData
-import com.hks.kr.wifireminder.data.Result
-import com.hks.kr.wifireminder.data.TaskDTO
+import com.hks.kr.wifireminder.data.source.local.entity.TaskEntity
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.vo.Result
 import kotlinx.coroutines.flow.Flow
 
-/**
- * TODO : 전부 Result로 감싸줄거임 안되면 될때 까지 할거야
- */
 interface TasksRepository {
 
-    fun observeTasks(): Flow<List<Task>>
+    fun collectTasks(
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: () -> Unit
+    ): Flow<Result<List<Task>>>
 
-    fun observeTask(taskId: String): LiveData<com.hks.kr.wifireminder.vo.Result<Task>>
+    fun collectTask(
+        taskId: String,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: () -> Unit
+    ): Flow<Result<Task>>
 
-    fun observeTaskByLiveData() : LiveData<com.hks.kr.wifireminder.vo.Result<List<Task>>>
+    suspend fun getTasks(): Result<List<Task>>
 
-    suspend fun getTasks(): com.hks.kr.wifireminder.vo.Result<List<Task>>
+    suspend fun getTask(taskId: String): Result<Task>
 
-    suspend fun getTask(taskId: String): com.hks.kr.wifireminder.vo.Result<Task>
-
-    suspend fun getTaskByCategory(categoryTitle: String): com.hks.kr.wifireminder.vo.Result<List<Task>>
+    suspend fun getTaskByCategory(categoryTitle: String): Result<List<Task>>
 
     suspend fun getTaskByImportance(): Result<List<Task>>
 
-    suspend fun saveTask(task: TaskDTO)
+    suspend fun saveTask(task: TaskEntity)
 
     suspend fun deleteAllTasks()
 

@@ -1,4 +1,4 @@
-package com.hks.kr.wifireminder.data
+package com.hks.kr.wifireminder.data.source.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -19,7 +19,7 @@ import java.util.*
  */
 
 @Entity(tableName = "tasks")
-data class TaskDTO(
+data class TaskEntity(
     @PrimaryKey
     @ColumnInfo(name = "task_id")
     var id: String = UUID.randomUUID().toString(),
@@ -44,7 +44,7 @@ data class TaskDTO(
         get() = title.isEmpty() || description.isEmpty()
 }
 
-fun List<TaskDTO>.asDomainTaskList(): List<Task> {
+fun List<TaskEntity>.asDomainTaskList(): List<Task> {
     return map {
         Task(
             id = it.id,
@@ -58,7 +58,7 @@ fun List<TaskDTO>.asDomainTaskList(): List<Task> {
     }
 }
 
-fun TaskDTO.asDomainTask(): Task {
+fun TaskEntity.asDomainTask(): Task {
     return Task(
         id,
         title,

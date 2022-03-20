@@ -1,18 +1,12 @@
-package com.hks.kr.wifireminder.data.source.local
+package com.hks.kr.wifireminder.data.source.local.datasource
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.map
-import com.hks.kr.wifireminder.data.TaskDTO
-import com.hks.kr.wifireminder.data.asDomainTask
-import com.hks.kr.wifireminder.data.asDomainTaskList
-import com.hks.kr.wifireminder.data.source.TaskDataSource
 import com.hks.kr.wifireminder.data.source.local.dao.TaskDao
+import com.hks.kr.wifireminder.data.source.local.entity.TaskEntity
+import com.hks.kr.wifireminder.data.source.local.entity.asDomainTask
+import com.hks.kr.wifireminder.data.source.local.entity.asDomainTaskList
 import com.hks.kr.wifireminder.domain.entity.Task
 import com.hks.kr.wifireminder.vo.Result
-import com.hks.kr.wifireminder.utils.debugE
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -20,42 +14,38 @@ class TaskLocalDataSource @Inject constructor(
     private val taskDao: TaskDao
 ) : TaskDataSource {
 
-    override fun observeTasks(): Flow<List<Task>> {
-        return taskDao.observeTasks().map {
-            it.asDomainTaskList()
-        }
-    }
-
-    override fun observeTask(taskId: String): LiveData<Result<Task>> {
-        return taskDao.observeTaskById(taskId).map {
-            Result.Success(it.asDomainTask())
-        }
-    }
-
-    override fun observeTaskByLiveData(): LiveData<Result<List<Task>>> {
-        return taskDao.observeTasksByLiveData().map {
+    override fun collectTasks(): Flow<Result<List<Task>>> {
+        return taskDao.collectTasks().map {
             Result.Success(it.asDomainTaskList())
+        }
+    }
+
+    override fun collectTask(taskId: String): Flow<Result<Task>> {
+        return taskDao.collectTask(taskId).map {
+            Result.Success(it.asDomainTask())
         }
     }
 
     override suspend fun getTasks(): Result<List<Task>> {
         return try {
-            Result.Success(taskDao.getTasks().asDomainTaskList())
+            Result.Success(taskDao.getTasks().map {
+                it.asDomainTask()
+            })
         } catch (e: Exception) {
             Result.Error(e)
         }
     }
 
     override suspend fun getTask(taskId: String): Result<Task> {
-        try {
+        return try {
             val task = taskDao.getTaskById(taskId)
             if (task != null) {
-                return Result.Success(task.asDomainTask())
+                Result.Success(task.asDomainTask())
             } else {
-                return Result.Error(Exception("Task not found!"))
+                Result.Error(Exception("Task not found!"))
             }
         } catch (e: Exception) {
-            return Result.Error(e)
+            Result.Error(e)
         }
     }
 
@@ -75,7 +65,7 @@ class TaskLocalDataSource @Inject constructor(
         }
     }
 
-    override suspend fun saveTask(task: TaskDTO) {
+    override suspend fun saveTask(task: TaskEntity) {
         taskDao.insertTask(task)
     }
 

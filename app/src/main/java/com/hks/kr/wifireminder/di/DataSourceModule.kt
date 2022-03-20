@@ -1,7 +1,9 @@
 package com.hks.kr.wifireminder.di
 
-import com.hks.kr.wifireminder.data.source.TaskDataSource
-import com.hks.kr.wifireminder.data.source.local.TaskLocalDataSource
+import com.hks.kr.wifireminder.data.source.local.datasource.TaskCategoryDataSource
+import com.hks.kr.wifireminder.data.source.local.datasource.TaskCategoryLocalDataSource
+import com.hks.kr.wifireminder.data.source.local.datasource.TaskDataSource
+import com.hks.kr.wifireminder.data.source.local.datasource.TaskLocalDataSource
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,5 +17,9 @@ abstract class DataSourceModule {
     @Binds
     @Singleton
     abstract fun bindTaskLocalDataSource(taskLocalDataSource: TaskLocalDataSource): TaskDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindTaskCategoryLocal(taskCategoryLocalDataSource: TaskCategoryLocalDataSource): TaskCategoryDataSource
 
 }

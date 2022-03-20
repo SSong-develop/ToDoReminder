@@ -1,39 +1,50 @@
 package com.hks.kr.wifireminder.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.LinearInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.hks.kr.wifireminder.R
 import com.hks.kr.wifireminder.databinding.FragmentHomeBinding
 import com.hks.kr.wifireminder.domain.entity.Category
 import com.hks.kr.wifireminder.domain.entity.Task
-import com.hks.kr.wifireminder.ui.MainActivity
+import com.hks.kr.wifireminder.ui.common.adapter.HomeTaskAdapter
+import com.hks.kr.wifireminder.ui.common.adapter.HomeTaskCategoryAdapter
+import com.hks.kr.wifireminder.ui.common.viewholders.CategoryViewHolder
+import com.hks.kr.wifireminder.ui.common.viewholders.TaskViewHolder
 import com.hks.kr.wifireminder.utils.delegate.FragmentBindingDelegate
 import com.hks.kr.wifireminder.utils.setUpSnackBar
+import com.hks.kr.wifireminder.vo.Result
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
+@InternalCoroutinesApi
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(),TaskViewHolder.Delegate, CategoryViewHolder.Delegate {
 
     private var binding: FragmentHomeBinding by FragmentBindingDelegate()
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
-    private lateinit var homeTaskAdapter: HomeTaskAdapter
+    private var _homeTaskAdapter: HomeTaskAdapter? = null
+    private val homeTaskAdapter: HomeTaskAdapter?
+        get() = _homeTaskAdapter
 
-    private lateinit var homeTaskCategoryAdapter: HomeTaskCategoryAdapter
+    private var _homeTaskCategoryAdapter: HomeTaskCategoryAdapter? = null
+    private val homeTaskCategoryAdapter: HomeTaskCategoryAdapter?
+        get() = _homeTaskCategoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,23 +54,21 @@ class HomeFragment : Fragment() {
         .also { fragmentHomeBinding -> binding = fragmentHomeBinding }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.bindingViewModel = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.bindingFragment = this
+        with(binding) {
+            vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
+            fragment = this@HomeFragment
+        }
 
-        homeTaskAdapter =
-            HomeTaskAdapter(onItemClicked = { position, task -> onTaskItemClicked(position, task) })
-
-        homeTaskCategoryAdapter = HomeTaskCategoryAdapter(onItemClicked = { position, category ->
-            onCategoryItemClicked(
-                position,
-                category
-            )
-        })
-
+        initializeAdapter()
         configureSnackBar()
         configureTaskList()
         configureCategoryList()
+    }
+
+    private fun initializeAdapter() {
+        _homeTaskAdapter = HomeTaskAdapter(this)
+        _homeTaskCategoryAdapter = HomeTaskCategoryAdapter(this)
     }
 
     private fun configureSnackBar() {
@@ -70,40 +79,28 @@ class HomeFragment : Fragment() {
         list.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         list.adapter = homeTaskCategoryAdapter
-        list.scrollToPosition(viewModel.categoryListPosition ?: 0)
-        list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val position =
-                    ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
-                viewModel.saveCategoryScrollPosition(position)
-            }
-        })
+
     }
 
     private fun configureTaskList() = binding.homeFragmentTodoList.let { list ->
-        list.layoutManager = LinearLayoutManager(requireContext())
         list.adapter = homeTaskAdapter
         LinearSnapHelper().attachToRecyclerView(list)
-        list.scrollToPosition(viewModel.taskListPosition ?: 0)
-        list.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                val position =
-                    ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
-                viewModel.saveTaskScrollPosition(position)
-            }
-        })
     }
 
-    private fun onTaskItemClicked(position: Int, task: Task) {
+    override fun onDestroyView() {
+        _homeTaskAdapter = null
+        _homeTaskCategoryAdapter = null
+        super.onDestroyView()
+    }
+
+    override fun onCategoryItemClick(view: View, category: Category) {
+        viewModel.fetchTasksByCategory(category.categoryName)
+    }
+
+    override fun onTaskItemClick(view: View, task: Task) {
         val bundleArgs = Bundle()
         bundleArgs.putParcelable("task", task)
 
         findNavController().navigate(R.id.action_homeFragment_to_taskDetailFragment, bundleArgs)
-    }
-
-    private fun onCategoryItemClicked(position: Int, category: Category) {
-        viewModel.getTasksByCategory(category.categoryName)
     }
 }

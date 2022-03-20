@@ -1,27 +1,26 @@
 package com.hks.kr.wifireminder.data.source.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.hks.kr.wifireminder.data.CategoryDTO
+import com.hks.kr.wifireminder.data.source.local.entity.CategoryEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
 
     @Query("SELECT * FROM category")
-    fun observeCategories(): Flow<List<CategoryDTO>>
+    fun collectCategories(): Flow<List<CategoryEntity>>
 
     @Query("SELECT * FROM category WHERE category_id = :categoryId")
-    fun observeCategoryById(categoryId: Int): LiveData<CategoryDTO>
+    fun collectCategory(categoryId: Int): Flow<CategoryEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCategory(categoryDTO: CategoryDTO)
+    suspend fun insertCategory(categoryEntity: CategoryEntity)
 
     @Query("SELECT * FROM category")
-    suspend fun getAllCategory(): List<CategoryDTO>
+    suspend fun getCategories(): List<CategoryEntity>
 
     @Query("DELETE FROM category WHERE :categoryName = category_title")
     suspend fun deleteCategory(categoryName: String)

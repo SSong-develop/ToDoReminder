@@ -37,13 +37,13 @@ task coverageReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'create
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.hks.kr.wifireminder"
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -86,6 +86,9 @@ dependencies {
 
     // liveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle"
+
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle"
 
     // ktx
     implementation "androidx.core:core-ktx:$version_core_ktx"
